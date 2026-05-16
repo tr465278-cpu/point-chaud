@@ -1,1 +1,3008 @@
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Point-Chaud & Binthily Lodge — Saveurs & Séjours d'Exception au Mali</title>
+<meta name="description" content="Point-Chaud restaurant & Binthily Lodge au Mali. Gastronomie locale et internationale, hébergement luxueux au bord du fleuve Niger, événements et formations.">
+<meta property="og:title" content="Point-Chaud & Binthily Lodge">
+<meta property="og:description" content="Deux mondes, une seule excellence. Restaurant, boulangerie, pâtisserie à Bamako et complexe hôtelier à Djoliba.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://files.catbox.moe/apxb0w.jpeg">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- Schema.org SEO Local -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Restaurant",
+      "name": "Point-Chaud",
+      "image": "https://files.catbox.moe/apxb0w.jpeg",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Hamdallaye ACI 2000, carrefour Hôtel Cologne",
+        "addressLocality": "Bamako",
+        "addressCountry": "ML"
+      },
+      "telephone": "+22395953388",
+      "priceRange": "$$",
+      "servesCuisine": ["Cuisine locale malienne", "Fast food", "Pâtisserie", "Boulangerie", "Cuisine internationale"],
+      "url": "https://pointchaud-binthily.com",
+      "openingHours": "Mo-Su 07:00-22:00"
+    },
+    {
+      "@type": "LodgingBusiness",
+      "name": "Binthily Lodge",
+      "image": "https://files.catbox.moe/eu9d1w.jpeg",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Djoliba, bord du fleuve Niger",
+        "addressLocality": "Djoliba",
+        "addressCountry": "ML"
+      },
+      "telephone": "+22395953388",
+      "priceRange": "$$$",
+      "url": "https://pointchaud-binthily.com",
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Piscine", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Restaurant", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Bar", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Parking", "value": true }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+/* ============================================
+   VARIABLES & RESET — PALETTE CHOCOLAT / OR / BLEU / ROSE
+   ============================================ */
+:root {
+  --color-chocolat-fonce: #2C1810;
+  --color-chocolat: #4A2C2A;
+  --color-chocolat-moyen: #6D4C41;
+  --color-bleu-nuit: #0B132B;
+  --color-bleu-glacier: #3A506B;
+  --color-bleu-clair: #4ECDC4;
+  --color-beige: #F5F0E8;
+  --color-creme: #FFF8F0;
+  --color-or: #D4AF37;
+  --color-or-vif: #E8B923;
+  --color-rose: #FF8FA3;
+  --color-rose-pale: #FFE4E9;
+  --color-rose-fonce: #C2185B;
+  --color-cyan: #5BC0BE;
+  --color-blanc-froid: #F4F4F4;
+  --color-blanc: #FFFFFF;
+  --color-gris: #8D6E63;
+  --color-gris-fonce: #5D4037;
+
+  --font-display: 'Plus Jakarta Sans', 'Clash Display', sans-serif;
+  --font-nav: 'Satoshi', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --transition: all 0.3s ease;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.2);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.3);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,0.4);
+  --shadow-gold: 0 4px 20px rgba(212,175,55,0.3);
+  --shadow-blue: 0 4px 20px rgba(78,205,196,0.3);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--color-chocolat-fonce);
+  background: var(--color-creme);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+img { max-width:100%; height:auto; display:block; }
+a { text-decoration:none; color:inherit; }
+ul { list-style:none; }
+
+/* ============================================
+   NAVBAR — LUXE CHOCOLAT
+   ============================================ */
+.navbar {
+  position: fixed; top:0; left:0; right:0; z-index:1000;
+  background: rgba(44,24,16,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(212,175,55,0.1);
+  transition: var(--transition);
+}
+.navbar.scrolled {
+  background: rgba(44,24,16,0.98);
+  box-shadow: var(--shadow-sm);
+}
+.nav-container {
+  max-width: 1280px; margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 0 24px; height: 72px;
+}
+.nav-logo {
+  display:flex; align-items:center; gap:12px;
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 1.4rem;
+}
+.nav-logo .logo-pc { color: var(--color-or); }
+.nav-logo .logo-sep { color: var(--color-gris); font-weight:300; }
+.nav-logo .logo-bl { color: var(--color-cyan); }
+.nav-links {
+  display:flex; align-items:center; gap: 28px;
+}
+.nav-links a {
+  font-family: var(--font-nav);
+  font-size: 0.9rem; font-weight: 500;
+  color: var(--color-blanc-froid);
+  position: relative; padding: 4px 0;
+  transition: var(--transition);
+}
+.nav-links a::after {
+  content:''; position:absolute; bottom:0; left:0; width:0; height:2px;
+  background: var(--color-or); transition: var(--transition);
+}
+.nav-links a:hover::after { width:100%; }
+.nav-links a:hover { color: var(--color-or); }
+.nav-cta {
+  background: #25D366; color: var(--color-blanc) !important;
+  padding: 10px 20px !important; border-radius: 8px;
+  font-weight: 600 !important; font-size: 0.85rem !important;
+  display:flex; align-items:center; gap:8px;
+  transition: var(--transition);
+}
+.nav-cta::after { display:none !important; }
+.nav-cta:hover {
+  background: #128C7E; transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37,211,102,0.3);
+}
+.hamburger {
+  display:none; flex-direction:column; gap:5px; cursor:pointer;
+  background:none; border:none; padding:8px;
+}
+.hamburger span {
+  display:block; width:24px; height:2px;
+  background: var(--color-or); transition: var(--transition);
+}
+
+/* ============================================
+   MOBILE MENU
+   ============================================ */
+.mobile-menu {
+  position: fixed; top:0; right:-100%; width:80%; max-width:320px;
+  height:100vh; background: var(--color-chocolat); z-index:1001;
+  padding: 80px 32px 32px; box-shadow: var(--shadow-lg);
+  transition: right 0.4s ease;
+}
+.mobile-menu.open { right:0; }
+.mobile-menu a {
+  display:block; padding: 14px 0;
+  font-family: var(--font-nav);
+  font-size: 1.1rem; font-weight: 500;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  color: var(--color-blanc-froid);
+}
+.mobile-menu .mobile-cta {
+  margin-top: 24px; display:inline-flex;
+  background: #25D366; color: var(--color-blanc);
+  padding: 12px 24px; border-radius: 8px;
+  font-weight: 600; gap:8px;
+}
+.menu-overlay {
+  position: fixed; inset:0; background: rgba(0,0,0,0.8);
+  z-index:1000; opacity:0; pointer-events:none;
+  transition: opacity 0.3s ease;
+}
+.menu-overlay.open { opacity:1; pointer-events:auto; }
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+  position: relative; min-height: 100vh;
+  display:flex; align-items:center; justify-content:center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset:0;
+  background: url('https://files.catbox.moe/apxb0w.jpeg') center/cover;
+}
+.hero-bg::after {
+  content:''; position:absolute; inset:0;
+  background: linear-gradient(135deg, rgba(44,24,16,0.85) 0%, rgba(11,19,43,0.9) 50%, rgba(44,24,16,0.95) 100%);
+}
+.hero-content {
+  position: relative; z-index: 2; text-align: center;
+  max-width: 900px; padding: 120px 24px 80px;
+  color: var(--color-blanc);
+}
+.hero-badge {
+  display:inline-block; padding: 8px 20px;
+  border: 1px solid rgba(212,175,55,0.4); border-radius: 50px;
+  font-family: var(--font-nav);
+  font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--color-or); margin-bottom: 24px;
+  animation: fadeInDown 0.8s ease forwards;
+}
+.hero h1 {
+  font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 700; line-height: 1.1; margin-bottom: 20px;
+  animation: fadeInUp 0.8s 0.2s ease forwards;
+}
+.hero h1 span { color: var(--color-or); }
+.hero-subtitle {
+  font-family: var(--font-nav);
+  font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 300;
+  color: var(--color-rose-pale); margin-bottom: 16px;
+  animation: fadeInUp 0.8s 0.4s ease forwards;
+}
+.hero-locations {
+  font-family: var(--font-body);
+  font-size: 0.95rem; opacity: 0.7; margin-bottom: 40px;
+  animation: fadeInUp 0.8s 0.5s ease forwards;
+}
+.hero-buttons {
+  display:flex; flex-wrap:wrap; gap: 16px; justify-content:center;
+  animation: fadeInUp 0.8s 0.6s ease forwards;
+}
+.btn {
+  display:inline-flex; align-items:center; gap: 10px;
+  padding: 14px 32px; border-radius: 10px;
+  font-family: var(--font-nav);
+  font-weight: 600; font-size: 0.95rem;
+  transition: var(--transition); cursor: pointer; border: none;
+}
+.btn-primary {
+  background: var(--color-or); color: var(--color-chocolat-fonce);
+}
+.btn-primary:hover {
+  background: var(--color-or-vif); transform: translateY(-3px);
+  box-shadow: var(--shadow-gold);
+}
+.btn-secondary {
+  background: transparent; color: var(--color-blanc);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.1); border-color: var(--color-or);
+  transform: translateY(-3px);
+}
+.btn-whatsapp {
+  background: #25D366; color: var(--color-blanc);
+}
+.btn-whatsapp:hover {
+  background: #128C7E; transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(37,211,102,0.3);
+}
+.scroll-indicator {
+  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  color: var(--color-blanc); opacity: 0.6;
+  animation: bounce 2s infinite;
+}
+.scroll-indicator span { 
+  font-family: var(--font-nav);
+  font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; 
+}
+
+/* ============================================
+   SECTIONS COMMON
+   ============================================ */
+.section { padding: 100px 24px; }
+.section-dark { background: var(--color-chocolat-fonce); color: var(--color-blanc); }
+.section-beige { background: var(--color-beige); color: var(--color-chocolat-fonce); }
+.section-bleu { background: var(--color-bleu-nuit); color: var(--color-blanc); }
+.section-creme { background: var(--color-creme); color: var(--color-chocolat-fonce); }
+.container { max-width: 1200px; margin: 0 auto; }
+.section-header {
+  text-align: center; margin-bottom: 60px;
+}
+.section-header h2 {
+  font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700; margin-bottom: 12px;
+  color: var(--color-or);
+}
+.section-header p {
+  font-family: var(--font-body);
+  font-size: 1.1rem; color: var(--color-rose-fonce);
+  max-width: 600px; margin: 0 auto;
+}
+.section-dark .section-header p { color: var(--color-rose-pale); }
+.section-beige .section-header p { color: var(--color-gris-fonce); }
+.section-creme .section-header p { color: var(--color-gris-fonce); }
+
+/* ============================================
+   MENU / CARTES PRODUITS — FOND CLAIR
+   ============================================ */
+.menu-filters {
+  display:flex; flex-wrap:wrap; gap: 12px; justify-content:center;
+  margin-bottom: 50px;
+}
+.menu-filter {
+  padding: 12px 28px; border-radius: 50px;
+  background: transparent; border: 1px solid rgba(212,175,55,0.3);
+  font-family: var(--font-nav);
+  font-size: 0.9rem; font-weight: 500; cursor: pointer;
+  color: var(--color-chocolat-fonce);
+  transition: var(--transition);
+}
+.section-dark .menu-filter { color: var(--color-blanc-froid); }
+.menu-filter.active, .menu-filter:hover {
+  background: var(--color-or); color: var(--color-chocolat-fonce); 
+  border-color: var(--color-or);
+  box-shadow: var(--shadow-gold);
+}
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 28px;
+}
+.menu-card {
+  background: var(--color-blanc); border-radius: 20px;
+  overflow: hidden; 
+  border: 1px solid rgba(212,175,55,0.1);
+  transition: var(--transition);
+}
+.menu-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(212,175,55,0.3);
+}
+.menu-card-image {
+  position: relative; height: 220px; overflow: hidden;
+}
+.menu-card-image img {
+  width:100%; height:100%; object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.menu-card:hover .menu-card-image img { transform: scale(1.1); }
+.menu-card-badge {
+  position: absolute; top: 12px; left: 12px;
+  padding: 6px 14px; border-radius: 20px;
+  background: var(--color-bleu-clair); color: var(--color-chocolat-fonce);
+  font-family: var(--font-nav); font-size: 0.75rem; font-weight: 600;
+}
+.menu-card-badge.rose { background: var(--color-rose); color: var(--color-blanc); }
+.menu-card-badge.or { background: var(--color-or); color: var(--color-chocolat-fonce); }
+.menu-card-content { padding: 24px; }
+.menu-card-title {
+  font-family: var(--font-display); font-size: 1.3rem;
+  font-weight: 600; margin-bottom: 8px; color: var(--color-chocolat-fonce);
+}
+.menu-card-desc {
+  font-family: var(--font-body);
+  font-size: 0.9rem; color: var(--color-gris); margin-bottom: 16px;
+}
+.menu-card-btn {
+  display:inline-flex; align-items:center; gap: 8px;
+  padding: 10px 20px; border-radius: 8px;
+  background: #25D366; color: var(--color-blanc);
+  font-family: var(--font-nav);
+  font-size: 0.85rem; font-weight: 600;
+  transition: var(--transition);
+}
+.menu-card-btn:hover { background: #128C7E; }
+
+/* Cards grid général */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+.card {
+  background: var(--color-blanc); border-radius: 16px;
+  overflow: hidden; 
+  border: 1px solid rgba(212,175,55,0.1);
+  transition: var(--transition);
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(212,175,55,0.2);
+}
+.card-image {
+  position: relative; height: 200px; overflow: hidden;
+}
+.card-image img {
+  width:100%; height:100%; object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.card:hover .card-image img { transform: scale(1.08); }
+.card-overlay {
+  position: absolute; inset:0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+}
+.card-content { padding: 20px; }
+.card-title {
+  font-family: var(--font-display); font-size: 1.3rem;
+  font-weight: 600; margin-bottom: 8px; color: var(--color-chocolat-fonce);
+}
+.card-desc {
+  font-family: var(--font-body);
+  font-size: 0.9rem; color: var(--color-gris); margin-bottom: 16px;
+}
+.card-btn {
+  display:inline-flex; align-items:center; gap: 8px;
+  padding: 10px 20px; border-radius: 8px;
+  background: #25D366; color: var(--color-blanc);
+  font-family: var(--font-nav);
+  font-size: 0.85rem; font-weight: 600;
+  transition: var(--transition);
+}
+.card-btn:hover { background: #128C7E; }
+
+/* Dark cards for Binthily */
+.card-dark {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(212,175,55,0.1);
+}
+.section-bleu .card-dark, .section-dark .card-dark {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(78,205,196,0.15);
+}
+.section-bleu .card-dark .card-title, .section-dark .card-dark .card-title {
+  color: var(--color-blanc);
+}
+.section-bleu .card-dark .card-desc, .section-dark .card-dark .card-desc {
+  color: rgba(255,255,255,0.7);
+}
+.card-dark:hover { border-color: var(--color-bleu-clair); }
+
+/* ============================================
+   POINT-CHAUD HERO — IMAGE DE FOND
+   ============================================ */
+.pc-hero-section {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.pc-hero-bg {
+  position: absolute; inset: 0;
+  background: url('https://files.catbox.moe/tekktq.jpeg') center/cover;
+}
+.pc-hero-bg::after {
+  content:''; position:absolute; inset:0;
+  background: linear-gradient(135deg, rgba(44,24,16,0.88) 0%, rgba(74,44,42,0.92) 100%);
+}
+.pc-hero-content {
+  position: relative; z-index: 2;
+  max-width: 900px; margin: 0 auto; padding: 100px 24px;
+  text-align: center; color: var(--color-blanc);
+}
+.pc-brand {
+  display:flex; align-items:center; gap: 12px; margin-bottom: 20px;
+  justify-content: center;
+}
+.pc-brand-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: var(--color-or); color: var(--color-chocolat-fonce);
+  display:flex; align-items:center; justify-content:center;
+  font-size: 1.4rem;
+}
+.pc-brand-text {
+  font-family: var(--font-display); font-size: 1.8rem;
+  font-weight: 700; color: var(--color-or);
+}
+.pc-tagline {
+  font-family: var(--font-nav);
+  font-size: 0.9rem; color: var(--color-rose);
+  letter-spacing: 1px; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.pc-location {
+  display:flex; align-items:center; gap: 8px;
+  font-family: var(--font-body);
+  font-size: 0.9rem; color: var(--color-blanc); opacity: 0.8; margin-bottom: 20px;
+  justify-content: center;
+}
+.pc-about {
+  font-family: var(--font-body);
+  font-size: 1.05rem; line-height: 1.8; color: var(--color-blanc-froid);
+  max-width: 700px; margin: 0 auto;
+}
+
+/* ============================================
+   BINTHILY LODGE HERO — LOGO SVG PROPRE
+   ============================================ */
+.bl-hero {
+  position: relative; min-height: 70vh;
+  display:flex; align-items:center; justify-content:center;
+  overflow: hidden;
+}
+.bl-hero-bg {
+  position: absolute; inset:0;
+  background: url('https://files.catbox.moe/eu9d1w.jpeg') center/cover;
+}
+.bl-hero-bg::after {
+  content:''; position:absolute; inset:0;
+  background: linear-gradient(to bottom, rgba(44,24,16,0.8) 0%, rgba(11,19,43,0.95) 100%);
+}
+.bl-hero-content {
+  position: relative; z-index: 2; text-align: center;
+  max-width: 800px; padding: 80px 24px;
+  color: var(--color-blanc);
+}
+.bl-logo-svg {
+  max-width: 340px; margin: 0 auto 24px;
+  filter: drop-shadow(0 4px 20px rgba(212,175,55,0.2));
+}
+.bl-tagline {
+  font-family: var(--font-nav);
+  font-size: clamp(1rem, 2vw, 1.3rem); font-weight: 300;
+  color: var(--color-bleu-clair); margin-bottom: 8px;
+}
+.bl-location {
+  font-family: var(--font-body);
+  font-size: 0.95rem; color: var(--color-rose-pale); opacity: 0.9;
+}
+
+/* ============================================
+   VIDEO SECTION
+   ============================================ */
+.video-section {
+  position: relative; min-height: 50vh;
+  display:flex; align-items:center; justify-content:center;
+  overflow: hidden;
+}
+.video-bg {
+  position: absolute; inset:0; z-index:1;
+}
+.video-bg video {
+  width:100%; height:100%; object-fit: cover;
+}
+.video-bg::after {
+  content:''; position:absolute; inset:0;
+  background: rgba(11,19,43,0.7);
+}
+.video-content {
+  position: relative; z-index: 2; text-align: center;
+  max-width: 700px; padding: 60px 24px;
+  color: var(--color-blanc);
+}
+.video-content h2 {
+  font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700; margin-bottom: 16px;
+  color: var(--color-or);
+}
+.video-content p {
+  font-family: var(--font-body);
+  font-size: 1.1rem; color: var(--color-rose-pale); margin-bottom: 24px;
+}
+
+/* ============================================
+   GALERIE
+   ============================================ */
+.gallery-filters {
+  display:flex; flex-wrap:wrap; gap: 12px; justify-content:center;
+  margin-bottom: 40px;
+}
+.gallery-filter {
+  padding: 10px 24px; border-radius: 50px;
+  background: transparent; border: 1px solid rgba(212,175,55,0.2);
+  font-family: var(--font-nav);
+  font-size: 0.9rem; font-weight: 500; cursor: pointer;
+  color: var(--color-chocolat-fonce);
+  transition: var(--transition);
+}
+.section-dark .gallery-filter, .section-bleu .gallery-filter { color: var(--color-blanc-froid); }
+.gallery-filter.active, .gallery-filter:hover {
+  background: var(--color-bleu-clair); color: var(--color-chocolat-fonce); border-color: var(--color-bleu-clair);
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.gallery-item {
+  position: relative; border-radius: 12px; overflow: hidden;
+  cursor: pointer; aspect-ratio: 4/3;
+}
+.gallery-item img {
+  width:100%; height:100%; object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.gallery-item:hover img { transform: scale(1.08); }
+.gallery-item-overlay {
+  position: absolute; inset:0;
+  background: rgba(0,0,0,0.5); opacity:0;
+  display:flex; align-items:center; justify-content:center;
+  transition: opacity 0.3s ease;
+}
+.gallery-item:hover .gallery-item-overlay { opacity:1; }
+.gallery-item-overlay i { color: var(--color-blanc); font-size: 1.5rem; }
+
+/* Lightbox */
+.lightbox {
+  position: fixed; inset:0; z-index: 2000;
+  background: rgba(0,0,0,0.95);
+  display:none; align-items:center; justify-content:center;
+  padding: 24px;
+}
+.lightbox.open { display:flex; }
+.lightbox img {
+  max-width: 90vw; max-height: 85vh;
+  border-radius: 8px; object-fit: contain;
+}
+.lightbox-close {
+  position: absolute; top: 24px; right: 24px;
+  color: var(--color-blanc); font-size: 2rem; cursor: pointer;
+  width: 48px; height: 48px; border-radius: 50%;
+  display:flex; align-items:center; justify-content:center;
+  background: rgba(255,255,255,0.1); transition: var(--transition);
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.2); }
+
+/* ============================================
+   ABOUT SECTION
+   ============================================ */
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+}
+.about-card {
+  background: var(--color-blanc); border-radius: 20px;
+  padding: 40px; 
+  border: 1px solid rgba(212,175,55,0.1);
+}
+.about-card h3 {
+  font-family: var(--font-display); font-size: 1.8rem;
+  font-weight: 700; margin-bottom: 16px; color: var(--color-or);
+}
+.about-card p {
+  font-family: var(--font-body);
+  font-size: 1rem; line-height: 1.8; color: var(--color-gris-fonce);
+  margin-bottom: 20px;
+}
+.about-info {
+  display:flex; flex-direction:column; gap: 12px;
+}
+.about-info-item {
+  display:flex; align-items:center; gap: 12px;
+  font-family: var(--font-body);
+  font-size: 0.95rem; color: var(--color-chocolat-fonce);
+}
+.about-info-item i {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: rgba(212,175,55,0.1); color: var(--color-or);
+  display:flex; align-items:center; justify-content:center;
+  font-size: 0.9rem; flex-shrink:0;
+}
+
+/* ============================================
+   TEMOIGNAGES
+   ============================================ */
+.testimonial-card {
+  padding: 32px; text-align: center;
+}
+.testimonial-stars {
+  color: var(--color-or); font-size: 1rem; margin-bottom: 16px;
+}
+.testimonial-text {
+  font-style: italic; color: var(--color-gris-fonce); margin-bottom: 16px;
+  line-height: 1.7;
+}
+.testimonial-author {
+  font-weight: 600; color: var(--color-chocolat-fonce);
+}
+.testimonial-role {
+  font-size: 0.85rem; color: var(--color-gris);
+}
+
+/* ============================================
+   CONTACT SECTION
+   ============================================ */
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+}
+.contact-card {
+  background: var(--color-blanc); border-radius: 20px;
+  padding: 40px; 
+  border: 1px solid rgba(212,175,55,0.1);
+  text-align: center;
+}
+.contact-card h3 {
+  font-family: var(--font-display); font-size: 1.6rem;
+  font-weight: 700; margin-bottom: 8px;
+  color: var(--color-or);
+}
+.contact-card .contact-tag {
+  font-family: var(--font-body);
+  font-size: 0.85rem; color: var(--color-rose-fonce);
+  margin-bottom: 24px;
+}
+.contact-detail {
+  display:flex; align-items:center; justify-content:center;
+  gap: 10px; margin-bottom: 12px; 
+  font-family: var(--font-body);
+  font-size: 0.95rem; color: var(--color-chocolat-fonce);
+}
+.contact-detail i { color: var(--color-or); width: 20px; }
+.contact-detail a {
+  color: inherit;
+  transition: var(--transition);
+}
+.contact-detail a:hover {
+  color: var(--color-or);
+}
+
+.contact-form {
+  background: var(--color-blanc); border-radius: 20px;
+  padding: 40px; 
+  border: 1px solid rgba(212,175,55,0.1);
+  grid-column: 1 / -1;
+}
+.form-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  margin-bottom: 20px;
+}
+.form-group label {
+  display:block; 
+  font-family: var(--font-nav);
+  font-size: 0.9rem; font-weight: 500;
+  margin-bottom: 8px; color: var(--color-chocolat-fonce);
+}
+.form-group input, .form-group textarea, .form-group select {
+  width:100%; padding: 14px 16px; border-radius: 10px;
+  border: 1px solid rgba(141,110,99,0.2);
+  background: var(--color-creme);
+  font-family: var(--font-body); font-size: 1rem;
+  color: var(--color-chocolat-fonce);
+  transition: var(--transition);
+}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+  outline:none; border-color: var(--color-or);
+  box-shadow: 0 0 0 3px rgba(212,175,55,0.15);
+}
+.form-group textarea { min-height: 120px; resize: vertical; }
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  background: var(--color-chocolat-fonce); color: var(--color-blanc);
+  padding: 80px 24px 40px;
+  border-top: 1px solid rgba(212,175,55,0.1);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px; max-width: 1200px; margin: 0 auto 60px;
+}
+.footer-brand {
+  font-family: var(--font-display); font-size: 1.6rem;
+  font-weight: 700; margin-bottom: 12px;
+}
+.footer-brand .pc { color: var(--color-or); }
+.footer-brand .bl { color: var(--color-cyan); }
+.footer-tagline {
+  font-family: var(--font-body);
+  font-size: 0.95rem; opacity: 0.7; line-height: 1.6;
+  max-width: 280px;
+}
+.footer-col h4 {
+  font-family: var(--font-display); font-size: 1.2rem;
+  font-weight: 600; margin-bottom: 20px; color: var(--color-or);
+}
+.footer-col a, .footer-col span {
+  display:block; padding: 6px 0; 
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  opacity: 0.7; transition: var(--transition);
+}
+.footer-col a:hover { opacity:1; color: var(--color-or); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding-top: 24px; text-align: center;
+  font-family: var(--font-body);
+  font-size: 0.85rem; opacity: 0.5;
+  max-width: 1200px; margin: 0 auto;
+}
+
+/* ============================================
+   WHATSAPP FLOAT
+   ============================================ */
+.whatsapp-float {
+  position: fixed; bottom: 24px; right: 24px;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: #25D366; color: var(--color-blanc);
+  display:flex; align-items:center; justify-content:center;
+  font-size: 1.6rem; z-index: 9999;
+  box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: pulse 2s infinite;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 24px rgba(37,211,102,0.6);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeInUp {
+  from { opacity:0; transform: translateY(30px); }
+  to { opacity:1; transform: translateY(0); }
+}
+@keyframes fadeInDown {
+  from { opacity:0; transform: translateY(-20px); }
+  to { opacity:1; transform: translateY(0); }
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+  40% { transform: translateX(-50%) translateY(-10px); }
+  60% { transform: translateX(-50%) translateY(-5px); }
+}
+@keyframes pulse {
+  0% { box-shadow: 0 4px 16px rgba(37,211,102,0.4); }
+  50% { box-shadow: 0 4px 24px rgba(37,211,102,0.6); }
+  100% { box-shadow: 0 4px 16px rgba(37,211,102,0.4); }
+}
+.reveal {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1; transform: translateY(0);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1023px) {
+  .nav-links { display:none; }
+  .hamburger { display:flex; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 767px) {
+  .section { padding: 60px 20px; }
+  .nav-container { height: 64px; padding: 0 16px; }
+  .hero-content { padding: 100px 16px 60px; }
+  .cards-grid, .menu-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .form-row { grid-template-columns: 1fr; }
+  .btn { padding: 12px 24px; font-size: 0.9rem; }
+  .whatsapp-float { width: 52px; height: 52px; font-size: 1.4rem; bottom: 16px; right: 16px; }
+  .about-card, .contact-card, .contact-form { padding: 24px; }
+  .bl-hero { min-height: 60vh; }
+  .pc-hero-content { padding: 80px 16px; }
+}
+@media (max-width: 375px) {
+  .hero h1 { font-size: 2rem; }
+  .section-header h2 { font-size: 1.6rem; }
+}
+</style>
+<base target="_blank">
+<base target="_blank">
+</head>
+<body>
+
+<!-- ============================================
+     NAVBAR
+     ============================================ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="#" class="nav-logo">
+      <span class="logo-pc">Point-Chaud</span>
+      <span class="logo-sep">×</span>
+      <span class="logo-bl">Binthily</span>
+    </a>
+    <div class="nav-links">
+      <a href="#accueil">Accueil</a>
+      <a href="#menu">Menu</a>
+      <a href="#point-chaud">Point-Chaud</a>
+      <a href="#binthily">Binthily Lodge</a>
+      <a href="#hebergements">Hébergements</a>
+      <a href="#evenements">Événements</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#apropos">À propos</a>
+      <a href="#contact">Contact</a>
+      <a href="https://wa.me/22395953388" target="_blank" rel="noopener noreferrer" class="nav-cta">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#accueil">Accueil</a>
+  <a href="#menu">Menu</a>
+  <a href="#point-chaud">Point-Chaud</a>
+  <a href="#binthily">Binthily Lodge</a>
+  <a href="#hebergements">Hébergements</a>
+  <a href="#evenements">Événements</a>
+  <a href="#galerie">Galerie</a>
+  <a href="#apropos">À propos</a>
+  <a href="#contact">Contact</a>
+  <a href="https://wa.me/22395953388" target="_blank" rel="noopener noreferrer" class="mobile-cta">
+    <i class="fab fa-whatsapp"></i> WhatsApp
+  </a>
+</div>
+
+<!-- ============================================
+     HERO / ACCUEIL
+     ============================================ -->
+<section class="hero" id="accueil">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Bamako & Djoliba, Mali</div>
+    <h1>Deux Mondes.<br><span>Une Seule Excellence.</span></h1>
+    <p class="hero-subtitle">Saveurs & Séjours d'Exception au Mali</p>
+    <p class="hero-locations">
+      <strong>Point-Chaud</strong> — Restaurant · Boulangerie · Pâtisserie — Bamako<br>
+      <strong>Binthily Lodge</strong> — Hôtel & Complexe Touristique — Djoliba, bord du fleuve Niger
+    </p>
+    <div class="hero-buttons">
+      <a href="#menu" class="btn btn-primary">
+        <i class="fas fa-utensils"></i> Voir le Menu
+      </a>
+      <a href="#binthily" class="btn btn-secondary">
+        <i class="fas fa-bed"></i> Découvrir Binthily Lodge
+      </a>
+      <a href="#evenements" class="btn btn-whatsapp">
+        <i class="fas fa-calendar-check"></i> Événements
+      </a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Découvrir</span>
+    <i class="fas fa-chevron-down"></i>
+  </div>
+</section>
+
+<!-- ============================================
+     SECTION MENU INTERACTIVE — FILTRES PAR CATÉGORIE
+     ============================================ -->
+<section class="section section-creme" id="menu">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Notre Carte</h2>
+      <p>Découvrez nos spécialités et commandez directement sur WhatsApp</p>
+    </div>
+
+    <div class="menu-filters reveal">
+      <button class="menu-filter active" data-filter="all" role="button" aria-pressed="true" tabindex="0">Tout</button>
+      <button class="menu-filter" data-filter="locaux" role="button" aria-pressed="false" tabindex="0">Plats Locaux</button>
+      <button class="menu-filter" data-filter="occidentaux" role="button" aria-pressed="false" tabindex="0">Plats Occidentaux</button>
+      <button class="menu-filter" data-filter="modernes" role="button" aria-pressed="false" tabindex="0">Plats Modernes</button>
+      <button class="menu-filter" data-filter="boissons" role="button" aria-pressed="false" tabindex="0">Boissons</button>
+      <button class="menu-filter" data-filter="services" role="button" aria-pressed="false" tabindex="0">Services & Formations</button>
+    </div>
+
+    <div class="menu-grid" id="menuGrid">
+
+      <!-- ===== PLATS LOCAUX (12) ===== -->
+      <div class="menu-card reveal" data-category="locaux">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/racy54.jpg" alt="Poulet-Yassa" loading="lazy">
+          <span class="menu-card-badge or">Plat Local</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Poulet-Yassa</h3>
+          <p class="menu-card-desc">Poulet mariné aux oignons et citron, spécialité sénégalo-malienne</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20du%20Poulet-Yassa" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="locaux">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/yrjs08.jpg" alt="Alloco-Haricots" loading="lazy">
+          <span class="menu-card-badge or">Plat Local</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Alloco-Haricots</h3>
+          <p class="menu-card-desc">Bananes plantains frites accompagnées de haricots mijotés</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Alloco-Haricots" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="locaux">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/szi2to.jpg" alt="Riz-Sauce-Feuille" loading="lazy">
+          <span class="menu-card-badge or">Plat Local</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Riz-Sauce-Feuille</h3>
+          <p class="menu-card-desc">Riz blanc servi avec sauce feuille traditionnelle</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Riz-Sauce-Feuille" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="locaux">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/8g116t.jpg" alt="Bouillie-mil" loading="lazy">
+          <span class="menu-card-badge or">Plat Local</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Bouillie-mil</h3>
+          <p class="menu-card-desc">Bouillie traditionnelle à base de mil, petit-déjeuner malien</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Bouillie-mil" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="locaux">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/8w2noy.jpg" alt="pâte-maïs" loading="lazy">
+          <span class="menu-card-badge or">Plat Local</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">pâte-maïs</h3>
+          <p class="menu-card-desc">Pâte de maïs fermentée, accompagnement traditionnel</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20pate-mais" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="locaux">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/22jo11.jpg" alt="Riz-Gras-Boeuf" loading="lazy">
+          <span class="menu-card-badge or">Plat Local</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Riz-Gras-Boeuf</h3>
+          <p class="menu-card-desc">Riz gras mijoté avec viande de bœuf tendre</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Riz-Gras-Boeuf" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="locaux">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/cq5nqd.jpg" alt="Poisson-Grillé (Entier)" loading="lazy">
+          <span class="menu-card-badge or">Plat Local</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Poisson-Grillé (Entier)</h3>
+          <p class="menu-card-desc">Poisson frais grillé au feu de bois, épices locales</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Poisson-Grille" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="locaux">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/xa1vto.jpg" alt="Tilapia au four" loading="lazy">
+          <span class="menu-card-badge or">Plat Local</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Tilapia au four</h3>
+          <p class="menu-card-desc">Tilapia mariné cuit au four, accompagnement au choix</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Tilapia%20au%20four" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="locaux">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/44nryo.jpg" alt="Riz Frit Nigérian" loading="lazy">
+          <span class="menu-card-badge or">Plat Local</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Riz Frit Nigérian</h3>
+          <p class="menu-card-desc">Riz sauté aux légumes et épices nigérianes</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Riz%20Frit%20Nigerian" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="locaux">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/epwps8.jpg" alt="Riz Jollof au Asun (Chèvre)" loading="lazy">
+          <span class="menu-card-badge or">Plat Local</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Riz Jollof au Asun (Chèvre)</h3>
+          <p class="menu-card-desc">Riz Jollof parfumé avec viande de chèvre épicée</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Riz%20Jollof%20Asun" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="locaux">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/9bppv9.jpg" alt="Poisson grillé, Attiéké & Alloco" loading="lazy">
+          <span class="menu-card-badge or">Plat Local</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Poisson grillé, Attiéké & Alloco</h3>
+          <p class="menu-card-desc">Poisson grillé avec attiéké et alloco, saveur ivoirienne</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Poisson%20Attieke%20Alloco" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="locaux">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/jfl5gq.jpg" alt="Poulet braisé, Riz Jollof & Bananes" loading="lazy">
+          <span class="menu-card-badge or">Plat Local</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Poulet braisé, Riz Jollof & Bananes</h3>
+          <p class="menu-card-desc">Assiette complète avec poulet braisé et bananes plantains</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Poulet%20Braise%20Jollof" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <!-- ===== PLATS OCCIDENTAUX (9) ===== -->
+      <div class="menu-card reveal" data-category="occidentaux">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/mpbg4c.jpg" alt="Cheeseburger classique" loading="lazy">
+          <span class="menu-card-badge">Fast Food</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Cheeseburger classique</h3>
+          <p class="menu-card-desc">Bœuf juteux, cheddar fondant, laitue fraîche et sauce maison</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Cheeseburger" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="occidentaux">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/cj0erc.jpg" alt="Frites Croustillantes" loading="lazy">
+          <span class="menu-card-badge">Accompagnement</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Frites Croustillantes</h3>
+          <p class="menu-card-desc">Pommes de terre fraîches, double friture, sel fin</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20des%20Frites%20Croustillantes" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="occidentaux">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/d6i07k.jpg" alt="Pizza Pepperoni" loading="lazy">
+          <span class="menu-card-badge">Pizza</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Pizza Pepperoni</h3>
+          <p class="menu-card-desc">Pâte fine, sauce tomate, mozzarella et pepperoni épicé</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Pizza%20Pepperoni" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="occidentaux">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/tas2n6.jpg" alt="Pizza Quatre Fromages" loading="lazy">
+          <span class="menu-card-badge">Pizza</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Pizza Quatre Fromages</h3>
+          <p class="menu-card-desc">Mozzarella, gorgonzola, parmesan et chèvre frais</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Pizza%204%20Fromages" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="occidentaux">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/j22o83.jpg" alt="Hot Dog Gourmet & Frites" loading="lazy">
+          <span class="menu-card-badge">Fast Food</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Hot Dog Gourmet & Frites</h3>
+          <p class="menu-card-desc">Saucisse premium, frites croustillantes et sauces variées</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Hot%20Dog" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="occidentaux">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/v0uxp8.jpg" alt="Nuggets de poulet" loading="lazy">
+          <span class="menu-card-badge">Fast Food</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Nuggets de poulet</h3>
+          <p class="menu-card-desc">Poulet pané croustillant, accompagné de sauce au choix</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Nuggets" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="occidentaux">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/x9ftur.jpg" alt="Tenders croustillants" loading="lazy">
+          <span class="menu-card-badge">Fast Food</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Tenders croustillants</h3>
+          <p class="menu-card-desc">Aiguillettes de poulet panées, tendres et croustillantes</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Tenders" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="occidentaux">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/ewkimc.jpg" alt="Poulet Rôti" loading="lazy">
+          <span class="menu-card-badge">Plat Rôti</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Poulet Rôti</h3>
+          <p class="menu-card-desc">Poulet fermier mariné aux herbes, rôti au four</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20du%20Poulet%20Roti" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="occidentaux">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/cx1scn.jpg" alt="Sandwich Bœuf Cheddar" loading="lazy">
+          <span class="menu-card-badge">Sandwich</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Sandwich Bœuf Cheddar</h3>
+          <p class="menu-card-desc">Bœuf grillé, cheddar fondu, oignons caramélisés</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Sandwich%20Boeuf" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <!-- ===== PLATS MODERNES (12) ===== -->
+      <div class="menu-card reveal" data-category="modernes">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/ky0m9c.jpg" alt="Tacos au Bœuf" loading="lazy">
+          <span class="menu-card-badge rose">Gastronomie</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Tacos au Bœuf</h3>
+          <p class="menu-card-desc">Tortillas maïs, bœuf épicé, guacamole, salsa fraîche</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20des%20Tacos%20au%20Boeuf" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="modernes">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/ecg1xi.jpg" alt="Wrap au Bœuf et Fromage Grillé" loading="lazy">
+          <span class="menu-card-badge rose">Nouveau</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Wrap au Bœuf et Fromage Grillé</h3>
+          <p class="menu-card-desc">Tortilla garnie de bœuf épicé et fromage fondant, grillé à la perfection</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Wrap%20Boeuf%20Fromage" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="modernes">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/zygiaq.jpg" alt="Spaghetti aux Boulettes" loading="lazy">
+          <span class="menu-card-badge rose">Gastronomie</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Spaghetti aux Boulettes</h3>
+          <p class="menu-card-desc">Boulettes de viande maison, sauce tomate basilic</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Spaghetti%20Boulettes" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="modernes">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/ggeu9j.jpg" alt="Pennes au Bœuf" loading="lazy">
+          <span class="menu-card-badge rose">Gastronomie</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Pennes au Bœuf</h3>
+          <p class="menu-card-desc">Pennes al dente, bœuf sauté, sauce tomate basilic</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Pennes%20Boeuf" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="modernes">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/i5vi90.jpg" alt="Fettuccine Sauce Tomate" loading="lazy">
+          <span class="menu-card-badge rose">Gastronomie</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Fettuccine Sauce Tomate</h3>
+          <p class="menu-card-desc">Fettuccine larges, sauce tomate aux herbes fraîches</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Fettuccine" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="modernes">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/4s24yn.jpg" alt="Pâtes Alfredo au poulet" loading="lazy">
+          <span class="menu-card-badge rose">Gastronomie</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Pâtes Alfredo au poulet</h3>
+          <p class="menu-card-desc">Sauce crémeuse parmesan, poulet grillé, persil frais</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Pates%20Alfredo" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="modernes">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/eciwnw.jpg" alt="Poulet-Hawaïen" loading="lazy">
+          <span class="menu-card-badge rose">Gastronomie</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Poulet-Hawaïen</h3>
+          <p class="menu-card-desc">Poulet exotique à l'ananas, fusion africaine</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Poulet%20Hawaien" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="modernes">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/99cvg1.jpg" alt="Roti-Farci" loading="lazy">
+          <span class="menu-card-badge rose">Gastronomie</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Roti-Farci</h3>
+          <p class="menu-card-desc">Viande rôtie farcie aux herbes, légumes de saison</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Roti%20Farci" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="modernes">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/2cj3jr.jpg" alt="Diner-Roti (Gastronomique)" loading="lazy">
+          <span class="menu-card-badge rose">Gastronomie</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Diner-Roti (Gastronomique)</h3>
+          <p class="menu-card-desc">Assiette gastronomique, viande rôtie et garniture fine</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Diner%20Roti" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="modernes">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/j445x8.jpg" alt="Travers de porc BBQ (Ribs)" loading="lazy">
+          <span class="menu-card-badge rose">Gastronomie</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Travers de porc BBQ (Ribs)</h3>
+          <p class="menu-card-desc">Ribs tendres, sauce barbecue maison, coleslaw</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Ribs%20BBQ" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="modernes">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/7acx91.jpg" alt="Brochettes-Suya / Kebabs" loading="lazy">
+          <span class="menu-card-badge rose">Gastronomie</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Brochettes-Suya / Kebabs</h3>
+          <p class="menu-card-desc">Viande épicée grillée, spécialité ouest-africaine</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Brochettes%20Suya" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="modernes">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/l15qxl.jpg" alt="Poulet Frit Croustillant" loading="lazy">
+          <span class="menu-card-badge rose">Gastronomie</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Poulet Frit Croustillant</h3>
+          <p class="menu-card-desc">Morceaux de poulet panés croustillants, servi avec frites</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Poulet%20Frit%20Croustillant" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <!-- ===== BOISSONS (12) ===== -->
+      <div class="menu-card reveal" data-category="boissons">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/b2j2oj.jpg" alt="Vin-Rouge" loading="lazy">
+          <span class="menu-card-badge">Boisson</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Vin-Rouge</h3>
+          <p class="menu-card-desc">Sélection de vins rouges de qualité</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Vin%20Rouge" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="boissons">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/ds9qka.jpg" alt="Sprite" loading="lazy">
+          <span class="menu-card-badge">Soda</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Sprite</h3>
+          <p class="menu-card-desc">Boisson citronnée pétillante et rafraîchissante</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Sprite" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="boissons">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/6o4qii.jpg" alt="Fanta Orange" loading="lazy">
+          <span class="menu-card-badge">Soda</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Fanta Orange</h3>
+          <p class="menu-card-desc">Boisson gazeuse orange rafraîchissante</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Fanta" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="boissons">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/zhasr0.jpg" alt="Coca-Cola" loading="lazy">
+          <span class="menu-card-badge">Soda</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Coca-Cola</h3>
+          <p class="menu-card-desc">Coca-Cola frais, disponible en bouteille ou gobelet</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Coca-Cola" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="boissons">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/bf4dth.jpg" alt="Monster Energy" loading="lazy">
+          <span class="menu-card-badge">Énergisant</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Monster Energy</h3>
+          <p class="menu-card-desc">Boisson énergisante pour booster votre journée</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Monster" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="boissons">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/qqsex0.jpg" alt="Red Bull" loading="lazy">
+          <span class="menu-card-badge">Énergisant</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Red Bull</h3>
+          <p class="menu-card-desc">Red Bull, boisson énergisante internationale</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Red%20Bull" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="boissons">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/kz0p0h.jpg" alt="Pepsi" loading="lazy">
+          <span class="menu-card-badge">Soda</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Pepsi</h3>
+          <p class="menu-card-desc">Soda cola classique, rafraîchissant et pétillant</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Pepsi" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="boissons">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/xgi3on.jpg" alt="Assortiment de sodas en bouteille" loading="lazy">
+          <span class="menu-card-badge">Soda</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Assortiment de sodas en bouteille</h3>
+          <p class="menu-card-desc">Sélection variée de sodas en bouteille</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Assortiment%20Sodas" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="boissons">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/4f1kxx.jpg" alt="Coca-Cola Light, Coca-Cola et Sprite (Gobelets)" loading="lazy">
+          <span class="menu-card-badge">Soda</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Coca-Cola Light, Coca-Cola et Sprite (Gobelets)</h3>
+          <p class="menu-card-desc">Sodas servis au gobelet, parfait pour le fast-food</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Sodas%20Gobelets" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="boissons">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/m5n8fu.jpg" alt="Cocktails de fruits frais" loading="lazy">
+          <span class="menu-card-badge">Cocktail</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Cocktails de fruits frais</h3>
+          <p class="menu-card-desc">Mélange de fruits frais, sans alcool, 100% naturel</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Cocktail%20Fruits" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="boissons">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/piz9m9.jpg" alt="Limonades à la menthe et à l'orange" loading="lazy">
+          <span class="menu-card-badge">Limonade</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Limonades à la menthe et à l'orange</h3>
+          <p class="menu-card-desc">Limonades fraîches maison, menthe ou orange</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Limonade" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="boissons">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/1er1zq.jpg" alt="Smoothie à la mangue (Tropical Mango Delight)" loading="lazy">
+          <span class="menu-card-badge">Smoothie</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Smoothie à la mangue (Tropical Mango Delight)</h3>
+          <p class="menu-card-desc">Mangue fraîche, lait de coco, touche de vanille</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20Smoothie%20Mangue" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <!-- ===== SERVICES & FORMATIONS (11) ===== -->
+      <div class="menu-card reveal" data-category="services">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/swzi7k.jpg" alt="formation en hôtellerie" loading="lazy">
+          <span class="menu-card-badge">Formation</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">formation en hôtellerie</h3>
+          <p class="menu-card-desc">Initiation aux métiers de l'hébergement touristique</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20infos%20sur%20la%20formation%20hotellerie" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> S'inscrire
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="services">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/fcotcr.jpg" alt="formation en restauration" loading="lazy">
+          <span class="menu-card-badge">Formation</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">formation en restauration</h3>
+          <p class="menu-card-desc">Programme professionnel en cuisine et service</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20infos%20sur%20la%20formation%20restauration" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> S'inscrire
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="services">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/hc7pe1.jpg" alt="Gala-conference" loading="lazy">
+          <span class="menu-card-badge">Événement</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Gala-conference</h3>
+          <p class="menu-card-desc">Organisation de galas et conférences professionnelles</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20organiser%20un%20gala" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Demander un devis
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="services">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/rwkqgc.jpg" alt="Seminaire" loading="lazy">
+          <span class="menu-card-badge">Événement</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Seminaire</h3>
+          <p class="menu-card-desc">Salles équipées pour vos réunions d'entreprise</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20organiser%20un%20seminaire" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Réserver
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="services">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/k28zro.jpg" alt="fêtes - evenement" loading="lazy">
+          <span class="menu-card-badge">Événement</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">fêtes - evenement</h3>
+          <p class="menu-card-desc">Anniversaires, baptêmes, mariages dans un cadre exceptionnel</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20organiser%20une%20fete" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Organiser
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="services">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/yvq5ay.jpg" alt="buffet hôtellerie" loading="lazy">
+          <span class="menu-card-badge">Traiteur</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">buffet hôtellerie</h3>
+          <p class="menu-card-desc">Service traiteur complet pour vos réceptions</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20un%20buffet" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="services">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/wvriz1.jpg" alt="Buffet-Reception" loading="lazy">
+          <span class="menu-card-badge">Traiteur</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Buffet-Reception</h3>
+          <p class="menu-card-desc">Buffet sur mesure pour vos événements privés</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20un%20buffet%20reception" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="services">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/27dqbl.jpg" alt="Rupture-Collectif" loading="lazy">
+          <span class="menu-card-badge">Événement</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Rupture-Collectif</h3>
+          <p class="menu-card-desc">Iftar organisé pour groupes et associations</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20organiser%20un%20iftar" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Organiser
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="services">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/qtsy2d.jpg" alt="Karaoke" loading="lazy">
+          <span class="menu-card-badge">Événement</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Karaoke</h3>
+          <p class="menu-card-desc">Soirées karaoké pour vos événements privés</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20organiser%20un%20karaoke" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Réserver
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="services">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/8ntnuq.jpg" alt="Yoga-Meditation" loading="lazy">
+          <span class="menu-card-badge">Bien-être</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Yoga-Meditation</h3>
+          <p class="menu-card-desc">Séances de yoga en plein air au bord du fleuve</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20infos%20sur%20le%20yoga" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> En savoir plus
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="services">
+        <div class="menu-card-image">
+          <img src="https://files.catbox.moe/2cj3jr.jpg" alt="Diner-(Table dressée)" loading="lazy">
+          <span class="menu-card-badge">Traiteur</span>
+        </div>
+        <div class="menu-card-content">
+          <h3 class="menu-card-title">Diner-(Table dressée)</h3>
+          <p class="menu-card-desc">Service traiteur haut de gamme avec table dressée</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20un%20diner%20table%20dressee" target="_blank" rel="noopener noreferrer" class="menu-card-btn">
+            <i class="fab fa-whatsapp"></i> Commander
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CTA Menu -->
+    <div style="text-align:center; margin-top:60px;" class="reveal">
+      <p style="font-size:1.2rem; margin-bottom:20px; font-family:var(--font-display); color:var(--color-or);">Vous ne trouvez pas ce que vous cherchez ?</p>
+      <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20voir%20le%20menu%20complet" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="font-size:1.1rem; padding:16px 40px;">
+        <i class="fab fa-whatsapp"></i> Demander le menu complet sur WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     POINT-CHAUD — PRÉSENTATION HERO IMAGE
+     ============================================ -->
+<section class="pc-hero-section" id="point-chaud">
+  <div class="pc-hero-bg"></div>
+  <div class="container pc-hero-content">
+    <div class="reveal">
+      <div class="pc-brand">
+        <div class="pc-brand-icon"><i class="fas fa-fire"></i></div>
+        <span class="pc-brand-text">Point-Chaud</span>
+      </div>
+      <p class="pc-tagline">Restaurant · Boulangerie · Pâtisserie · Cafétéria</p>
+      <p class="pc-location">
+        <i class="fas fa-map-marker-alt"></i>
+        Hamdallaye ACI 2000, au carrefour Hôtel Cologne, Bamako
+      </p>
+      <p class="pc-about">
+        Point-Chaud est une adresse incontournable au coeur de Bamako. Fondée avec la passion
+        de la gastronomie authentique et moderne, notre maison réunit sous un même toit la
+        chaleur d'un restaurant familial, le savoir-faire d'une boulangerie artisanale et la
+        douceur d'une pâtisserie raffinée. Des saveurs locales aux inspirations occidentales,
+        chaque plat est préparé avec soin pour vous offrir une expérience culinaire mémorable.
+      </p>
+      <div style="margin-top:32px;">
+        <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20passer%20une%20commande%20chez%20Point-Chaud" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-right:12px;">
+          <i class="fab fa-whatsapp"></i> Commander
+        </a>
+        <a href="#menu" class="btn btn-secondary">
+          <i class="fas fa-utensils"></i> Voir le Menu
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     POINT-CHAUD — NOS SPÉCIALITÉS (CARTES)
+     ============================================ -->
+<section class="section section-beige">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 style="color:var(--color-chocolat-fonce);">Nos Spécialités</h2>
+      <p style="color:var(--color-gris-fonce);">Une cuisine authentique pour tous les goûts</p>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/racy54.jpg" alt="Plats Locaux" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Plats Locaux</h3>
+          <p class="card-desc">Saveurs authentiques du Mali et d'Afrique de l'Ouest</p>
+          <a href="#menu" class="card-btn">Voir le menu</a>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/mpbg4c.jpg" alt="Plats Occidentaux" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Fast Food & Classiques</h3>
+          <p class="card-desc">Burgers, pizzas et snacks internationaux</p>
+          <a href="#menu" class="card-btn">Voir le menu</a>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/ecg1xi.jpg" alt="Plats Modernes" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Gastronomie Moderne</h3>
+          <p class="card-desc">Pâtes, viandes rôties et cuisine fusion</p>
+          <a href="#menu" class="card-btn">Voir le menu</a>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/4ipetb.jpeg" alt="Boulangerie" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Boulangerie</h3>
+          <p class="card-desc">Pains artisanaux frais chaque matin</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20du%20pain" target="_blank" rel="noopener noreferrer" class="card-btn">Commander</a>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/j0yxmg.jpeg" alt="Pâtisserie" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Pâtisserie</h3>
+          <p class="card-desc">Gâteaux, viennoiseries et desserts fins</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20commander%20une%20patisserie" target="_blank" rel="noopener noreferrer" class="card-btn">Commander</a>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/b2j2oj.jpg" alt="Boissons" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Boissons</h3>
+          <p class="card-desc">Vins, sodas, cocktails et smoothies frais</p>
+          <a href="#menu" class="card-btn">Voir le menu</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:60px;" class="reveal">
+      <p style="font-size:1.2rem; margin-bottom:20px; font-family:var(--font-display); color:var(--color-chocolat-fonce);">Envie de commander ou réserver votre table ?</p>
+      <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20passer%20une%20commande%20chez%20Point-Chaud" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="font-size:1.1rem; padding:16px 40px;">
+        <i class="fab fa-whatsapp"></i> Contacter Point-Chaud
+      </a>
+      <p style="margin-top:16px; font-size:0.9rem; color:var(--color-gris-fonce);">
+        <i class="fas fa-map-marker-alt"></i> Hamdallaye ACI 2000, carrefour Hôtel Cologne, Bamako
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     BINTHILY LODGE — HERO AVEC LOGO SVG PROPRE
+     ============================================ -->
+<section class="bl-hero" id="binthily">
+  <div class="bl-hero-bg"></div>
+  <div class="bl-hero-content reveal">
+    <!-- Logo SVG Binthily sans fond -->
+    <svg class="bl-logo-svg" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg" aria-label="Binthily Lodge">
+      <defs>
+        <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#D4AF37"/>
+          <stop offset="50%" stop-color="#E8B923"/>
+          <stop offset="100%" stop-color="#D4AF37"/>
+        </linearGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+      <text x="200" y="45" text-anchor="middle" font-family="'Clash Display', 'Plus Jakarta Sans', sans-serif" font-size="44" font-weight="600" fill="url(#goldGrad)" filter="url(#glow)" letter-spacing="4">BIN THILY</text>
+      <text x="200" y="72" text-anchor="middle" font-family="'Satoshi', sans-serif" font-size="16" font-weight="500" fill="#5BC0BE" letter-spacing="10">L O D G E</text>
+      <line x1="140" y1="82" x2="260" y2="82" stroke="#D4AF37" stroke-width="1" opacity="0.5"/>
+    </svg>
+
+    <p class="bl-tagline">Votre Havre de Paix au Bord du Fleuve Niger</p>
+    <p class="bl-location">
+      <i class="fas fa-map-marker-alt"></i> Djoliba, à 40 km de Bamako — Détente, Luxe & Authenticité
+    </p>
+    <div style="margin-top:32px;">
+      <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20réserver%20au%20Binthily%20Lodge" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-right:12px;">
+        <i class="fab fa-whatsapp"></i> Réserver maintenant
+      </a>
+      <a href="#binthily-services" class="btn btn-secondary">
+        <i class="fas fa-arrow-down"></i> Découvrir nos services
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     BINTHILY LODGE — VIDÉO
+     ============================================ -->
+<section class="video-section">
+  <div class="video-bg">
+    <video autoplay muted loop playsinline poster="https://files.catbox.moe/eu9d1w.jpeg">
+      <source src="https://files.catbox.moe/8skqdl.mp4" type="video/mp4">
+      <p style="color:white; text-align:center; padding:20px;">Votre navigateur ne supporte pas la lecture vidéo.</p>
+    </video>
+  </div>
+  <div class="video-content reveal">
+    <h2>Une Expérience Unique au Bord du Fleuve</h2>
+    <p>Découvrez Binthily Lodge en images — nature, confort et authenticité malienne</p>
+    <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20visiter%20le%20Binthily%20Lodge" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+      <i class="fab fa-whatsapp"></i> Planifier une visite
+    </a>
+  </div>
+</section>
+
+<!-- ============================================
+     BINTHILY LODGE — À PROPOS
+     ============================================ -->
+<section class="section section-bleu">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 style="color:var(--color-or);">À Propos de Binthily Lodge</h2>
+      <p style="color:var(--color-rose-pale);">Un complexe hôtelier d'exception au coeur de la nature malienne</p>
+    </div>
+    <div style="max-width: 800px; margin: 0 auto; text-align: center;" class="reveal">
+      <p style="font-size:1.1rem; line-height:1.9; color:rgba(255,255,255,0.85);">
+        Niché au bord du majestueux fleuve Niger, à Djoliba, à seulement 40 kilomètres
+        de Bamako, le Complexe Hôtelier Binthily Lodge est un espace unique alliant
+        confort moderne et authenticité culturelle malienne.
+      </p>
+      <p style="font-size:1.1rem; line-height:1.9; color:rgba(255,255,255,0.85); margin-top:16px;">
+        Conçu comme un véritable havre de paix, Binthily Lodge accueille familles,
+        professionnels et touristes dans un cadre naturel d'exception.
+      </p>
+    </div>
+    <div style="margin-top:40px; border-radius:20px; overflow:hidden; max-width:900px; margin-left:auto; margin-right:auto;" class="reveal">
+      <img src="https://files.catbox.moe/phmgc6.jpeg" alt="Vue panoramique Binthily" style="width:100%; height:350px; object-fit:cover;" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     BINTHILY LODGE — SERVICES
+     ============================================ -->
+<section class="section section-creme" id="binthily-services" style="padding-top:100px;">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 style="color:var(--color-or);">Nos Services & Espaces</h2>
+      <p style="color:var(--color-gris-fonce);">10 expériences uniques pour un séjour parfait</p>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/4hxovd.jpeg" alt="Chambre Binthily" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Logement & Chambres</h3>
+          <p class="card-desc">Chambres confortables avec vue sur jardin ou fleuve</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20réserver%20une%20chambre" target="_blank" rel="noopener noreferrer" class="card-btn">Réserver</a>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/van7wo.jpeg" alt="Piscine" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Piscine</h3>
+          <p class="card-desc">Piscine extérieure pour la détente et les loisirs</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20infos%20sur%20la%20piscine" target="_blank" rel="noopener noreferrer" class="card-btn">En savoir plus</a>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/r2auob.jpeg" alt="Jardin" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Jardin</h3>
+          <p class="card-desc">Vastes espaces verts pour se ressourcer en plein air</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20infos%20sur%20le%20jardin" target="_blank" rel="noopener noreferrer" class="card-btn">En savoir plus</a>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/c3pkom.jpeg" alt="Bar" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Bar</h3>
+          <p class="card-desc">Bar convivial pour vos moments de détente</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20infos%20sur%20le%20bar" target="_blank" rel="noopener noreferrer" class="card-btn">En savoir plus</a>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/dr3wxf.jpeg" alt="Bateau" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Promenade en Bateau</h3>
+          <p class="card-desc">Excursions sur le fleuve Niger en pirogue et jet-ski</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20réserver%20une%20promenade" target="_blank" rel="noopener noreferrer" class="card-btn">Réserver</a>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/8ntnuq.jpg" alt="Yoga" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Yoga & Méditation</h3>
+          <p class="card-desc">Séances de yoga en plein air au bord du fleuve</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20infos%20sur%20le%20yoga" target="_blank" rel="noopener noreferrer" class="card-btn">En savoir plus</a>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/86aou1.jpeg" alt="Espaces de Jeu" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Espaces de Jeu</h3>
+          <p class="card-desc">Activités et loisirs pour petits et grands</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20infos%20sur%20les%20jeux" target="_blank" rel="noopener noreferrer" class="card-btn">En savoir plus</a>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/qpi1k5.jpeg" alt="Restauration" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Restauration</h3>
+          <p class="card-desc">Cuisine locale et internationale servie sur place</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20infos%20sur%20la%20restauration" target="_blank" rel="noopener noreferrer" class="card-btn">En savoir plus</a>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/m9vvqs.jpeg" alt="Événements" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Événements & Réceptions</h3>
+          <p class="card-desc">Salle pour séminaires, fêtes et cérémonies</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20organiser%20un%20evenement" target="_blank" rel="noopener noreferrer" class="card-btn">Organiser</a>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/u4i6kf.jpeg" alt="Formations" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Formations</h3>
+          <p class="card-desc">Programmes de formation en hôtellerie et restauration</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20infos%20sur%20les%20formations" target="_blank" rel="noopener noreferrer" class="card-btn">En savoir plus</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:60px;" class="reveal">
+      <p style="font-size:1.3rem; margin-bottom:20px; font-family:var(--font-display); color:var(--color-or);">Réservez votre séjour ou organisez votre événement</p>
+      <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20réserver%20au%20Binthily%20Lodge" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:1.1rem; padding:16px 40px;">
+        <i class="fab fa-whatsapp"></i> Contacter Binthily Lodge
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     BINTHILY LODGE — NOS HÉBERGEMENTS (6 CARTES)
+     ============================================ -->
+<section class="section section-beige" id="hebergements">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 style="color:var(--color-chocolat-fonce);">Nos Hébergements</h2>
+      <p style="color:var(--color-gris-fonce);">6 espaces de séjour pensés pour votre confort au bord du fleuve</p>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/4hxovd.jpeg" alt="Chambre Standard" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Chambre Standard</h3>
+          <p class="card-desc">Confort optimal avec lit queen size, climatisation et salle de bain privative</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20réserver%20une%20chambre%20standard" target="_blank" rel="noopener noreferrer" class="card-btn">Réserver</a>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/dr3wxf.jpeg" alt="Chambre Deluxe Vue Fleuve" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Chambre Deluxe Vue Fleuve</h3>
+          <p class="card-desc">Balcon privé offrant une vue panoramique imprenable sur le Niger</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20réserver%20une%20chambre%20deluxe" target="_blank" rel="noopener noreferrer" class="card-btn">Réserver</a>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/phmgc6.jpeg" alt="Suite Présidentielle" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Suite Présidentielle</h3>
+          <p class="card-desc">Espace luxueux avec salon séparé, baignoire et service VIP inclus</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20réserver%20la%20suite%20présidentielle" target="_blank" rel="noopener noreferrer" class="card-btn">Réserver</a>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/r2auob.jpeg" alt="Bungalow Jardin" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Bungalow Jardin</h3>
+          <p class="card-desc">Cabane indépendante en bois au milieu des jardins verdoyants</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20réserver%20un%20bungalow" target="_blank" rel="noopener noreferrer" class="card-btn">Réserver</a>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/8ntnuq.jpg" alt="Tente Lodge Safari" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Tente Lodge Safari</h3>
+          <p class="card-desc">Expérience glamping chic entre nature sauvage et confort moderne</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20réserver%20une%20tente%20lodge" target="_blank" rel="noopener noreferrer" class="card-btn">Réserver</a>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/86aou1.jpeg" alt="Villa Familiale" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Villa Familiale</h3>
+          <p class="card-desc">Grande villa de 3 chambres avec cuisine équipée et terrasse commune</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20réserver%20la%20villa%20familiale" target="_blank" rel="noopener noreferrer" class="card-btn">Réserver</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:60px;" class="reveal">
+      <p style="font-size:1.2rem; margin-bottom:20px; font-family:var(--font-display); color:var(--color-chocolat-fonce);">Besoin d'un devis personnalisé ?</p>
+      <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20un%20hébergement" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="font-size:1.1rem; padding:16px 40px;">
+        <i class="fab fa-whatsapp"></i> Demander un devis
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     ÉVÉNEMENTS, FORMATIONS & RÉCEPTIONS
+     ============================================ -->
+<section class="section section-bleu" id="evenements">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 style="color:var(--color-or);">Événements, Formations & Réceptions</h2>
+      <p style="color:var(--color-rose-pale);">Binthily Lodge et Point-Chaud vous accueillent pour tous vos grands moments</p>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card card-dark reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/rwkqgc.jpg" alt="Seminaire" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Seminaire</h3>
+          <p class="card-desc">Salles équipées pour vos rencontres professionnelles</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20organiser%20un%20seminaire" target="_blank" rel="noopener noreferrer" class="card-btn">Demander un devis</a>
+        </div>
+      </div>
+
+      <div class="card card-dark reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/k28zro.jpg" alt="fêtes - evenement" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">fêtes - evenement</h3>
+          <p class="card-desc">Anniversaires, baptêmes, mariages dans un cadre exceptionnel</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20organiser%20une%20fete" target="_blank" rel="noopener noreferrer" class="card-btn">Demander un devis</a>
+        </div>
+      </div>
+
+      <div class="card card-dark reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/qtsy2d.jpg" alt="Karaoke" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Karaoke</h3>
+          <p class="card-desc">Soirées karaoké pour vos événements privés</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20organiser%20un%20karaoke" target="_blank" rel="noopener noreferrer" class="card-btn">Réserver</a>
+        </div>
+      </div>
+
+      <div class="card card-dark reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/wvriz1.jpg" alt="Buffet-Reception" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Buffet-Reception</h3>
+          <p class="card-desc">Service traiteur complet pour vos réceptions</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20un%20buffet" target="_blank" rel="noopener noreferrer" class="card-btn">Commander</a>
+        </div>
+      </div>
+
+      <div class="card card-dark reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/27dqbl.jpg" alt="Rupture-Collectif" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Rupture-Collectif</h3>
+          <p class="card-desc">Iftar organisé pour groupes et associations</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20organiser%20un%20iftar" target="_blank" rel="noopener noreferrer" class="card-btn">Organiser</a>
+        </div>
+      </div>
+
+      <div class="card card-dark reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/fcotcr.jpg" alt="formation en restauration" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">formation en restauration</h3>
+          <p class="card-desc">Programmes de formation professionnelle en cuisine</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20infos%20formation%20restauration" target="_blank" rel="noopener noreferrer" class="card-btn">S'inscrire</a>
+        </div>
+      </div>
+
+      <div class="card card-dark reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/swzi7k.jpg" alt="formation en hôtellerie" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">formation en hôtellerie</h3>
+          <p class="card-desc">Initiation aux métiers de l'hébergement touristique</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20infos%20formation%20hotellerie" target="_blank" rel="noopener noreferrer" class="card-btn">S'inscrire</a>
+        </div>
+      </div>
+
+      <div class="card card-dark reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/hc7pe1.jpg" alt="Gala-conference" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Gala-conference</h3>
+          <p class="card-desc">Espaces adaptés pour productions audiovisuelles et conférences</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20organiser%20un%20gala" target="_blank" rel="noopener noreferrer" class="card-btn">Demander un devis</a>
+        </div>
+      </div>
+
+      <div class="card card-dark reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/dr3wxf.jpeg" alt="Journée récréative" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Journées Récréatives</h3>
+          <p class="card-desc">Sorties, excursions et activités en groupe</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20organiser%20une%20journee" target="_blank" rel="noopener noreferrer" class="card-btn">Organiser</a>
+        </div>
+      </div>
+
+      <div class="card card-dark reveal">
+        <div class="card-image">
+          <img src="https://files.catbox.moe/m9vvqs.jpeg" alt="Événement institutionnel" loading="lazy">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Événements Institutionnels</h3>
+          <p class="card-desc">Conférences, assemblées générales, lancement de produits</p>
+          <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20organiser%20un%20evenement%20institutionnel" target="_blank" rel="noopener noreferrer" class="card-btn">Demander un devis</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:60px;" class="reveal">
+      <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20organiser%20un%20evenement" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="font-size:1.1rem; padding:16px 40px;">
+        <i class="fab fa-whatsapp"></i> Organiser mon événement via WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     GALERIE PHOTO (AMBIANCE & ESPACES)
+     ============================================ -->
+<section class="section section-creme" id="galerie">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 style="color:var(--color-or);">Nos Espaces en Images</h2>
+      <p style="color:var(--color-gris-fonce);">Découvrez l'ambiance unique de nos deux établissements</p>
+    </div>
+
+    <div class="gallery-filters reveal">
+      <button class="gallery-filter active" data-filter="all" role="button" aria-pressed="true" tabindex="0">Tout</button>
+      <button class="gallery-filter" data-filter="pc" role="button" aria-pressed="false" tabindex="0">Point-Chaud</button>
+      <button class="gallery-filter" data-filter="bl" role="button" aria-pressed="false" tabindex="0">Binthily Lodge</button>
+      <button class="gallery-filter" data-filter="evt" role="button" aria-pressed="false" tabindex="0">Événements</button>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-item reveal" data-category="pc" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/apxb0w.jpeg" alt="Intérieur Point-Chaud" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item reveal" data-category="pc" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/4ipetb.jpeg" alt="Boulangerie" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item reveal" data-category="pc" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/j0yxmg.jpeg" alt="Pâtisserie" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item reveal" data-category="pc" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/ufsq0k.jpeg" alt="Tartelettes" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item reveal" data-category="pc" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/racy54.jpg" alt="Poulet-Yassa" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item reveal" data-category="pc" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/yrjs08.jpg" alt="Alloco-Haricots" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item reveal" data-category="pc" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/8g116t.jpg" alt="Bouillie-mil" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item reveal" data-category="pc" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/22jo11.jpg" alt="Riz-Gras-Boeuf" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item reveal" data-category="pc" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/mpbg4c.jpg" alt="Cheeseburger classique" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <div class="gallery-item reveal" data-category="bl" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/fwmprl.jpeg" alt="Façade Binthily" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item reveal" data-category="bl" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/eu9d1w.jpeg" alt="Crépuscule" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item reveal" data-category="bl" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/4hxovd.jpeg" alt="Chambre" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item reveal" data-category="bl" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/van7wo.jpeg" alt="Piscine" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item reveal" data-category="bl" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/r2auob.jpeg" alt="Jardin" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item reveal" data-category="bl" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/c3pkom.jpeg" alt="Bar" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item reveal" data-category="bl" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/dr3wxf.jpeg" alt="Fleuve" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item reveal" data-category="bl" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/8ntnuq.jpg" alt="Yoga-Meditation" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item reveal" data-category="bl" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/phmgc6.jpeg" alt="Vue" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <div class="gallery-item reveal" data-category="evt" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/k28zro.jpg" alt="fêtes - evenement" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item reveal" data-category="evt" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/rwkqgc.jpg" alt="Seminaire" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item reveal" data-category="evt" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/qtsy2d.jpg" alt="Karaoke" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item reveal" data-category="evt" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/wvriz1.jpg" alt="Buffet-Reception" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item reveal" data-category="evt" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/27dqbl.jpg" alt="Rupture-Collectif" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item reveal" data-category="evt" onclick="openLightbox(this)" role="button" aria-label="Voir l'image en grand" tabindex="0">
+        <img src="https://files.catbox.moe/hc7pe1.jpg" alt="Gala-conference" loading="lazy">
+        <div class="gallery-item-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()" role="dialog" aria-label="Visionneuse d'image">
+  <div class="lightbox-close" onclick="event.stopPropagation(); closeLightbox();" role="button" aria-label="Fermer" tabindex="0">
+    <i class="fas fa-times"></i>
+  </div>
+  <img src="" alt="" id="lightboxImg">
+</div>
+
+<!-- ============================================
+     À PROPOS
+     ============================================ -->
+<section class="section section-beige" id="apropos">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 style="color:var(--color-chocolat-fonce);">À Propos</h2>
+      <p style="color:var(--color-gris-fonce);">Deux histoires, une même passion pour l'excellence</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-card reveal">
+        <div class="pc-brand">
+          <div class="pc-brand-icon"><i class="fas fa-fire"></i></div>
+          <span class="pc-brand-text">Point-Chaud</span>
+        </div>
+        <h3 style="color:var(--color-chocolat-fonce);">Notre Histoire</h3>
+        <p style="color:var(--color-gris-fonce);">
+          Né d'une passion pour la gastronomie et le bien-recevoir, Point-Chaud s'est imposé
+          comme une adresse de référence à Bamako. Installé au coeur du quartier dynamique
+          d'Hamdallaye ACI 2000, notre établissement allie la chaleur d'un restaurant familial,
+          le savoir-faire d'une boulangerie artisanale et l'élégance d'une pâtisserie moderne.
+        </p>
+        <p style="color:var(--color-gris-fonce);">
+          Nous croyons que chaque repas est une occasion de créer du lien. C'est pourquoi notre
+          équipe met tout en oeuvre pour vous offrir des plats savoureux, un service attentionné
+          et un cadre agréable.
+        </p>
+        <p style="font-weight:500; color:var(--color-or);">
+          Chez Point-Chaud, la qualité n'est pas une option. C'est notre engagement quotidien.
+        </p>
+        <div class="about-info">
+          <div class="about-info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Hamdallaye ACI 2000, carrefour Hôtel Cologne, Bamako</span>
+          </div>
+          <div class="about-info-item">
+            <i class="fas fa-phone"></i>
+            <a href="tel:+22395953388">+223 95 95 33 88</a>
+          </div>
+          <div class="about-info-item">
+            <i class="fas fa-clock"></i>
+            <span>Ouvert tous les jours — Matin, Midi & Soir</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-card reveal">
+        <svg viewBox="0 0 300 80" style="max-width:200px; margin-bottom:12px;" xmlns="http://www.w3.org/2000/svg" aria-label="Binthily Lodge">
+          <defs>
+            <linearGradient id="goldGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#D4AF37"/>
+              <stop offset="100%" stop-color="#E8B923"/>
+            </linearGradient>
+          </defs>
+          <text x="150" y="40" text-anchor="middle" font-family="'Clash Display', 'Plus Jakarta Sans', sans-serif" font-size="28" font-weight="600" fill="url(#goldGrad2)" letter-spacing="2">BIN THILY</text>
+          <text x="150" y="65" text-anchor="middle" font-family="'Satoshi', sans-serif" font-size="14" font-weight="500" fill="#3A506B" letter-spacing="6">L O D G E</text>
+        </svg>
+        <p style="font-size:0.9rem; color:var(--color-gris); margin-bottom:20px;">Complexe Hôtelier — Djoliba, Mali</p>
+        <h3 style="color:var(--color-or);">Notre Histoire</h3>
+        <p style="color:var(--color-gris-fonce);">
+          Le Complexe Hôtelier Binthily Lodge est né d'une vision : offrir à la région de
+          Bamako une destination touristique de proximité alliant confort, nature et authenticité
+          malienne. Implanté au bord du fleuve Niger, à Djoliba.
+        </p>
+        <p style="color:var(--color-gris-fonce);">
+          Architecture malienne contemporaine, jardins verdoyants, piscine, activités nautiques
+          et espaces de loisirs — Binthily Lodge est pensé pour le bien-être total de ses hôtes.
+        </p>
+        <p style="font-weight:500; color:var(--color-or);">
+          Bienvenue chez Binthily Lodge. Bienvenue au Mali authentique.
+        </p>
+        <div class="about-info">
+          <div class="about-info-item">
+            <i class="fas fa-map-marker-alt" style="color:var(--color-or); background:rgba(212,175,55,0.1);"></i>
+            <span>Djoliba, bord du fleuve Niger, à 40 km de Bamako</span>
+          </div>
+          <div class="about-info-item">
+            <i class="fas fa-phone" style="color:var(--color-or); background:rgba(212,175,55,0.1);"></i>
+            <a href="tel:+22395953388">+223 95 95 33 88</a>
+          </div>
+          <div class="about-info-item">
+            <i class="fas fa-calendar-check" style="color:var(--color-or); background:rgba(212,175,55,0.1);"></i>
+            <span>Disponible sur réservation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     TEMOIGNAGES
+     ============================================ -->
+<section class="section section-creme" id="temoignages">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 style="color:var(--color-or);">Ils nous font confiance</h2>
+      <p style="color:var(--color-gris-fonce);">Retours d'expérience de nos clients et hôtes</p>
+    </div>
+    <div class="cards-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
+      <div class="card reveal testimonial-card">
+        <div class="testimonial-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testimonial-text">"Le poulet yassa est tout simplement le meilleur de Bamako. Service rapide et très chaleureux chez Point-Chaud."</p>
+        <p class="testimonial-author">A. K.</p>
+        <p class="testimonial-role">Client régulier — Bamako</p>
+      </div>
+      <div class="card reveal testimonial-card">
+        <div class="testimonial-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testimonial-text">"Week-end inoubliable au Binthily Lodge. La vue sur le Niger au lever du soleil est magique. À refaire très vite !"</p>
+        <p class="testimonial-author">M. D.</p>
+        <p class="testimonial-role">Hôte — Séjour en famille</p>
+      </div>
+      <div class="card reveal testimonial-card">
+        <div class="testimonial-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+        </div>
+        <p class="testimonial-text">"Nous avons organisé notre séminaire d'entreprise au Lodge. L'équipe a été impeccable du début à la fin."</p>
+        <p class="testimonial-author">S. T.</p>
+        <p class="testimonial-role">Responsable RH — Bamako</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     CONTACT
+     ============================================ -->
+<section class="section section-creme" id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 style="color:var(--color-or);">Contactez-Nous</h2>
+      <p style="color:var(--color-gris-fonce);">Nous sommes à votre écoute pour toute question ou réservation</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-card reveal">
+        <div class="pc-brand" style="justify-content:center; margin-bottom:16px;">
+          <div class="pc-brand-icon"><i class="fas fa-fire"></i></div>
+          <span class="pc-brand-text">Point-Chaud</span>
+        </div>
+        <p class="contact-tag">Restaurant · Boulangerie · Pâtisserie · Cafétéria</p>
+        <div class="contact-detail"><i class="fas fa-map-marker-alt"></i> Hamdallaye ACI 2000</div>
+        <div class="contact-detail">Carrefour Hôtel Cologne, Bamako, Mali</div>
+        <div class="contact-detail"><i class="fas fa-phone"></i> <a href="tel:+22395953388">+223 95 95 33 88</a></div>
+        <div class="contact-detail"><i class="fab fa-whatsapp" style="color:#25D366;"></i> WhatsApp disponible</div>
+        <div class="contact-detail"><i class="fas fa-clock"></i> Tous les jours, matin-soir</div>
+        <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20passer%20une%20commande%20chez%20Point-Chaud" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="margin-top:20px; width:100%; justify-content:center;">
+          <i class="fab fa-whatsapp"></i> Contacter Point-Chaud
+        </a>
+      </div>
+
+      <div class="contact-card reveal">
+        <svg viewBox="0 0 300 80" style="max-width:160px; margin:0 auto 12px;" xmlns="http://www.w3.org/2000/svg" aria-label="Binthily Lodge">
+          <defs>
+            <linearGradient id="goldGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#D4AF37"/>
+              <stop offset="100%" stop-color="#E8B923"/>
+            </linearGradient>
+          </defs>
+          <text x="150" y="40" text-anchor="middle" font-family="'Clash Display', 'Plus Jakarta Sans', sans-serif" font-size="28" font-weight="600" fill="url(#goldGrad3)" letter-spacing="2">BIN THILY</text>
+          <text x="150" y="65" text-anchor="middle" font-family="'Satoshi', sans-serif" font-size="14" font-weight="500" fill="#5BC0BE" letter-spacing="6">L O D G E</text>
+        </svg>
+        <p class="contact-tag">Complexe Hôtelier & Touristique</p>
+        <div class="contact-detail"><i class="fas fa-map-marker-alt" style="color:var(--color-or);"></i> Djoliba, bord du fleuve Niger</div>
+        <div class="contact-detail">À 40 km de Bamako, Mali</div>
+        <div class="contact-detail"><i class="fas fa-phone" style="color:var(--color-or);"></i> <a href="tel:+22395953388">+223 95 95 33 88</a></div>
+        <div class="contact-detail"><i class="fab fa-whatsapp" style="color:#25D366;"></i> WhatsApp disponible</div>
+        <div class="contact-detail"><i class="fas fa-calendar-check" style="color:var(--color-or);"></i> Sur réservation</div>
+        <a href="https://wa.me/22395953388?text=Bonjour%2C%20je%20souhaite%20réserver%20au%20Binthily%20Lodge" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-top:20px; width:100%; justify-content:center;">
+          <i class="fab fa-whatsapp"></i> Contacter Binthily Lodge
+        </a>
+      </div>
+    </div>
+
+    <!-- Formulaire fonctionnel via WhatsApp -->
+    <div class="contact-form reveal" style="margin-top:40px;">
+      <h3 style="font-family:var(--font-display); font-size:1.6rem; margin-bottom:24px; text-align:center; color:var(--color-or);">Envoyez-nous un message</h3>
+      <form id="contactForm" onsubmit="handleFormSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nom">Nom complet</label>
+            <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="tel">Téléphone</label>
+            <input type="tel" id="tel" name="tel" placeholder="+223 XX XX XX XX">
+          </div>
+          <div class="form-group">
+            <label for="etablissement">Établissement concerné</label>
+            <select id="etablissement" name="etablissement" required>
+              <option value="Point-Chaud">Point-Chaud (Restaurant — Bamako)</option>
+              <option value="Binthily Lodge">Binthily Lodge (Hôtel — Djoliba)</option>
+              <option value="Non précisé">Les deux / Non précisé</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="sujet">Sujet</label>
+            <select id="sujet" name="sujet">
+              <option value="Réservation">Réservation</option>
+              <option value="Commande">Commande</option>
+              <option value="Événement">Événement</option>
+              <option value="Formation">Formation</option>
+              <option value="Autre">Autre</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:24px;">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Décrivez votre demande..." required></textarea>
+        </div>
+        <div style="text-align:center;">
+          <button type="submit" class="btn btn-primary" style="padding:14px 48px; font-size:1rem;">
+            <i class="fas fa-paper-plane"></i> Envoyer via WhatsApp
+          </button>
+        </div>
+      </form>
+      <div id="formMessage" style="display:none; text-align:center; margin-top:20px; padding:16px; border-radius:12px; background:rgba(37,211,102,0.1); color:#25D366;">
+        <i class="fas fa-check-circle"></i> <strong>Message prêt !</strong> Redirection vers WhatsApp...
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">
+        <span class="pc">Point-Chaud</span> <span style="opacity:0.5;">×</span> <span class="bl">Binthily</span>
+      </div>
+      <p class="footer-tagline">Deux adresses. Une seule passion : l'excellence.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Liens rapides</h4>
+      <a href="#accueil">Accueil</a>
+      <a href="#menu">Menu</a>
+      <a href="#point-chaud">Point-Chaud</a>
+      <a href="#binthily">Binthily Lodge</a>
+      <a href="#hebergements">Hébergements</a>
+      <a href="#evenements">Événements</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:+22395953388"><i class="fas fa-phone" style="margin-right:8px;"></i>+223 95 95 33 88</a>
+      <a href="https://wa.me/22395953388" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp" style="margin-right:8px;"></i>WhatsApp</a>
+      <span><i class="fas fa-map-marker-alt" style="margin-right:8px;"></i>Bamako & Djoliba, Mali</span>
+    </div>
+    <div class="footer-col">
+      <h4>Horaires</h4>
+      <span><i class="fas fa-clock" style="margin-right:8px;"></i>Point-Chaud : 7j/7</span>
+      <span><i class="fas fa-calendar-check" style="margin-right:8px;"></i>Binthily : Sur réservation</span>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Point-Chaud & Binthily Lodge — Tous droits réservés</p>
+    <p style="margin-top:8px;">Site créé avec passion pour le Mali</p>
+  </div>
+</footer>
+
+<!-- ============================================
+     WHATSAPP FLOAT
+     ============================================ -->
+<a href="https://wa.me/22395953388" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Contacter sur WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- ============================================
+     JAVASCRIPT CORRIGÉ
+     ============================================ -->
+<script>
+/* ----- Navbar scroll effect ----- */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+
+/* ----- Mobile menu avec aria-expanded ----- */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const menuOverlay = document.getElementById('menuOverlay');
+
+function toggleMenu() {
+  const isOpen = mobileMenu.classList.toggle('open');
+  menuOverlay.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+
+hamburger.addEventListener('click', toggleMenu);
+menuOverlay.addEventListener('click', toggleMenu);
+
+mobileMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', toggleMenu);
+});
+
+/* ----- Scroll reveal ----- */
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+/* ----- MENU FILTERS avec accessibilité clavier ----- */
+const menuFilterButtons = document.querySelectorAll('.menu-filter');
+const menuCards = document.querySelectorAll('.menu-card');
+
+function activateMenuFilter(btn) {
+  menuFilterButtons.forEach(b => {
+    b.classList.remove('active');
+    b.setAttribute('aria-pressed', 'false');
+  });
+  btn.classList.add('active');
+  btn.setAttribute('aria-pressed', 'true');
+  const filter = btn.dataset.filter;
+
+  menuCards.forEach(card => {
+    if (filter === 'all' || card.dataset.category === filter) {
+      card.style.display = 'block';
+      setTimeout(() => {
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      }, 10);
+    } else {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      setTimeout(() => card.style.display = 'none', 300);
+    }
+  });
+}
+
+menuFilterButtons.forEach(btn => {
+  btn.addEventListener('click', () => activateMenuFilter(btn));
+  btn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      activateMenuFilter(btn);
+    }
+  });
+});
+
+/* ----- Gallery filters avec accessibilité ----- */
+const filterButtons = document.querySelectorAll('.gallery-filter');
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+function activateGalleryFilter(btn) {
+  filterButtons.forEach(b => {
+    b.classList.remove('active');
+    b.setAttribute('aria-pressed', 'false');
+  });
+  btn.classList.add('active');
+  btn.setAttribute('aria-pressed', 'true');
+  const filter = btn.dataset.filter;
+
+  galleryItems.forEach(item => {
+    if (filter === 'all' || item.dataset.category === filter) {
+      item.style.display = 'block';
+      setTimeout(() => item.style.opacity = '1', 10);
+    } else {
+      item.style.opacity = '0';
+      setTimeout(() => item.style.display = 'none', 300);
+    }
+  });
+}
+
+filterButtons.forEach(btn => {
+  btn.addEventListener('click', () => activateGalleryFilter(btn));
+  btn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      activateGalleryFilter(btn);
+    }
+  });
+});
+
+/* ----- Lightbox ----- */
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+
+function openLightbox(element) {
+  const img = element.querySelector('img');
+  lightboxImg.src = img.src;
+  lightboxImg.alt = img.alt;
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  lightbox.querySelector('.lightbox-close').focus();
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeLightbox();
+});
+
+/* Gestion clavier pour les items de galerie */
+galleryItems.forEach(item => {
+  item.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openLightbox(item);
+    }
+  });
+});
+
+/* Gestion clavier pour le bouton fermeture lightbox */
+lightbox.querySelector('.lightbox-close').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    e.stopPropagation();
+    closeLightbox();
+  }
+});
+
+/* ----- Contact form — ENVOI RÉEL VIA WHATSAPP ----- */
+function handleFormSubmit(e) {
+  e.preventDefault();
+  const nom = document.getElementById('nom').value;
+  const email = document.getElementById('email').value;
+  const tel = document.getElementById('tel').value;
+  const etablissement = document.getElementById('etablissement').value;
+  const sujet = document.getElementById('sujet').value;
+  const message = document.getElementById('message').value;
+
+  const text = `*Nouveau message du site — ${encodeURIComponent(etablissement)}*%0A%0A*Nom:* ${encodeURIComponent(nom)}%0A*Email:* ${encodeURIComponent(email)}%0A*Tél:* ${encodeURIComponent(tel || 'Non renseigné')}%0A*Sujet:* ${encodeURIComponent(sujet)}%0A%0A*Message:*%0A${encodeURIComponent(message)}`;
+
+  const formMessage = document.getElementById('formMessage');
+  formMessage.style.display = 'block';
+
+  setTimeout(() => {
+    window.open(`https://wa.me/22395953388?text=${text}`, '_blank', 'noopener,noreferrer');
+    formMessage.style.display = 'none';
+    document.getElementById('contactForm').reset();
+  }, 800);
+}
+
+/* ----- Smooth scroll avec offset ----- */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      const offset = 80;
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+    }
+  });
+});
+
+/* ----- Gestion du hash au chargement ----- */
+window.addEventListener('load', () => {
+  if (window.location.hash) {
+    const target = document.querySelector(window.location.hash);
+    if (target) {
+      setTimeout(() => {
+        const offset = 80;
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+      }, 100);
+    }
+  }
+});
+</script>
+
+</body>
+</html>
