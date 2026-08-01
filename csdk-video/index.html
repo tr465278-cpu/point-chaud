@@ -42,16 +42,10 @@
         background-size: cover; background-position: center;
        
       }
-      /* Fond vectoriel sous chaque photo : si le fichier manque, la scène
-         reste composée au lieu de tomber sur du noir. */
-      .plate::before {
-        content: ""; position: absolute; inset: 0;
-        background:
-          radial-gradient(120% 90% at 30% 20%, #1B4B8F 0%, transparent 60%),
-          radial-gradient(100% 80% at 80% 90%, #0A2E63 0%, transparent 55%),
-          linear-gradient(160deg, var(--navy-800), var(--navy-950));
-        z-index: -1;
-      }
+      /* Fond de secours : couleur de fond de .plate, donc peinte SOUS
+         l'image. Un pseudo-élément en z-index négatif passait au-dessus
+         de la photo dès que .plate perdait son contexte d'empilement. */
+      .plate { background-color: var(--navy-800); }
 
 
       .dress { position: absolute; inset: 0; z-index: 2; pointer-events: none;
