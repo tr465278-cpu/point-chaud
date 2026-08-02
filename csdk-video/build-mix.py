@@ -28,17 +28,22 @@ def place(buf, sig, at, gain=1.0):
         buf[i0:i1] += sig[:i1 - i0] * gain
 
 # ------------------------------------------------------------------ voix
+# Piste unique : la voix ElevenLabs est conservée telle quelle, avec ses
+# respirations d'origine. Ré-espacer les répliques casserait la
+# performance de la lectrice.
 voice = np.zeros(N)
-for s in TL["segments"]:
-    place(voice, load(s["file"]), s["start"])
+src = next(pathlib.Path("assets/voix-off").glob("*.mp3"))
+place(voice, load(src), 0.0)
 
 # ------------------------------------------------------------ bruitages
 # Chaque réplique est précédée d'un whoosh : l'oreille anticipe la coupe.
 WHOOSH = ["whoosh-short.mp3", "whoosh.mp3", "whoosh-cinematic.mp3"]
 events = []
 for i, s in enumerate(TL["segments"]):
-    events.append({"at": round(max(0.0, s["start"] - 0.22), 3),
-                   "file": WHOOSH[i % 3], "gain": 0.42, "role": "transition"})
+    if i == 0:
+        continue                      # pas de whoosh avant la toute première réplique
+    events.append({"at": round(max(0.0, s["start"] - 0.20), 3),
+                   "file": WHOOSH[i % 3], "gain": 0.38, "role": "transition"})
 
 # Impacts graves aux ruptures de section (les mêmes que la musique).
 for bar in (2, 5, 7, 13, 17, 21, 25):

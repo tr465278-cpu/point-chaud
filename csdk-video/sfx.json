@@ -1,18 +1,24 @@
 [
   {
-    "at": 0.78,
-    "file": "whoosh-short.mp3",
-    "gain": 0.42,
-    "role": "transition"
-  },
-  {
-    "at": 2.78,
+    "at": 1.195,
     "file": "whoosh.mp3",
-    "gain": 0.42,
+    "gain": 0.38,
     "role": "transition"
   },
   {
-    "at": 3.0,
+    "at": 1.395,
+    "file": "pop.mp3",
+    "gain": 0.4,
+    "role": "mot"
+  },
+  {
+    "at": 2.808,
+    "file": "whoosh-cinematic.mp3",
+    "gain": 0.38,
+    "role": "transition"
+  },
+  {
+    "at": 3.008,
     "file": "pop.mp3",
     "gain": 0.4,
     "role": "mot"
@@ -24,57 +30,45 @@
     "role": "section"
   },
   {
-    "at": 4.28,
-    "file": "whoosh-cinematic.mp3",
-    "gain": 0.42,
-    "role": "transition"
-  },
-  {
-    "at": 4.5,
-    "file": "pop.mp3",
-    "gain": 0.4,
-    "role": "mot"
-  },
-  {
-    "at": 5.28,
+    "at": 4.171,
     "file": "whoosh-short.mp3",
-    "gain": 0.42,
+    "gain": 0.38,
     "role": "transition"
   },
   {
-    "at": 5.5,
+    "at": 4.371,
     "file": "pop.mp3",
     "gain": 0.4,
     "role": "mot"
   },
   {
-    "at": 6.28,
+    "at": 5.073,
     "file": "whoosh.mp3",
-    "gain": 0.42,
+    "gain": 0.38,
     "role": "transition"
   },
   {
-    "at": 6.5,
+    "at": 5.273,
     "file": "pop.mp3",
     "gain": 0.4,
     "role": "mot"
   },
   {
-    "at": 7.28,
+    "at": 5.888,
     "file": "whoosh-cinematic.mp3",
-    "gain": 0.42,
+    "gain": 0.38,
     "role": "transition"
   },
   {
-    "at": 7.5,
+    "at": 6.088,
     "file": "pop.mp3",
     "gain": 0.4,
     "role": "mot"
   },
   {
-    "at": 8.78,
+    "at": 7.44,
     "file": "whoosh-short.mp3",
-    "gain": 0.42,
+    "gain": 0.38,
     "role": "transition"
   },
   {
@@ -84,9 +78,15 @@
     "role": "section"
   },
   {
-    "at": 12.28,
+    "at": 10.742,
     "file": "whoosh.mp3",
-    "gain": 0.42,
+    "gain": 0.38,
+    "role": "transition"
+  },
+  {
+    "at": 12.991,
+    "file": "whoosh-cinematic.mp3",
+    "gain": 0.38,
     "role": "transition"
   },
   {
@@ -96,51 +96,45 @@
     "role": "section"
   },
   {
-    "at": 14.28,
-    "file": "whoosh-cinematic.mp3",
-    "gain": 0.42,
-    "role": "transition"
-  },
-  {
-    "at": 17.78,
+    "at": 16.555,
     "file": "whoosh-short.mp3",
-    "gain": 0.42,
+    "gain": 0.38,
     "role": "transition"
   },
   {
-    "at": 18.0,
+    "at": 16.755,
     "file": "click.mp3",
     "gain": 0.34,
     "role": "pilier"
   },
   {
-    "at": 20.28,
+    "at": 19.306,
     "file": "whoosh.mp3",
-    "gain": 0.42,
+    "gain": 0.38,
     "role": "transition"
   },
   {
-    "at": 20.5,
+    "at": 19.506,
     "file": "click.mp3",
     "gain": 0.34,
     "role": "pilier"
   },
   {
-    "at": 21.78,
+    "at": 21.075,
     "file": "whoosh-cinematic.mp3",
-    "gain": 0.42,
+    "gain": 0.38,
     "role": "transition"
   },
   {
-    "at": 22.0,
+    "at": 21.275,
     "file": "click.mp3",
     "gain": 0.34,
     "role": "pilier"
   },
   {
-    "at": 23.78,
+    "at": 23.165,
     "file": "whoosh-short.mp3",
-    "gain": 0.42,
+    "gain": 0.38,
     "role": "transition"
   },
   {
@@ -150,39 +144,39 @@
     "role": "section"
   },
   {
-    "at": 26.78,
+    "at": 26.619,
     "file": "whoosh.mp3",
-    "gain": 0.42,
+    "gain": 0.38,
     "role": "transition"
   },
   {
-    "at": 29.0,
+    "at": 28.626,
     "file": "riser.mp3",
     "gain": 0.42,
     "role": "montée"
   },
   {
-    "at": 29.78,
+    "at": 29.426,
     "file": "whoosh-cinematic.mp3",
-    "gain": 0.42,
+    "gain": 0.38,
     "role": "transition"
   },
   {
-    "at": 30.0,
+    "at": 29.626,
     "file": "sparkle.mp3",
     "gain": 0.52,
     "role": "logo"
   },
   {
-    "at": 30.05,
+    "at": 29.676000000000002,
     "file": "impact-bass-2.mp3",
     "gain": 0.55,
     "role": "logo"
   },
   {
-    "at": 31.78,
+    "at": 32.302,
     "file": "whoosh-short.mp3",
-    "gain": 0.42,
+    "gain": 0.38,
     "role": "transition"
   },
   {
@@ -192,19 +186,19 @@
     "role": "section"
   },
   {
-    "at": 34.28,
+    "at": 34.979,
     "file": "whoosh.mp3",
-    "gain": 0.42,
+    "gain": 0.38,
     "role": "transition"
   },
   {
-    "at": 37.28,
+    "at": 37.938,
     "file": "whoosh-cinematic.mp3",
-    "gain": 0.42,
+    "gain": 0.38,
     "role": "transition"
   },
   {
-    "at": 37.5,
+    "at": 38.138,
     "file": "chime.mp3",
     "gain": 0.34,
     "role": "contact"
@@ -216,25 +210,25 @@
     "role": "section"
   },
   {
-    "at": 43.6,
+    "at": 44.893,
     "file": "riser.mp3",
     "gain": 0.46,
     "role": "montée"
   },
   {
-    "at": 44.28,
+    "at": 45.593,
     "file": "whoosh-short.mp3",
-    "gain": 0.42,
+    "gain": 0.38,
     "role": "transition"
   },
   {
-    "at": 44.5,
+    "at": 45.793,
     "file": "impact-bass-1.mp3",
     "gain": 0.6,
     "role": "final"
   },
   {
-    "at": 44.54,
+    "at": 45.833,
     "file": "sparkle.mp3",
     "gain": 0.4,
     "role": "final"

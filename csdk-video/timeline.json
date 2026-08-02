@@ -1,141 +1,143 @@
 {
+  "source": "ElevenLabs_2026-07-28T09_36_22_Victoria - Content Creator_eleven_multilingual_v2.mp3",
   "bpm": 120.0,
   "beat": 0.5,
-  "lead": 1.0,
+  "lead": 0.0,
+  "audio_duration": 48.327,
   "total": 50.0,
   "segments": [
     {
       "id": 1,
-      "file": "assets/vo3/seg01.wav",
-      "start": 1.0,
-      "dur": 1.387,
-      "end": 2.387
+      "text": "Chaque enfant porte un rêve.",
+      "start": 0.0,
+      "end": 1.395,
+      "dur": 1.395
     },
     {
       "id": 2,
-      "file": "assets/vo3/seg02.wav",
-      "start": 3.0,
-      "dur": 1.131,
-      "end": 4.131
+      "text": "Devenir médecin.",
+      "start": 1.395,
+      "end": 3.008,
+      "dur": 1.613
     },
     {
       "id": 3,
-      "file": "assets/vo3/seg03.wav",
-      "start": 4.5,
-      "dur": 0.939,
-      "end": 5.439
+      "text": "Enseignante.",
+      "start": 3.008,
+      "end": 4.371,
+      "dur": 1.363
     },
     {
       "id": 4,
-      "file": "assets/vo3/seg04.wav",
-      "start": 5.5,
-      "dur": 0.896,
-      "end": 6.396
+      "text": "Ingénieur.",
+      "start": 4.371,
+      "end": 5.273,
+      "dur": 0.902
     },
     {
       "id": 5,
-      "file": "assets/vo3/seg05.wav",
-      "start": 6.5,
-      "dur": 0.811,
-      "end": 7.311
+      "text": "Artiste.",
+      "start": 5.273,
+      "end": 6.088,
+      "dur": 0.815
     },
     {
       "id": 6,
-      "file": "assets/vo3/seg06.wav",
-      "start": 7.5,
-      "dur": 0.96,
-      "end": 8.46
+      "text": "Entrepreneur.",
+      "start": 6.088,
+      "end": 7.64,
+      "dur": 1.552
     },
     {
       "id": 7,
-      "file": "assets/vo3/seg07.wav",
-      "start": 9.0,
-      "dur": 2.56,
-      "end": 11.56
+      "text": "Mais tous les grands rêves ont besoin d'un bon départ.",
+      "start": 7.64,
+      "end": 10.942,
+      "dur": 3.302
     },
     {
       "id": 8,
-      "file": "assets/vo3/seg08.wav",
-      "start": 12.5,
-      "dur": 1.835,
-      "end": 14.335
+      "text": "Au Complexe Scolaire Diawoye Kanté,",
+      "start": 10.942,
+      "end": 13.191,
+      "dur": 2.249
     },
     {
       "id": 9,
-      "file": "assets/vo3/seg09.wav",
-      "start": 14.5,
-      "dur": 2.901,
-      "end": 17.401
+      "text": "nous croyons qu'une éducation de qualité peut changer une vie.",
+      "start": 13.191,
+      "end": 16.755,
+      "dur": 3.564
     },
     {
       "id": 10,
-      "file": "assets/vo3/seg10.wav",
-      "start": 18.0,
-      "dur": 2.283,
-      "end": 20.283
+      "text": "Ici, vos enfants apprennent avec discipline.",
+      "start": 16.755,
+      "end": 19.506,
+      "dur": 2.751
     },
     {
       "id": 11,
-      "file": "assets/vo3/seg11.wav",
-      "start": 20.5,
-      "dur": 1.451,
-      "end": 21.951
+      "text": "Grandissent avec confiance.",
+      "start": 19.506,
+      "end": 21.275,
+      "dur": 1.769
     },
     {
       "id": 12,
-      "file": "assets/vo3/seg12.wav",
-      "start": 22.0,
-      "dur": 1.493,
-      "end": 23.493
+      "text": "Et avancent vers la réussite.",
+      "start": 21.275,
+      "end": 23.365,
+      "dur": 2.09
     },
     {
       "id": 13,
-      "file": "assets/vo3/seg13.wav",
-      "start": 24.0,
-      "dur": 2.603,
-      "end": 26.603
+      "text": "Offrez à votre enfant un environnement pour apprendre,",
+      "start": 23.365,
+      "end": 26.819,
+      "dur": 3.454
     },
     {
       "id": 14,
-      "file": "assets/vo3/seg14.wav",
-      "start": 27.0,
-      "dur": 2.005,
-      "end": 29.005
+      "text": "s'épanouir, et construire son avenir.",
+      "start": 26.819,
+      "end": 29.626,
+      "dur": 2.807
     },
     {
       "id": 15,
-      "file": "assets/vo3/seg15.wav",
-      "start": 30.0,
-      "dur": 1.685,
-      "end": 31.685
+      "text": "Complexe Scolaire Diawoye Kanté.",
+      "start": 29.626,
+      "end": 32.502,
+      "dur": 2.876
     },
     {
       "id": 16,
-      "file": "assets/vo3/seg16.wav",
-      "start": 32.0,
-      "dur": 1.984,
-      "end": 33.984
+      "text": "Apprendre aujourd'hui, réussir demain.",
+      "start": 32.502,
+      "end": 35.179,
+      "dur": 2.677
     },
     {
       "id": 17,
-      "file": "assets/vo3/seg17.wav",
-      "start": 34.5,
-      "dur": 2.645,
-      "end": 37.145
+      "text": "Korofina-Nord, près de la pharmacie Fady.",
+      "start": 35.179,
+      "end": 38.138,
+      "dur": 2.959
     },
     {
       "id": 18,
-      "file": "assets/vo3/seg18.wav",
-      "start": 37.5,
-      "dur": 6.955,
-      "end": 44.455
+      "text": "Appelez-nous au 74 45 45 71, ou au 93 59 92 01.",
+      "start": 38.138,
+      "end": 45.793,
+      "dur": 7.655
     },
     {
       "id": 19,
-      "file": "assets/vo3/seg19.wav",
-      "start": 44.5,
-      "dur": 1.707,
-      "end": 46.207
+      "text": "Les inscriptions sont ouvertes !",
+      "start": 45.793,
+      "end": 47.979,
+      "dur": 2.186
     }
   ]
 }
