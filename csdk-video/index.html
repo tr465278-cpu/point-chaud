@@ -8,567 +8,518 @@
       * { margin: 0; padding: 0; box-sizing: border-box; }
 
       :root {
-        --navy-950: #030C1E;
-        --navy-900: #04122B;
-        --navy-800: #08203F;
-        --navy-700: #0B2A5B;
-        --navy-600: #123C7A;
-        --gold:      #F5B921;
-        --gold-lt:   #FFD86B;
-        --gold-dk:   #C88E0C;
-        --white:     #FFFFFF;
-        --ink:       #7E93B8;
+        --navy-950:#020A18; --navy-900:#04122B; --navy-800:#08203F;
+        --navy-700:#0B2A5B; --navy-600:#123C7A; --navy-500:#1B58A8;
+        --gold:#F5B921; --gold-lt:#FFD86B; --gold-dk:#C88E0C;
+        --white:#FFFFFF; --ink:#8FA6CC;
       }
 
       html, body {
-        width: 2160px; height: 3840px;
-        overflow: hidden;
-        background: var(--navy-950);
-        font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
+        width:2160px; height:3840px; overflow:hidden;
+        background:var(--navy-950);
+        font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+        -webkit-font-smoothing:antialiased;
       }
 
-      /* ---------- Socle scénique ---------- */
-      .scene {
-        position: absolute; inset: 0;
-        overflow: hidden;
-       
-      }
-
-      /* Cadre photo : le cadre masque, la plaque bouge = caméra simulée */
-      .frame { position: absolute; overflow: hidden; }
-      .plate {
-        position: absolute; inset: -12%;
-        background-size: cover; background-position: center;
-       
-      }
-      /* Fond de secours : couleur de fond de .plate, donc peinte SOUS
-         l'image. Un pseudo-élément en z-index négatif passait au-dessus
-         de la photo dès que .plate perdait son contexte d'empilement. */
-      .plate { background-color: var(--navy-800); }
-
-
-      .dress { position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      /* ══════════ FOND PERMANENT ══════════
+         Un seul décor traverse tout le film. Il ne boucle pas : c'est un
+         travelling continu de 48 s, donc le fond vit en permanence sans
+         jamais « attendre » — la doctrine interdit les oscillations. */
+      #bg { position:absolute; inset:0; overflow:hidden; }
+      #bg-plate {
+        position:absolute; left:-30%; top:-30%; width:160%; height:160%;
         background:
-          radial-gradient(72% 58% at 50% 44%, transparent 42%, rgba(3,12,30,.82) 100%),
-          linear-gradient(to top, rgba(3,12,30,.96) 0%, rgba(3,12,30,.55) 34%, rgba(3,12,30,0) 62%),
-          linear-gradient(to bottom, rgba(3,12,30,.80) 0%, rgba(3,12,30,0) 38%),
-          linear-gradient(140deg, rgba(18,60,122,.30), rgba(245,185,33,.08)); }
-      /* Voile de lecture des vignettes métier, en pseudo-élément (pas de calque en plus) */
-      .job::after { content: ""; position: absolute; inset: 0; z-index: 1;
-        background: linear-gradient(to top, rgba(3,12,30,.96) 0%, rgba(3,12,30,.5) 30%, transparent 58%); }
-      .job .label, .job .bar { z-index: 2; }
-
-      /* ---------- Typographie ---------- */
-      .kicker {
-        font-size: 60px; font-weight: 800; letter-spacing: .42em;
-        color: var(--gold); text-transform: uppercase;
+          radial-gradient(48% 34% at 22% 18%, #1B58A8 0%, transparent 62%),
+          radial-gradient(42% 30% at 82% 42%, #0B2A5B 0%, transparent 60%),
+          radial-gradient(56% 38% at 46% 88%, #123C7A 0%, transparent 58%),
+          linear-gradient(168deg, #04122B 0%, #020A18 100%);
       }
-      .head {
-        font-size: 176px; font-weight: 900; line-height: .96;
-        letter-spacing: -.028em; color: var(--white);
-        text-shadow: 0 18px 70px rgba(0,0,0,.62);
-      }
-      .head.sm { font-size: 138px; }
-      .head em { font-style: normal; color: var(--gold); }
-      .sub {
-        font-size: 68px; font-weight: 500; line-height: 1.32;
-        color: #D8E4F7; letter-spacing: -.008em;
-      }
-      /* Masque de révélation : chaque ligne monte derrière son cache */
-      .mask { overflow: hidden; display: block; padding-bottom: .1em; }
-      .mask > span { display: block; }
-
-      .copy { position: absolute; z-index: 6; }
-      .glass, .pillar, .logoplate, .ring, .job, .prog { z-index: 6; }
-      .rule { height: 8px; background: var(--gold); border-radius: 4px; transform-origin: left center; }
-
-      /* ---------- Éléments graphiques ---------- */
-      .sweep {
-        position: absolute; top: -30%; bottom: -30%; width: 620px;
-        background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,.06) 22%, rgba(255,255,255,.24) 42%,
-                    rgba(255,216,107,.34) 54%, rgba(255,255,255,.10) 72%, transparent 100%);
-        transform: rotate(12deg);
-      }
-      .orb { position: absolute; border-radius: 50%; }
-      .ring {
-        position: absolute; border-radius: 50%;
-        border: 5px solid rgba(245,185,33,.55);
+      /* Formes géométriques : trajectoires linéaires, jamais de va-et-vient */
+      .shape { position:absolute; border-radius:50%; }
+      .sring { position:absolute; border-radius:50%; border:4px solid rgba(245,185,33,.16); }
+      .sbar  { position:absolute; border-radius:8px; background:linear-gradient(90deg,transparent,rgba(245,185,33,.30),transparent); }
+      #grid {
+        position:absolute; left:-20%; top:-20%; width:140%; height:140%;
+        background-image:
+          repeating-linear-gradient(0deg, rgba(143,166,204,.055) 0 2px, transparent 2px 150px),
+          repeating-linear-gradient(90deg, rgba(143,166,204,.055) 0 2px, transparent 2px 150px);
       }
 
-      /* Carte glassmorphism */
-      .glass {
-        position: absolute; border-radius: 56px;
-        background: linear-gradient(150deg, rgba(255,255,255,.14), rgba(255,255,255,.04));
-        border: 3px solid rgba(255,255,255,.20);
-        box-shadow: 0 50px 130px rgba(0,0,0,.55);
-        overflow: hidden;
+      /* Habillage global unique, au lieu d'un calque par scène */
+      #vig {
+        position:absolute; inset:0; z-index:40; pointer-events:none;
+        background:radial-gradient(92% 74% at 50% 48%, transparent 62%, rgba(2,10,24,.52) 100%);
       }
 
-      /* Vignette métier (scène 2) */
-      .job { position: absolute; left: 170px; right: 170px; top: 940px; height: 1960px;
-             border-radius: 64px; overflow: hidden; box-shadow: 0 60px 150px rgba(0,0,0,.6); }
-      .job .label {
-        position: absolute; left: 0; right: 0; bottom: 96px; text-align: center;
-        font-size: 122px; font-weight: 900; letter-spacing: .06em; color: var(--white);
-        text-transform: uppercase; text-shadow: 0 12px 44px rgba(0,0,0,.8);
-      }
-      .job .bar { position: absolute; left: 50%; bottom: 62px; width: 200px; height: 9px;
-                  margin-left: -100px; background: var(--gold); border-radius: 5px; transform-origin: center; }
+      /* ══════════ SCÈNES ══════════ */
+      .scene { position:absolute; inset:0; z-index:10; }
 
-      /* Pilier (scène 5) */
-      .pillar { position: absolute; left: 190px; right: 190px; height: 470px;
-                display: flex; align-items: center; gap: 60px; }
-      .pillar .ico {
-        width: 190px; height: 190px; flex: 0 0 190px; border-radius: 50%;
-        background: linear-gradient(150deg, var(--gold), var(--gold-dk));
-        display: flex; align-items: center; justify-content: center;
-        font-size: 96px; font-weight: 900; color: var(--navy-900);
-        box-shadow: 0 26px 70px rgba(245,185,33,.42);
+      /* ══════════ VIGNETTES PHOTO ══════════
+         Les photos ne sont jamais plein écran : elles vivent dans des
+         cartes posées sur le décor, comme dans une mise en page. */
+      .card {
+        position:absolute; overflow:hidden; border-radius:44px;
+        box-shadow:0 40px 110px rgba(0,0,0,.55), 0 0 0 3px rgba(255,255,255,.10);
+        background:var(--navy-800);
       }
-      .pillar .txt { font-size: 104px; font-weight: 800; color: var(--white); letter-spacing: -.02em; }
-      .pillar .txt small { display: block; font-size: 52px; font-weight: 500; color: var(--ink); letter-spacing: 0; margin-top: 10px; }
-
-      /* Logo final */
-      .logoplate {
-        position: absolute; left: 50%; top: 1180px; width: 900px; height: 900px;
-        margin-left: -450px; border-radius: 50%;
-        background: #fff center/cover no-repeat;
-        box-shadow: 0 0 0 14px rgba(245,185,33,.30), 0 60px 160px rgba(0,0,0,.72);
+      .card > i {
+        position:absolute; inset:-14%; display:block;
+        background-size:cover; background-position:center;
       }
+      .card.gold { box-shadow:0 40px 110px rgba(0,0,0,.55), 0 0 0 5px var(--gold); }
 
-      /* Bloc contact */
-      .phone {
-        font-size: 178px; font-weight: 900; color: var(--white);
-        letter-spacing: .028em; font-variant-numeric: tabular-nums;
-        text-shadow: 0 14px 50px rgba(0,0,0,.6);
+      /* ══════════ TYPOGRAPHIE ══════════ */
+      .t  { position:absolute; z-index:20; }
+      .kick {
+        font-size:56px; font-weight:800; letter-spacing:.36em;
+        color:var(--gold); text-transform:uppercase;
+      }
+      .h1 { font-size:190px; font-weight:900; line-height:.94; letter-spacing:-.03em; color:var(--white); }
+      .h2 { font-size:140px; font-weight:900; line-height:.98; letter-spacing:-.026em; color:var(--white); }
+      .h3 { font-size:104px; font-weight:800; line-height:1.04; letter-spacing:-.02em; color:var(--white); }
+      .p  { font-size:64px; font-weight:500; line-height:1.34; color:#CFE0F7; }
+      .go { color:var(--gold); }
+      /* Chaque caractère est encapsulé pour être animé séparément */
+      .ch { display:inline-block; }
+      .wd { display:inline-block; }
+
+      .bar { height:9px; background:var(--gold); border-radius:5px; transform-origin:left center; }
+
+      .chip {
+        position:absolute; z-index:20; display:inline-block;
+        padding:26px 58px; border-radius:999px;
+        background:rgba(3,14,34,.92); border:3px solid var(--gold);
+        color:var(--gold); font-size:58px; font-weight:800; letter-spacing:.10em;
+        text-transform:uppercase;
       }
       .pill {
-        display: inline-block; padding: 40px 96px; border-radius: 999px;
-        background: linear-gradient(120deg, var(--gold), var(--gold-lt));
-        color: var(--navy-900); font-size: 96px; font-weight: 900;
-        letter-spacing: .05em; text-transform: uppercase;
-        box-shadow: 0 34px 90px rgba(245,185,33,.45);
+        display:inline-block; padding:44px 104px; border-radius:999px;
+        background:linear-gradient(120deg,var(--gold),var(--gold-lt));
+        color:var(--navy-900); font-size:104px; font-weight:900;
+        letter-spacing:.05em; text-transform:uppercase;
+        box-shadow:0 34px 90px rgba(245,185,33,.42);
       }
-
-      /* Barre de progression discrète */
-      .prog { position: absolute; left: 0; bottom: 0; height: 10px; background: var(--gold);
-              width: 100%; transform-origin: left center; }
-
-      /* Volets de transition */
-      .wipe { position: absolute; inset: -10%; }
-      .wipe.gold { background: linear-gradient(120deg, var(--gold), var(--gold-lt)); }
-      .wipe.navy { background: linear-gradient(120deg, var(--navy-700), var(--navy-900)); }
-      .flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
+      .num {
+        font-size:172px; font-weight:900; color:var(--white);
+        letter-spacing:.03em; font-variant-numeric:tabular-nums;
+      }
+      .logo {
+        position:absolute; z-index:20; border-radius:50%;
+        background:#fff center/cover no-repeat;
+        box-shadow:0 0 0 16px rgba(245,185,33,.26), 0 60px 150px rgba(0,0,0,.7);
+      }
+      .ringf { position:absolute; z-index:19; border-radius:50%; border:6px solid rgba(245,185,33,.42); }
     </style>
   </head>
 
   <body>
     <div id="root" data-composition-id="main"
-         data-start="0" data-duration="46.33"
+         data-start="0" data-duration="48.327"
          data-width="2160" data-height="3840">
 
-      <!-- ============ SC1 · 0 → 2.78 · « Chaque enfant porte un rêve » ============ -->
-      <div id="sc1" class="scene clip" data-start="0" data-duration="2.95" data-track-index="1">
-        <div class="frame" style="inset:0">
-          <div id="sc1-plate" class="plate" data-layout-allow-overflow
-               style="background-image:url('assets/source/chaque%20enfants.jpg')"></div>
-        </div>
-                                <div id="sc1-orb" class="orb" style="left:-380px;top:1900px;width:1500px;height:1500px;
-             background:radial-gradient(circle,rgba(245,185,33,.55),transparent 68%)"></div>
-        <div id="sc1-sweep" class="sweep" style="left:-800px"></div>
-        <div class="copy" style="left:170px;right:170px;bottom:520px">
-          <div class="mask" data-layout-allow-overflow data-layout-allow-overlap><span id="sc1-k" class="kicker">Complexe Scolaire Diawoye Kanté</span></div>
-          <div class="mask" data-layout-allow-overflow data-layout-allow-overlap style="margin-top:52px"><span id="sc1-h1" class="head">Chaque enfant</span></div>
-          <div class="mask" data-layout-allow-overflow data-layout-allow-overlap><span id="sc1-h2" class="head">porte un <em>rêve</em>.</span></div>
-          <div id="sc1-rule" class="rule" style="width:520px;margin-top:64px"></div>
-        </div>
-        <div class="dress"></div>
-              </div>
+      <!-- ═══ FOND PERMANENT — présent d'un bout à l'autre ═══ -->
+      <div id="bg" class="clip" data-start="0" data-duration="48.327" data-track-index="0">
+        <div id="bg-plate"></div>
+        <div id="grid"></div>
+        <div id="sh1" class="shape" style="left:-300px;top:400px;width:900px;height:900px;
+             background:radial-gradient(circle,rgba(245,185,33,.20),transparent 66%)"></div>
+        <div id="sh2" class="shape" style="right:-380px;top:1500px;width:1200px;height:1200px;
+             background:radial-gradient(circle,rgba(27,88,168,.34),transparent 64%)"></div>
+        <div id="sh3" class="sring" style="left:1300px;top:300px;width:800px;height:800px"></div>
+        <div id="sh4" class="sring" style="left:-200px;top:2600px;width:1100px;height:1100px;border-color:rgba(143,166,204,.14)"></div>
+        <div id="sh5" class="sbar" style="left:0;top:1150px;width:2160px;height:5px"></div>
+        <div id="sh6" class="sbar" style="left:0;top:2750px;width:2160px;height:5px"></div>
+      </div>
 
-      <!-- ============ SC2 · 2.78 → 7.72 · Les cinq métiers ============ -->
-      <div id="sc2" class="scene clip" data-start="2.78" data-duration="5.1" data-track-index="2">
-        <div style="position:absolute;inset:0;background:
-             radial-gradient(90% 60% at 50% 8%, #123C7A 0%, transparent 62%),
-             linear-gradient(180deg,var(--navy-900),var(--navy-950))"></div>
+      <!-- ═══ SC1 · 0,00 → 1,40 · « Chaque enfant porte un rêve » ═══ -->
+      <div id="s1" class="scene clip" data-start="0" data-duration="1.60" data-track-index="10">
+        <div id="s1c" class="card" style="left:430px;top:820px;width:1300px;height:1620px">
+          <i data-layout-allow-overflow id="s1i" style="background-image:url('assets/source/chaque%20enfants.jpg')"></i>
+        </div>
+        <div class="t" style="left:170px;right:170px;top:2620px">
+          <div id="s1t" class="h1">Chaque enfant<br/><span class="go">porte un rêve.</span></div>
+        </div>
+      </div>
 
-        <div class="copy" style="left:170px;right:170px;top:400px;text-align:center">
-          <div class="mask" data-layout-allow-overflow data-layout-allow-overlap><span id="sc2-k" class="kicker" style="display:inline-block">Un rêve de devenir</span></div>
+      <!-- ═══ SC2 · 1,40 → 7,64 · Les cinq métiers, en mosaïque ═══ -->
+      <div id="s2" class="scene clip" data-start="1.40" data-duration="6.42" data-track-index="11">
+        <div class="t" style="left:170px;right:170px;top:520px">
+          <div id="s2k" class="kick">Un rêve de devenir</div>
         </div>
+        <div id="m1" class="card" style="left:170px;top:900px;width:880px;height:1080px">
+          <i data-layout-allow-overflow id="m1i" style="background-image:url('assets/source/m%C3%A9decin.jpg')"></i></div>
+        <div id="m2" class="card" style="left:1110px;top:900px;width:880px;height:1080px">
+          <i data-layout-allow-overflow id="m2i" style="background-image:url('assets/source/enseignante.jpg')"></i></div>
+        <div id="m3" class="card" style="left:170px;top:2040px;width:880px;height:1080px">
+          <i data-layout-allow-overflow id="m3i" style="background-image:url('assets/source/Ing%C3%A9nieur.jpg')"></i></div>
+        <div id="m4" class="card" style="left:1110px;top:2040px;width:880px;height:1080px">
+          <i data-layout-allow-overflow id="m4i" style="background-image:url('assets/source/artiste.jpg')"></i></div>
+        <div id="m5" class="card gold" style="left:640px;top:1470px;width:880px;height:1080px">
+          <i data-layout-allow-overflow id="m5i" style="background-image:url('assets/source/entrepreneur.jpg')"></i></div>
+        <div id="l1" class="chip" style="left:170px;top:1830px">Médecin</div>
+        <div id="l2" class="chip" style="left:1110px;top:1830px">Enseignante</div>
+        <div id="l3" class="chip" style="left:170px;top:2970px">Ingénieur</div>
+        <div id="l4" class="chip" style="left:1110px;top:2970px">Artiste</div>
+        <div id="l5" class="chip" style="left:640px;top:2400px">Entrepreneur</div>
+      </div>
 
-        <!-- 5 vignettes qui s'enchaînent en whip-pan -->
-        <div id="job1" class="job">
-          <div class="frame" style="inset:0"><div id="job1-p" class="plate" data-layout-allow-overflow
-               style="background-image:url('assets/source/m%C3%A9decin.jpg')"></div></div>
-                    <div class="label">Médecin</div><div class="bar"></div>
+      <!-- ═══ SC3 · 7,64 → 10,94 · Le bon départ ═══ -->
+      <div id="s3" class="scene clip" data-start="7.64" data-duration="3.48" data-track-index="12">
+        <div id="s3c" class="card" style="left:1080px;top:640px;width:920px;height:1500px">
+          <i data-layout-allow-overflow id="s3i" style="background-image:url('assets/source/un%20bon%20depart.jpg')"></i></div>
+        <div id="s3c2" class="card" style="left:170px;top:1300px;width:820px;height:1000px">
+          <i data-layout-allow-overflow id="s3i2" style="background-image:url('assets/source/les%20grands%20reves.jpg')"></i></div>
+        <div class="t" style="left:170px;right:170px;top:2500px">
+          <div id="s3t" class="h2">Tous les grands rêves<br/>ont besoin d'un<br/><span class="go">bon départ.</span></div>
         </div>
-        <div id="job2" class="job">
-          <div class="frame" style="inset:0"><div id="job2-p" class="plate" data-layout-allow-overflow
-               style="background-image:url('assets/source/enseignante.jpg')"></div></div>
-                    <div class="label">Enseignante</div><div class="bar"></div>
-        </div>
-        <div id="job3" class="job">
-          <div class="frame" style="inset:0"><div id="job3-p" class="plate" data-layout-allow-overflow
-               style="background-image:url('assets/source/Ing%C3%A9nieur.jpg')"></div></div>
-                    <div class="label">Ingénieur</div><div class="bar"></div>
-        </div>
-        <div id="job4" class="job">
-          <div class="frame" style="inset:0"><div id="job4-p" class="plate" data-layout-allow-overflow
-               style="background-image:url('assets/source/artiste.jpg')"></div></div>
-                    <div class="label">Artiste</div><div class="bar"></div>
-        </div>
-        <div id="job5" class="job">
-          <div class="frame" style="inset:0"><div id="job5-p" class="plate" data-layout-allow-overflow
-               style="background-image:url('assets/source/entrepreneur.jpg')"></div></div>
-                    <div class="label">Entrepreneur</div><div class="bar"></div>
-        </div>
-        <div class="dress"></div>
-              </div>
+      </div>
 
-      <!-- ============ SC3 · 7.72 → 10.79 · « Un bon départ » ============ -->
-      <div id="sc3" class="scene clip" data-start="7.72" data-duration="3.25" data-track-index="3">
-        <div class="frame" style="inset:0">
-          <div id="sc3-plate" class="plate" data-layout-allow-overflow
-               style="background-image:url('assets/source/un%20bon%20depart.jpg')"></div>
+      <!-- ═══ SC4 · 10,94 → 16,75 · L'école ═══ -->
+      <div id="s4" class="scene clip" data-start="10.94" data-duration="5.95" data-track-index="13">
+        <div id="s4c" class="card" style="left:170px;top:760px;width:1820px;height:1180px">
+          <i data-layout-allow-overflow id="s4i" style="background-image:url('assets/source/au%20complexe%20csdk.jpg')"></i></div>
+        <div class="t" style="left:170px;right:170px;top:2080px">
+          <div id="s4k" class="kick">Complexe Scolaire</div>
+          <div id="s4t" class="h1" style="margin-top:40px">Diawoye<br/><span class="go">Kanté</span></div>
+          <div id="s4b" class="bar" style="width:100%;margin:56px 0 44px"></div>
+          <div id="s4p" class="p">Une éducation de qualité<br/>peut changer une vie.</div>
         </div>
-                        <div id="sc3-sweep" class="sweep" style="left:-900px"></div>
-        <div class="copy" style="left:170px;right:170px;bottom:640px">
-          <div class="mask" data-layout-allow-overflow data-layout-allow-overlap><span id="sc3-h1" class="head sm">Mais tous les grands rêves</span></div>
-          <div class="mask" data-layout-allow-overflow data-layout-allow-overlap><span id="sc3-h2" class="head sm">ont besoin d'un <em>bon départ</em>.</span></div>
-        </div>
-        <div class="dress"></div>
-              </div>
+      </div>
 
-      <!-- ============ SC4 · 10.79 → 16.40 · L'école ============ -->
-      <div id="sc4" class="scene clip" data-start="10.79" data-duration="5.75" data-track-index="4">
-        <div class="frame" style="inset:0">
-          <div id="sc4-plate" class="plate" data-layout-allow-overflow
-               style="background-image:url('assets/source/au%20complexe%20csdk.jpg')"></div>
+      <!-- ═══ SC5 · 16,75 → 23,36 · Les trois piliers ═══ -->
+      <div id="s5" class="scene clip" data-start="16.75" data-duration="6.75" data-track-index="14">
+        <div id="s5c" class="card" style="left:1180px;top:660px;width:810px;height:1020px">
+          <i data-layout-allow-overflow id="s5i" style="background-image:url('assets/source/apprendre%20aujourdhui.jpg')"></i></div>
+        <div id="s5c2" class="card" style="left:1180px;top:1760px;width:810px;height:1020px">
+          <i data-layout-allow-overflow id="s5i2" style="background-image:url('assets/source/ici%20vos%20enfants.jpg')"></i></div>
+        <div class="t" style="left:170px;top:760px;width:920px">
+          <div id="p1" class="h3">Apprendre<br/><span class="go">avec discipline</span></div>
         </div>
-                        
-        <div id="sc4-badge" class="glass" style="left:50%;top:520px;width:1180px;height:290px;margin-left:-590px;
-             display:flex;align-items:center;justify-content:center">
-          <span class="kicker" style="font-size:52px;letter-spacing:.30em">Korofina-Nord · Bamako</span>
+        <div class="t" style="left:170px;top:1520px;width:920px">
+          <div id="p2" class="h3">Grandir<br/><span class="go">avec confiance</span></div>
         </div>
+        <div class="t" style="left:170px;top:2280px;width:920px">
+          <div id="p3" class="h3">Avancer<br/><span class="go">vers la réussite</span></div>
+        </div>
+        <div id="s5r" class="bar" style="position:absolute;z-index:20;left:180px;top:2900px;width:1800px"></div>
+      </div>
 
-        <div class="copy" style="left:170px;right:170px;bottom:560px">
-          <div class="mask" data-layout-allow-overflow data-layout-allow-overlap><span id="sc4-h1" class="head" style="font-size:150px">Complexe Scolaire</span></div>
-          <div class="mask" data-layout-allow-overflow data-layout-allow-overlap><span id="sc4-h2" class="head" style="font-size:150px"><em>Diawoye Kanté</em></span></div>
-          <div id="sc4-rule" class="rule" style="width:100%;margin:56px 0 46px"></div>
-          <div class="mask" data-layout-allow-overflow data-layout-allow-overlap><span id="sc4-s" class="sub">Une éducation de qualité<br/>peut changer une vie.</span></div>
+      <!-- ═══ SC6 · 23,36 → 29,63 · L'environnement ═══ -->
+      <div id="s6" class="scene clip" data-start="23.36" data-duration="6.41" data-track-index="15">
+        <div id="s6c1" class="card" style="left:170px;top:700px;width:900px;height:1160px">
+          <i data-layout-allow-overflow id="s6i1" style="background-image:url('assets/source/un%20environnement.jpg')"></i></div>
+        <div id="s6c2" class="card" style="left:1130px;top:980px;width:860px;height:1100px">
+          <i data-layout-allow-overflow id="s6i2" style="background-image:url('assets/source/s%27epanouir.jpg')"></i></div>
+        <div id="s6c3" class="card gold" style="left:520px;top:1980px;width:1120px;height:840px">
+          <i data-layout-allow-overflow id="s6i3" style="background-image:url('assets/source/avance%20vers%20%20la%20reussite.jpg')"></i></div>
+        <div class="t" style="left:170px;right:170px;top:2960px">
+          <div id="s6t" class="h2">Un environnement<br/>pour <span class="go">s'épanouir.</span></div>
         </div>
-        <div class="dress"></div>
-              </div>
+      </div>
 
-      <!-- ============ SC5 · 16.40 → 22.43 · Les trois piliers ============ -->
-      <div id="sc5" class="scene clip" data-start="16.4" data-duration="6.15" data-track-index="5">
-        <div class="frame" style="inset:0">
-          <div id="sc5-plate" class="plate" data-layout-allow-overflow
-               style="background-image:url('assets/source/apprendre%20aujourdhui.jpg')"></div>
+      <!-- ═══ SC7 · 29,63 → 35,18 · Logo et slogan ═══ -->
+      <div id="s7" class="scene clip" data-start="29.63" data-duration="5.75" data-track-index="16">
+        <div id="r1" class="ringf" style="left:50%;top:1420px;width:1240px;height:1240px;margin:-620px 0 0 -620px"></div>
+        <div id="r2" class="ringf" style="left:50%;top:1420px;width:1720px;height:1720px;margin:-860px 0 0 -860px;border-color:rgba(245,185,33,.20)"></div>
+        <div id="lg" class="logo" style="left:50%;top:1420px;width:840px;height:840px;margin:-420px 0 0 -420px;
+             background-image:url('assets/source/Logo.jpg')"></div>
+        <div class="t" style="left:170px;right:170px;top:2280px;text-align:center">
+          <div id="s7t" class="h2">Complexe Scolaire<br/><span class="go">Diawoye Kanté</span></div>
+          <div id="s7b" class="bar" style="width:620px;margin:66px auto 60px"></div>
+          <div id="s7s" class="h3" style="font-size:88px;color:var(--gold-lt)">Apprendre aujourd'hui,<br/>réussir demain.</div>
         </div>
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,18,43,.62),rgba(3,12,30,.93))"></div>
+      </div>
 
-        <div class="copy" style="left:170px;right:170px;top:520px">
-          <div class="mask" data-layout-allow-overflow data-layout-allow-overlap><span id="sc5-k" class="kicker">Ici, vos enfants</span></div>
+      <!-- ═══ SC8 · 35,18 → 38,14 · Localisation ═══ -->
+      <div id="s8" class="scene clip" data-start="35.18" data-duration="3.16" data-track-index="17">
+        <div id="s8c" class="card" style="left:170px;top:760px;width:1820px;height:1040px">
+          <i data-layout-allow-overflow id="s8i" style="background-image:url('assets/source/localisation.jpg')"></i></div>
+        <div id="pin" style="position:absolute;z-index:21;left:50%;top:1180px;width:190px;height:190px;
+             margin-left:-95px;border-radius:50% 50% 50% 6%;transform:rotate(45deg);
+             background:linear-gradient(135deg,var(--gold),var(--gold-dk))"></div>
+        <div class="t" style="left:170px;right:170px;top:2020px;text-align:center">
+          <div id="s8k" class="kick">Nous sommes situés à</div>
+          <div id="s8t" class="h1" style="margin-top:60px;font-size:172px">Korofina-Nord</div>
+          <div id="s8p" class="p" style="margin-top:48px;font-size:70px">près de la pharmacie Fady</div>
         </div>
+      </div>
 
-        <div id="p1" class="pillar" style="top:1180px">
-          <div class="ico">1</div>
-          <div class="txt">Apprennent<small>avec discipline</small></div>
+      <!-- ═══ SC9 · 38,14 → 45,79 · Téléphones ═══ -->
+      <div id="s9" class="scene clip" data-start="38.14" data-duration="7.85" data-track-index="18">
+        <div id="s9c" class="card" style="left:620px;top:600px;width:920px;height:920px;border-radius:50%">
+          <i data-layout-allow-overflow id="s9i" style="background-image:url('assets/source/photo%20de%20profil.jpg')"></i></div>
+        <div class="t" style="left:170px;right:170px;top:1680px;text-align:center">
+          <div id="s9k" class="kick">Appelez-nous</div>
         </div>
-        <div id="p2" class="pillar" style="top:1760px">
-          <div class="ico">2</div>
-          <div class="txt">Grandissent<small>avec confiance</small></div>
-        </div>
-        <div id="p3" class="pillar" style="top:2340px">
-          <div class="ico">3</div>
-          <div class="txt">Avancent<small>vers la réussite</small></div>
-        </div>
+        <div id="n1" class="t" style="left:170px;right:170px;top:1960px;text-align:center">
+          <span class="num">74 45 45 71</span></div>
+        <div id="n2" class="t" style="left:170px;right:170px;top:2260px;text-align:center">
+          <span class="num">93 59 92 01</span></div>
+        <div id="s9r" class="bar" style="position:absolute;z-index:20;left:480px;top:2620px;width:1200px"></div>
+        <div id="s9c2" class="card" style="left:480px;top:2760px;width:1200px;height:760px">
+          <i data-layout-allow-overflow id="s9i2" style="background-image:url('assets/source/reseaux.jpg')"></i></div>
+      </div>
 
-        <div id="sc5-line" style="position:absolute;left:285px;top:1270px;width:6px;height:1180px;
-             background:linear-gradient(180deg,var(--gold),transparent);transform-origin:top center"></div>
-        <div class="dress"></div>
-              </div>
-
-      <!-- ============ SC6 · 22.43 → 28.48 · L'environnement ============ -->
-      <div id="sc6" class="scene clip" data-start="22.43" data-duration="6.15" data-track-index="6">
-        <div class="frame" style="inset:0">
-          <div id="sc6-plate" class="plate" data-layout-allow-overflow
-               style="background-image:url('assets/source/un%20environnement.jpg')"></div>
+      <!-- ═══ SC10 · 45,79 → 48,33 · Inscriptions ouvertes ═══ -->
+      <div id="s10" class="scene clip" data-start="45.79" data-duration="2.537" data-track-index="19">
+        <div id="lg2" class="logo" style="left:50%;top:1360px;width:680px;height:680px;margin:-340px 0 0 -340px;
+             background-image:url('assets/source/Logo.jpg')"></div>
+        <div class="t" style="left:170px;right:170px;top:1880px;text-align:center">
+          <div id="s10t" class="h2" style="font-size:120px">Apprendre aujourd'hui,<br/><span class="go">réussir demain.</span></div>
         </div>
-                
-        <!-- Deux cartes en parallaxe : profondeur -->
-        <div id="sc6-c1" class="glass" style="left:150px;top:1080px;width:900px;height:1180px">
-          <div class="frame" style="inset:0"><div id="sc6-p1" class="plate" data-layout-allow-overflow
-               style="inset:-18%;background-image:url('assets/source/s%27epanouir.jpg')"></div></div>
-        </div>
-        <div id="sc6-c2" class="glass" style="right:150px;top:1420px;width:820px;height:1080px">
-          <div class="frame" style="inset:0"><div id="sc6-p2" class="plate" data-layout-allow-overflow
-               style="inset:-18%;background-image:url('assets/source/avance%20vers%20%20la%20reussite.jpg')"></div></div>
-        </div>
-
-        <div class="copy" style="left:170px;right:170px;bottom:480px">
-          <div class="mask" data-layout-allow-overflow data-layout-allow-overlap><span id="sc6-h1" class="head sm">Un environnement</span></div>
-          <div class="mask" data-layout-allow-overflow data-layout-allow-overlap><span id="sc6-h2" class="head sm">pour <em>s'épanouir</em>.</span></div>
-        </div>
-        <div class="dress"></div>
-              </div>
-
-      <!-- ============ SC7 · 28.48 → 32.87 · Logo + slogan ============ -->
-      <div id="sc7" class="scene clip" data-start="28.48" data-duration="4.55" data-track-index="7">
-        <div style="position:absolute;inset:0;background:
-             radial-gradient(70% 46% at 50% 34%, #123C7A 0%, transparent 66%),
-             linear-gradient(180deg,var(--navy-900),var(--navy-950))"></div>
-        <div id="sc7-ring1" class="ring" style="left:50%;top:1630px;width:1400px;height:1400px;margin:-700px 0 0 -700px"></div>
-        <div id="sc7-ring2" class="ring" style="left:50%;top:1630px;width:1900px;height:1900px;margin:-950px 0 0 -950px;
-             border-color:rgba(245,185,33,.22)"></div>
-        <div id="sc7-logo" class="logoplate"
-             style="background-image:url('assets/source/Logo.jpg')"></div>
-        <div id="sc7-sweep" class="sweep" style="left:-900px;width:900px"></div>
-
-        <div class="copy" style="left:170px;right:170px;top:2480px;text-align:center">
-          <div class="mask" data-layout-allow-overflow data-layout-allow-overlap><span id="sc7-h" class="head" style="font-size:132px">Complexe Scolaire<br/><em>Diawoye Kanté</em></span></div>
-          <div id="sc7-rule" class="rule" style="width:640px;margin:92px auto 84px"></div>
-          <div class="mask" data-layout-allow-overflow data-layout-allow-overlap><span id="sc7-s" class="sub" style="font-size:82px;color:var(--gold-lt);font-weight:700">
-            Apprendre aujourd'hui, réussir demain.</span></div>
-        </div>
-        <div class="dress"></div>
-              </div>
-
-      <!-- ============ SC8 · 32.87 → 37.07 · Localisation ============ -->
-      <div id="sc8" class="scene clip" data-start="32.87" data-duration="4.4" data-track-index="8">
-        <div class="frame" style="inset:0">
-          <div id="sc8-plate" class="plate" data-layout-allow-overflow
-               style="background-image:url('assets/source/localisation.jpg')"></div>
-        </div>
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,18,43,.72),rgba(3,12,30,.94))"></div>
-
-        <div id="sc8-pin" class="copy" style="left:50%;top:1180px;width:260px;height:260px;margin-left:-130px;
-             border-radius:50% 50% 50% 8%;transform:rotate(45deg);
-             background:linear-gradient(135deg,var(--gold),var(--gold-dk));
-             box-shadow:0 40px 110px rgba(245,185,33,.55)"></div>
-        <div id="sc8-pulse" class="ring" style="left:50%;top:1310px;width:520px;height:520px;margin:-260px 0 0 -260px"></div>
-
-        <div class="copy" style="left:170px;right:170px;top:1760px;text-align:center">
-          <div class="mask" data-layout-allow-overflow data-layout-allow-overlap><span id="sc8-k" class="kicker" style="display:inline-block">Nous sommes situés à</span></div>
-          <div class="mask" data-layout-allow-overflow data-layout-allow-overlap style="margin-top:84px"><span id="sc8-h" class="head" style="font-size:168px">Korofina-Nord</span></div>
-          <div class="mask" data-layout-allow-overflow data-layout-allow-overlap style="margin-top:76px"><span id="sc8-s" class="sub" style="font-size:76px">près de la pharmacie Fady</span></div>
-        </div>
-        <div class="dress"></div>
-              </div>
-
-      <!-- ============ SC9 · 37.07 → 44.58 · Téléphones ============ -->
-      <div id="sc9" class="scene clip" data-start="37.07" data-duration="7.71" data-track-index="9">
-        <div style="position:absolute;inset:0;background:
-             radial-gradient(80% 50% at 50% 30%, #123C7A 0%, transparent 64%),
-             linear-gradient(180deg,var(--navy-900),var(--navy-950))"></div>
-        <div id="sc9-orb" class="orb" style="left:50%;top:900px;width:1700px;height:1700px;margin-left:-850px;
-             background:radial-gradient(circle,rgba(245,185,33,.32),transparent 66%)"></div>
-
-        <div class="copy" style="left:170px;right:170px;top:900px;text-align:center">
-          <div class="mask" data-layout-allow-overflow data-layout-allow-overlap><span id="sc9-k" class="kicker" style="display:inline-block">Appelez-nous</span></div>
-        </div>
-
-        <div id="sc9-b1" class="glass" style="left:170px;right:170px;top:1420px;height:440px;
-             display:flex;align-items:center;justify-content:center">
-          <span class="phone">74 45 45 71</span>
-        </div>
-        <div id="sc9-b2" class="glass" style="left:170px;right:170px;top:1980px;height:440px;
-             display:flex;align-items:center;justify-content:center">
-          <span class="phone">93 59 92 01</span>
-        </div>
-
-        <div id="sc9-cta" class="copy" data-layout-allow-overflow style="left:0;right:0;top:2700px;text-align:center">
+        <div id="cta" class="t" style="left:0;right:0;top:2560px;text-align:center">
           <span class="pill">Inscriptions ouvertes</span>
         </div>
-        <div class="dress"></div>
-              </div>
+      </div>
 
-      <!-- ============ SC10 · 44.58 → 46.40 · Clap de fin ============ -->
-      <div id="sc10" class="scene clip" data-start="44.58" data-duration="1.82" data-track-index="10">
-        <div style="position:absolute;inset:0;background:
-             radial-gradient(60% 40% at 50% 42%, #123C7A 0%, transparent 68%),
-             linear-gradient(180deg,var(--navy-900),var(--navy-950))"></div>
-        <div id="sc10-logo" class="logoplate" style="top:1320px;width:760px;height:760px;margin-left:-380px;
-             background-image:url('assets/source/Logo.jpg')"></div>
-        <div class="copy" style="left:170px;right:170px;top:2280px;text-align:center">
-          <div class="mask" data-layout-allow-overflow data-layout-allow-overlap><span id="sc10-h" class="head" style="font-size:118px">Apprendre aujourd'hui,<br/><em>réussir demain.</em></span></div>
-        </div>
-        <div class="dress"></div>
-              </div>
+      <div id="vig" class="clip" data-layout-allow-occlusion data-start="0" data-duration="48.327" data-track-index="41"></div>
 
-      <!-- ============ Transitions (au-dessus de tout) ============ -->
-      <div id="w1" class="wipe gold clip" data-start="2.58" data-duration="0.5" data-track-index="20"></div>
-      <div id="w2" class="wipe navy clip" data-start="7.52" data-duration="0.5" data-track-index="21"></div>
-      <div id="w3" class="wipe gold clip" data-start="10.59" data-duration="0.5" data-track-index="22"></div>
-      <div id="w4" class="wipe navy clip" data-start="16.2"  data-duration="0.5" data-track-index="23"></div>
-      <div id="w5" class="wipe gold clip" data-start="22.23" data-duration="0.5" data-track-index="24"></div>
-      <div id="w6" class="wipe navy clip" data-start="28.28" data-duration="0.5" data-track-index="25"></div>
-      <div id="w7" class="wipe gold clip" data-start="32.67" data-duration="0.5" data-track-index="26"></div>
-      <div id="w8" class="wipe navy clip" data-start="36.87" data-duration="0.5" data-track-index="27"></div>
-      <div id="fl" class="flash clip" data-start="44.38" data-duration="0.6" data-track-index="28"></div>
-
-      <!-- Barre de progression -->
-      <div id="prog" class="prog clip" data-start="0" data-duration="46.33" data-track-index="30"></div>
-
-      <!-- ============ Voix off ============ -->
-      <audio id="vo" class="clip" src="assets/vo-master.mp3"
-             data-start="0" data-duration="46.33" data-track-index="40" data-volume="1"></audio>
+      <!-- Voix off fournie, conservée telle quelle -->
+      <audio id="vo" class="clip" src="assets/voix-finale.mp3"
+             data-start="0" data-duration="48.327" data-track-index="45" data-volume="1"></audio>
     </div>
 
     <script>
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true });
 
-      /* Helpers ------------------------------------------------------- */
-      // Révélation de ligne : monte depuis son masque, avec un léger rebond.
-      const rise = (sel, at, d = 0.9) =>
-        tl.fromTo(sel, { yPercent: 118 }, { yPercent: 0, duration: d, ease: "back.out(1.35)" }, at);
+      /* ════════ Typographie cinétique ════════
+         Chaque nœud de texte est éclaté en caractères animables. Le
+         découpage est déterministe : même DOM à chaque rendu. */
+      function split(sel) {
+        const el = document.querySelector(sel);
+        if (!el || el.dataset.split) return [];
+        el.dataset.split = "1";
+        el.setAttribute("data-layout-allow-overlap", "");
+        el.setAttribute("data-layout-allow-overflow", "");
+        const out = [];
+        const walk = (node) => {
+          [...node.childNodes].forEach((n) => {
+            if (n.nodeType === 3) {
+              const frag = document.createDocumentFragment();
+              [...n.textContent].forEach((c) => {
+                if (c === " ") { frag.appendChild(document.createTextNode(" ")); return; }
+                const s = document.createElement("span");
+                s.className = "ch"; s.textContent = c;
+                frag.appendChild(s); out.push(s);
+              });
+              n.replaceWith(frag);
+            } else if (n.nodeType === 1 && n.tagName !== "BR") {
+              walk(n);
+            }
+          });
+        };
+        walk(el);
+        return out;
+      }
 
-      // Caméra : la plaque dérive lentement dans son cadre.
-      const cam = (sel, at, dur, from, to) =>
+      // Les six écritures de texte. Chacune entre en moins de 800 ms,
+      // la durée cumulée venant du décalage entre caractères.
+      const TXT = {
+        // cascade montante, caractère par caractère
+        cascade: (c, at) => tl.fromTo(c, { yPercent: 115, autoAlpha: 0 },
+          { yPercent: 0, autoAlpha: 1, duration: .52, ease: "power3.out",
+            stagger: { each: .028 } }, at),
+        // les lettres s'écrivent en grossissant depuis un point
+        pop: (c, at) => tl.fromTo(c, { scale: .2, autoAlpha: 0, rotate: -12 },
+          { scale: 1, autoAlpha: 1, rotate: 0, duration: .46, ease: "back.out(1.6)",
+            stagger: { each: .026 } }, at),
+        // machine à écrire : apparition sèche, sans déplacement
+        type: (c, at) => tl.fromTo(c, { autoAlpha: 0 },
+          { autoAlpha: 1, duration: .06, ease: "none", stagger: { each: .032 } }, at),
+        // lettres alternées venant du haut et du bas
+        split: (c, at) => tl.fromTo(c,
+          { yPercent: (i) => (i % 2 ? -130 : 130), autoAlpha: 0 },
+          { yPercent: 0, autoAlpha: 1, duration: .58, ease: "power4.out",
+            stagger: { each: .022 } }, at),
+        // arrivée latérale dans le sens du courant du film
+        slide: (c, at) => tl.fromTo(c, { xPercent: 60, autoAlpha: 0, scale: .86 },
+          { xPercent: 0, autoAlpha: 1, scale: 1, duration: .5, ease: "power3.out",
+            stagger: { each: .02 } }, at),
+        // fondu par l'échelle : le mot se resserre en se posant
+        focus: (c, at) => tl.fromTo(c, { scale: 1.9, autoAlpha: 0 },
+          { scale: 1, autoAlpha: 1, duration: .6, ease: "power4.out",
+            stagger: { each: .024 } }, at),
+      };
+      const kin = (sel, at, mode) => TXT[mode](split(sel), at);
+
+      /* ════════ Caméra sur vignette ════════
+         Une photo n'est jamais fixe : sa plaque dérive dans son cadre
+         pendant toute la présence de la carte. */
+      const drift = (sel, at, dur, from, to) =>
         tl.fromTo(sel, from, { ...to, duration: dur, ease: "none" }, at);
 
-      // Balayage lumineux qui traverse le cadre.
-      const sweep = (sel, at, dur = 1.5) =>
-        tl.fromTo(sel, { x: 0, opacity: 0 },
-          { x: 3400, opacity: 1, duration: dur, ease: "power2.inOut" }, at);
+      /* ════════ FOND — un seul travelling de 48 s ════════
+         Trajectoires monotones : le décor avance, il n'oscille pas. */
+      tl.fromTo("#bg-plate", { xPercent: -6, yPercent: -4, scale: 1.16 },
+        { xPercent: 5, yPercent: 4, scale: 1.02, duration: 48.327, ease: "none" }, 0);
+      tl.fromTo("#grid", { xPercent: 0, yPercent: 0 },
+        { xPercent: -7, yPercent: -5, duration: 48.327, ease: "none" }, 0);
+      tl.fromTo("#sh1", { x: -200, y: 300 }, { x: 700, y: -400, duration: 48.327, ease: "none" }, 0);
+      tl.fromTo("#sh2", { x: 240, y: -260 }, { x: -520, y: 420, duration: 48.327, ease: "none" }, 0);
+      tl.fromTo("#sh3", { x: 260, y: -140, scale: .8 }, { x: -420, y: 620, scale: 1.25, duration: 48.327, ease: "none" }, 0);
+      tl.fromTo("#sh4", { x: -180, y: 220, scale: 1.2 }, { x: 560, y: -520, scale: .85, duration: 48.327, ease: "none" }, 0);
+      tl.fromTo("#sh5", { x: -2160 }, { x: 2160, duration: 24, ease: "none" }, 0);
+      tl.fromTo("#sh5", { x: -2160 }, { x: 2160, duration: 24, ease: "none" }, 24);
+      tl.fromTo("#sh6", { x: 2160 }, { x: -2160, duration: 32, ease: "none" }, 4);
 
-      /* ---- SC1 · le rêve ------------------------------------------- */
-      cam("#sc1-plate", 0, 2.95, { scale: 1.20, xPercent: 3, yPercent: 2 },
-                                 { scale: 1.02, xPercent: 0, yPercent: 0 });      // dolly in
-      tl.fromTo("#sc1-orb", { scale: .7, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.6, ease: "power2.out" }, 0.1);
-      rise("#sc1-k", 0.30, .8);
-      rise("#sc1-h1", 0.58);
-      rise("#sc1-h2", 0.76);
-      tl.fromTo("#sc1-rule", { scaleX: 0 }, { scaleX: 1, duration: .9, ease: "expo.out" }, 1.05);
-      sweep("#sc1-sweep", 1.20, 1.4);
-      tl.to("#sc1", { scale: 1.06, duration: .55, ease: "power2.in" }, 2.40);      // amorce de sortie
+      /* ════════ SC1 · 0,00 → 1,40 ════════ */
+      tl.fromTo("#s1c", { xPercent: 34, scale: .84, autoAlpha: 0, rotate: 3 },
+        { xPercent: 0, scale: 1, autoAlpha: 1, rotate: 0, duration: .62, ease: "power4.out" }, 0);
+      drift("#s1i", 0, 1.9, { scale: 1.22, xPercent: 4 }, { scale: 1.04, xPercent: -2 });
+      kin("#s1t", .34, "cascade");
+      // Sortie : la scène part vers la GAUCHE — le courant du film.
+      tl.to("#s1", { xPercent: -14, scale: .96, autoAlpha: 0, duration: .34, ease: "power4.in" }, 1.26);
 
-      /* ---- SC2 · les cinq métiers ---------------------------------- */
-      rise("#sc2-k", 2.92, .7);
-      // Chaque vignette entre en whip-pan et repart de l'autre côté.
-      const jobs = [
-        { id: "#job1", p: "#job1-p", at: 3.10 },
-        { id: "#job2", p: "#job2-p", at: 4.00 },
-        { id: "#job3", p: "#job3-p", at: 4.90 },
-        { id: "#job4", p: "#job4-p", at: 5.80 },
-        { id: "#job5", p: "#job5-p", at: 6.70 }
-      ];
-      jobs.forEach((j, i) => {
-        const dir = i % 2 === 0 ? 1 : -1;
-        tl.set(j.id, { opacity: 0 }, 0);
-        tl.fromTo(j.id,
-          { xPercent: 118 * dir, rotate: 4 * dir, opacity: 0 },
-          { xPercent: 0, rotate: 0, opacity: 1, duration: .42, ease: "power4.out" }, j.at);
-        // la photo continue de vivre pendant l'arrêt sur image
-        tl.fromTo(j.p, { scale: 1.18, xPercent: -2 * dir }, { scale: 1.04, xPercent: 0, duration: 1.15, ease: "none" }, j.at);
-        tl.fromTo(j.id + " .bar", { scaleX: 0 }, { scaleX: 1, duration: .5, ease: "expo.out" }, j.at + .15);
-        tl.to(j.id, { xPercent: -118 * dir, rotate: -3 * dir, opacity: 0,
-                      duration: .30, ease: "power3.in" }, j.at + .60);
+      /* ════════ SC2 · 1,40 → 7,64 · mosaïque des métiers ════════
+         Entrée en pleine course depuis la droite, dans la continuité
+         exacte de la sortie précédente. */
+      tl.fromTo("#s2", { xPercent: 16, scale: .97 },
+        { xPercent: 0, scale: 1, duration: .44, ease: "power4.out" }, 1.40);
+      kin("#s2k", 1.52, "type");
+      // Les quatre cartes se posent une par une, puis la cinquième les
+      // domine : information gagnée en continu, jamais d'attente.
+      const MOS = [["#m1", "#m1i", 1.86], ["#m2", "#m2i", 2.42],
+                   ["#m3", "#m3i", 2.98], ["#m4", "#m4i", 3.54]];
+      MOS.forEach(([c, i, at], k) => {
+        const dir = k % 2 ? -1 : 1;
+        tl.fromTo(c, { xPercent: 42 * dir, yPercent: 12, scale: .78, autoAlpha: 0 },
+          { xPercent: 0, yPercent: 0, scale: 1, autoAlpha: 1, duration: .5, ease: "power4.out" }, at);
+        drift(i, at, 5.0, { scale: 1.24, yPercent: -4 * dir }, { scale: 1.05, yPercent: 3 * dir });
       });
-
-      /* ---- SC3 · le bon départ ------------------------------------- */
-      cam("#sc3-plate", 7.72, 3.25, { scale: 1.06, yPercent: 4 }, { scale: 1.20, yPercent: -3 }); // tilt up + push
-      rise("#sc3-h1", 7.98);
-      rise("#sc3-h2", 8.18);
-      sweep("#sc3-sweep", 8.90, 1.5);
-
-      /* ---- SC4 · l'école ------------------------------------------- */
-      cam("#sc4-plate", 10.79, 5.75, { scale: 1.22, yPercent: -4 }, { scale: 1.04, yPercent: 3 }); // crane down
-      tl.fromTo("#sc4-badge", { yPercent: -60, opacity: 0, scale: .9 },
-        { yPercent: 0, opacity: 1, scale: 1, duration: .95, ease: "back.out(1.5)" }, 11.00);
-      rise("#sc4-h1", 11.35);
-      rise("#sc4-h2", 11.55);
-      tl.fromTo("#sc4-rule", { scaleX: 0 }, { scaleX: 1, duration: 1.0, ease: "expo.out" }, 11.85);
-      rise("#sc4-s", 12.10, 1.0);
-      tl.to("#sc4-badge", { yPercent: -8, duration: 3.4, ease: "sine.inOut" }, 12.4);   // flottement
-
-      /* ---- SC5 · les trois piliers --------------------------------- */
-      cam("#sc5-plate", 16.4, 6.15, { scale: 1.16, xPercent: -3 }, { scale: 1.03, xPercent: 3 }); // pan
-      rise("#sc5-k", 16.62, .8);
-      tl.fromTo("#sc5-line", { scaleY: 0 }, { scaleY: 1, duration: 2.6, ease: "power2.out" }, 16.9);
-      [["#p1", 17.05], ["#p2", 18.35], ["#p3", 19.65]].forEach(([id, at]) => {
-        tl.fromTo(id, { xPercent: -12, opacity: 0 },
-          { xPercent: 0, opacity: 1, duration: .78, ease: "back.out(1.4)" }, at);
-        tl.fromTo(id + " .ico", { scale: 0, rotate: -110 },
-          { scale: 1, rotate: 0, duration: .78, ease: "back.out(2.1)" }, at + .06);
+      [["#l1", 2.02], ["#l2", 2.58], ["#l3", 3.14], ["#l4", 3.70]].forEach(([c, at]) => {
+        tl.fromTo(c, { yPercent: 90, autoAlpha: 0 },
+          { yPercent: 0, autoAlpha: 1, duration: .34, ease: "power3.out" }, at);
       });
+      // Cinquième carte : elle arrive PAR-DESSUS et recouvre la mosaïque.
+      tl.fromTo("#m5", { scale: .5, autoAlpha: 0, yPercent: 26 },
+        { scale: 1, autoAlpha: 1, yPercent: 0, duration: .54, ease: "power4.out" }, 4.62);
+      drift("#m5i", 4.62, 2.6, { scale: 1.26 }, { scale: 1.06 });
+      tl.fromTo("#l5", { yPercent: 90, autoAlpha: 0 },
+        { yPercent: 0, autoAlpha: 1, duration: .34, ease: "power3.out" }, 4.86);
+      // Les quatre premières s'effacent en s'éloignant : la cinquième reste seule.
+      tl.to(["#m1", "#m2", "#m3", "#m4"], { scale: .88, autoAlpha: .18, duration: .5,
+        ease: "power2.out", stagger: .04 }, 4.72);
+      tl.to(["#l1", "#l2", "#l3", "#l4"], { autoAlpha: 0, duration: .3 }, 4.72);
+      tl.to("#s2", { xPercent: -16, scale: .95, autoAlpha: 0, duration: .38, ease: "power4.in" }, 7.44);
 
-      /* ---- SC6 · l'environnement ----------------------------------- */
-      cam("#sc6-plate", 22.43, 6.15, { scale: 1.04, yPercent: -2 }, { scale: 1.18, yPercent: 2 });
-      // parallaxe : les deux cartes ne bougent pas à la même vitesse
-      tl.fromTo("#sc6-c1", { yPercent: 26, opacity: 0, rotate: -2 },
-        { yPercent: -6, opacity: 1, rotate: 0, duration: 3.2, ease: "power2.out" }, 22.65);
-      tl.fromTo("#sc6-c2", { yPercent: 34, opacity: 0, rotate: 2 },
-        { yPercent: -14, opacity: 1, rotate: 0, duration: 3.6, ease: "power2.out" }, 22.85);
-      cam("#sc6-p1", 22.65, 5.8, { scale: 1.2 }, { scale: 1.02 });
-      cam("#sc6-p2", 22.85, 5.6, { scale: 1.02 }, { scale: 1.2 });
-      rise("#sc6-h1", 24.60);
-      rise("#sc6-h2", 24.80);
+      /* ════════ SC3 · 7,64 → 10,94 ════════ */
+      tl.fromTo("#s3", { xPercent: 18, scale: .97 },
+        { xPercent: 0, scale: 1, duration: .46, ease: "power4.out" }, 7.64);
+      tl.fromTo("#s3c", { yPercent: 30, autoAlpha: 0, rotate: 2.5 },
+        { yPercent: 0, autoAlpha: 1, rotate: 0, duration: .58, ease: "power4.out" }, 7.72);
+      tl.fromTo("#s3c2", { yPercent: -26, autoAlpha: 0, rotate: -2 },
+        { yPercent: 0, autoAlpha: 1, rotate: 0, duration: .58, ease: "power4.out" }, 8.06);
+      // Parallaxe : les deux cartes ne dérivent pas à la même vitesse.
+      drift("#s3i", 7.72, 3.2, { scale: 1.06, yPercent: 5 }, { scale: 1.24, yPercent: -4 });
+      drift("#s3i2", 8.06, 2.9, { scale: 1.24 }, { scale: 1.06 });
+      kin("#s3t", 8.46, "split");
+      tl.to("#s3", { xPercent: -15, scale: .95, autoAlpha: 0, duration: .38, ease: "power4.in" }, 10.74);
 
-      /* ---- SC7 · le logo ------------------------------------------- */
-      tl.fromTo("#sc7-logo", { scale: .55, opacity: 0, rotate: -14 },
-        { scale: 1, opacity: 1, rotate: 0, duration: 1.25, ease: "back.out(1.55)" }, 28.60);
-      tl.to("#sc7-logo", { rotate: 3, duration: 3.0, ease: "sine.inOut" }, 29.9);
-      tl.fromTo("#sc7-ring1", { scale: .2, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.5, ease: "power3.out" }, 28.68);
-      tl.fromTo("#sc7-ring2", { scale: .2, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.8, ease: "power3.out" }, 28.80);
-      tl.to(["#sc7-ring1", "#sc7-ring2"], { scale: 1.12, duration: 2.4, ease: "sine.inOut" }, 30.2);
-      sweep("#sc7-sweep", 29.10, 1.5);
-      rise("#sc7-h", 29.75);
-      tl.fromTo("#sc7-rule", { scaleX: 0 }, { scaleX: 1, duration: .9, ease: "expo.out" }, 30.15);
-      rise("#sc7-s", 30.35, 1.0);
+      /* ════════ SC4 · 10,94 → 16,75 · l'école ════════
+         Vecteur réservé : poussée en Z. On entre DANS le sujet. */
+      tl.fromTo("#s4", { scale: 1.30, autoAlpha: 0 },
+        { scale: 1, autoAlpha: 1, duration: .58, ease: "power4.out" }, 10.94);
+      tl.fromTo("#s4c", { yPercent: -18, autoAlpha: 0 },
+        { yPercent: 0, autoAlpha: 1, duration: .56, ease: "power4.out" }, 11.02);
+      drift("#s4i", 11.02, 5.6, { scale: 1.26, xPercent: -4 }, { scale: 1.04, xPercent: 3 });
+      kin("#s4k", 11.44, "type");
+      kin("#s4t", 11.86, "pop");
+      tl.fromTo("#s4b", { scaleX: 0 }, { scaleX: 1, duration: .62, ease: "power4.out" }, 12.64);
+      kin("#s4p", 13.02, "cascade");
+      // Respiration avant la bascule — la virgule dramatique.
+      tl.to("#s4", { scale: 1.06, xPercent: -12, autoAlpha: 0, duration: .4, ease: "power4.in" }, 16.55);
 
-      /* ---- SC8 · la localisation ----------------------------------- */
-      cam("#sc8-plate", 32.87, 4.4, { scale: 1.16 }, { scale: 1.03 });
-      tl.fromTo("#sc8-pin", { yPercent: -220, opacity: 0, scale: .5 },
-        { yPercent: 0, opacity: 1, scale: 1, duration: .85, ease: "bounce.out" }, 33.05);
-      tl.fromTo("#sc8-pulse", { scale: .3, opacity: .9 }, { scale: 1.5, opacity: 0, duration: 1.5, ease: "power2.out" }, 33.75);
-      tl.fromTo("#sc8-pulse", { scale: .3, opacity: .9 }, { scale: 1.5, opacity: 0, duration: 1.5, ease: "power2.out" }, 35.10);
-      rise("#sc8-k", 33.30, .7);
-      rise("#sc8-h", 33.60);
-      rise("#sc8-s", 33.90, .9);
+      /* ════════ SC5 · 16,75 → 23,36 · les trois piliers ════════ */
+      tl.fromTo("#s5", { xPercent: 17, scale: .97 },
+        { xPercent: 0, scale: 1, duration: .46, ease: "power4.out" }, 16.75);
+      tl.fromTo("#s5c", { xPercent: 40, autoAlpha: 0 },
+        { xPercent: 0, autoAlpha: 1, duration: .52, ease: "power4.out" }, 16.86);
+      tl.fromTo("#s5c2", { xPercent: 40, autoAlpha: 0 },
+        { xPercent: 0, autoAlpha: 1, duration: .52, ease: "power4.out" }, 17.14);
+      drift("#s5i", 16.86, 6.4, { scale: 1.22, yPercent: -3 }, { scale: 1.05, yPercent: 3 });
+      drift("#s5i2", 17.14, 6.2, { scale: 1.05, yPercent: 3 }, { scale: 1.22, yPercent: -3 });
+      // Chaque pilier tombe sur sa réplique : révélation étagée.
+      kin("#p1", 17.02, "slide");
+      kin("#p2", 19.62, "slide");
+      kin("#p3", 21.42, "slide");
+      tl.fromTo("#s5r", { scaleX: 0 }, { scaleX: 1, duration: 5.6, ease: "none" }, 17.10);
+      tl.to("#s5", { xPercent: -15, scale: .95, autoAlpha: 0, duration: .38, ease: "power4.in" }, 23.16);
 
-      /* ---- SC9 · les téléphones ------------------------------------ */
-      rise("#sc9-k", 37.30, .8);
-      tl.fromTo("#sc9-orb", { scale: .6, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.8, ease: "power2.out" }, 37.15);
-      tl.fromTo("#sc9-b1", { xPercent: -110, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: .85, ease: "back.out(1.4)" }, 37.85);
-      tl.fromTo("#sc9-b2", { xPercent: 110, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: .85, ease: "back.out(1.4)" }, 39.60);
-      // pulsation douce des deux blocs
-      tl.to("#sc9-b1", { scale: 1.03, duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: 1 }, 41.2);
-      tl.to("#sc9-b2", { scale: 1.03, duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: 1 }, 41.6);
-      tl.fromTo("#sc9-cta", { scale: .7, opacity: 0 },
-        { scale: 1, opacity: 1, duration: .9, ease: "back.out(2)" }, 42.40);
-      tl.to("#sc9-cta", { scale: 1.05, duration: .9, ease: "sine.inOut", yoyo: true, repeat: 1 }, 43.3);
+      /* ════════ SC6 · 23,36 → 29,63 · l'environnement ════════ */
+      tl.fromTo("#s6", { xPercent: 17, scale: .97 },
+        { xPercent: 0, scale: 1, duration: .46, ease: "power4.out" }, 23.36);
+      [["#s6c1", "#s6i1", 23.46, -1], ["#s6c2", "#s6i2", 23.84, 1], ["#s6c3", "#s6i3", 24.22, -1]]
+        .forEach(([c, i, at, dir]) => {
+          tl.fromTo(c, { xPercent: 36 * dir, yPercent: 14, scale: .82, autoAlpha: 0, rotate: 2.5 * dir },
+            { xPercent: 0, yPercent: 0, scale: 1, autoAlpha: 1, rotate: 0,
+              duration: .54, ease: "power4.out" }, at);
+          drift(i, at, 5.6, { scale: 1.25, xPercent: 3 * dir }, { scale: 1.05, xPercent: -3 * dir });
+        });
+      kin("#s6t", 26.62, "focus");
+      tl.to("#s6", { scale: 1.22, autoAlpha: 0, duration: .42, ease: "power4.in" }, 29.36);
 
-      /* ---- SC10 · clap de fin -------------------------------------- */
-      tl.fromTo("#sc10-logo", { scale: .7, opacity: 0 },
-        { scale: 1, opacity: 1, duration: .8, ease: "back.out(1.7)" }, 44.68);
-      tl.to("#sc10-logo", { scale: 1.04, duration: 1.0, ease: "sine.out" }, 45.5);
-      rise("#sc10-h", 44.95, .9);
+      /* ════════ SC7 · 29,63 → 35,18 · le logo ════════
+         Vecteur réservé : zoom inverse. Quelque chose de plus grand ARRIVE.
+         La scène précédente grandit en sortant, celle-ci décroît en entrant :
+         même signe de vitesse d'échelle, la coupe reste continue. */
+      tl.fromTo("#s7", { scale: 1.42, autoAlpha: 0 },
+        { scale: 1, autoAlpha: 1, duration: .6, ease: "power4.out" }, 29.63);
+      tl.fromTo("#lg", { scale: 1.5, autoAlpha: 0 },
+        { scale: 1, autoAlpha: 1, duration: .66, ease: "power4.out" }, 29.72);
+      tl.fromTo("#r1", { scale: 1.7, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .8, ease: "power3.out" }, 29.80);
+      tl.fromTo("#r2", { scale: 1.9, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .95, ease: "power3.out" }, 29.92);
+      // Les anneaux poursuivent leur ouverture : la scène continue d'avancer.
+      tl.to("#r1", { scale: 1.16, duration: 4.2, ease: "none" }, 30.6);
+      tl.to("#r2", { scale: 1.24, duration: 4.2, ease: "none" }, 30.6);
+      kin("#s7t", 30.42, "pop");
+      tl.fromTo("#s7b", { scaleX: 0 }, { scaleX: 1, duration: .7, ease: "power4.out" }, 31.30);
+      kin("#s7s", 31.72, "cascade");
+      tl.to("#s7", { xPercent: -14, scale: .96, autoAlpha: 0, duration: .38, ease: "power4.in" }, 34.98);
 
-      /* ---- Transitions --------------------------------------------- */
-      // Volet lumineux : entre par un bord, sort par l'autre.
-      const wipeAt = (sel, at, dir) => {
-        tl.fromTo(sel, { xPercent: 118 * dir, skewX: -9 * dir },
-          { xPercent: 0, skewX: 0, duration: .25, ease: "power3.in" }, at);
-        tl.to(sel, { xPercent: -118 * dir, skewX: 9 * dir, duration: .25, ease: "power3.out" }, at + .25);
-      };
-      wipeAt("#w1", 2.58, 1);
-      wipeAt("#w2", 7.52, -1);
-      wipeAt("#w3", 10.59, 1);
-      wipeAt("#w4", 16.20, -1);
-      wipeAt("#w5", 22.23, 1);
-      wipeAt("#w6", 28.28, -1);
-      wipeAt("#w7", 32.67, 1);
-      wipeAt("#w8", 36.87, -1);
-      tl.fromTo("#fl", { opacity: 0 }, { opacity: .9, duration: .12, ease: "power2.out" }, 44.38);
-      tl.to("#fl", { opacity: 0, duration: .40, ease: "power2.in" }, 44.50);
+      /* ════════ SC8 · 35,18 → 38,14 · la localisation ════════ */
+      tl.fromTo("#s8", { xPercent: 17, scale: .97 },
+        { xPercent: 0, scale: 1, duration: .44, ease: "power4.out" }, 35.18);
+      tl.fromTo("#s8c", { yPercent: -22, autoAlpha: 0 },
+        { yPercent: 0, autoAlpha: 1, duration: .52, ease: "power4.out" }, 35.26);
+      drift("#s8i", 35.26, 2.9, { scale: 1.2, xPercent: -3 }, { scale: 1.04, xPercent: 3 });
+      // Le repère tombe et plante : chute franche, sans rebond.
+      tl.fromTo("#pin", { yPercent: -260, autoAlpha: 0, scale: .6 },
+        { yPercent: 0, autoAlpha: 1, scale: 1, duration: .46, ease: "power4.in" }, 35.42);
+      tl.fromTo("#pin", { scaleX: 1.24, scaleY: .8 }, { scaleX: 1, scaleY: 1, duration: .3, ease: "power2.out" }, 35.88);
+      kin("#s8k", 35.66, "type");
+      kin("#s8t", 36.00, "split");
+      kin("#s8p", 36.62, "cascade");
+      tl.to("#s8", { xPercent: -15, scale: .95, autoAlpha: 0, duration: .36, ease: "power4.in" }, 37.96);
 
-      /* ---- Barre de progression ------------------------------------ */
-      tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: 46.33, ease: "none" }, 0);
+      /* ════════ SC9 · 38,14 → 45,79 · les téléphones ════════ */
+      tl.fromTo("#s9", { xPercent: 17, scale: .97 },
+        { xPercent: 0, scale: 1, duration: .44, ease: "power4.out" }, 38.14);
+      tl.fromTo("#s9c", { scale: .6, autoAlpha: 0 },
+        { scale: 1, autoAlpha: 1, duration: .56, ease: "power4.out" }, 38.24);
+      drift("#s9i", 38.24, 7.4, { scale: 1.2 }, { scale: 1.04 });
+      kin("#s9k", 38.62, "type");
+      // Les numéros s'écrivent chiffre par chiffre, sur leur réplique.
+      kin("#n1", 39.30, "pop");
+      kin("#n2", 41.40, "pop");
+      tl.fromTo("#s9r", { scaleX: 0 }, { scaleX: 1, duration: 1.2, ease: "power3.out" }, 43.20);
+      tl.fromTo("#s9c2", { yPercent: 40, autoAlpha: 0 },
+        { yPercent: 0, autoAlpha: 1, duration: .56, ease: "power4.out" }, 43.44);
+      drift("#s9i2", 43.44, 2.3, { scale: 1.18 }, { scale: 1.04 });
+      tl.to("#s9", { scale: 1.18, autoAlpha: 0, duration: .4, ease: "power4.in" }, 45.55);
+
+      /* ════════ SC10 · 45,79 → 48,33 · le clap de fin ════════
+         Zoom inverse à nouveau : l'arrivée finale. */
+      tl.fromTo("#s10", { scale: 1.34, autoAlpha: 0 },
+        { scale: 1, autoAlpha: 1, duration: .5, ease: "power4.out" }, 45.79);
+      tl.fromTo("#lg2", { scale: 1.4, autoAlpha: 0 },
+        { scale: 1, autoAlpha: 1, duration: .56, ease: "power4.out" }, 45.86);
+      kin("#s10t", 46.16, "cascade");
+      tl.fromTo("#cta", { scale: .74, autoAlpha: 0 },
+        { scale: 1, autoAlpha: 1, duration: .5, ease: "back.out(1.5)" }, 46.86);
+      // Dernière poussée : le plan continue d'avancer jusqu'à la coupe.
+      tl.to("#lg2", { scale: 1.05, duration: 1.6, ease: "none" }, 46.5);
+      tl.to("#cta", { scale: 1.04, duration: .9, ease: "none" }, 47.3);
 
       window.__timelines["main"] = tl;
     </script>
