@@ -41,7 +41,11 @@ for i in range(1, 20):
     cursor = start + d + GAP_BEATS[i] * BEAT
 
 TAIL = 2.0   # respiration finale sur le logo
-total = snap_up(segs[-1]["end"] + TAIL)
+# La durée totale est arrondie à la mesure pleine : la musique se
+# termine sur un temps fort plutôt qu'en cours de mesure.
+BAR = BEAT * 4
+raw = segs[-1]["end"] + TAIL
+total = ((int(raw / BAR) + (0 if abs(raw / BAR - round(raw / BAR)) < 1e-6 else 1)) * BAR)
 
 data = {"bpm": BPM, "beat": BEAT, "lead": LEAD,
         "total": round(total, 3), "segments": segs}

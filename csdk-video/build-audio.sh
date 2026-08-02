@@ -1,12 +1,32 @@
 #!/usr/bin/env bash
-# V3 — Voix off masculine publicitaire, découpée en segments courts.
-# Des segments courts permettent un montage serré : chaque réplique
-# devient un point d'ancrage pour une animation.
+# V3 — Voix off française, traitée en chaîne de voix radio.
+#
+# ff_siwis est la seule voix nativement française de Kokoro. Les voix
+# masculines disponibles sont des timbres anglophones plaqués sur un
+# phonémiseur français : écartées après écoute.
+#
+# La sortie brute du moteur sonne plate. La chaîne ci-dessous lui donne
+# la densité et la présence d'une voix publicitaire.
 set -u
 OUT="assets/vo3"
-VOICE="am_michael"
-SPEED="1.08"
-rm -rf "$OUT"; mkdir -p "$OUT"
+VOICE="ff_siwis"
+SPEED="1.09"          # débit publicitaire, sans déformer le timbre
+rm -rf "$OUT"; mkdir -p "$OUT" /tmp/vo-brut
+
+# coupe-bas          supprime le ronflement
+# creux 250 Hz       dégage l'effet carton
+# présence 2,8 kHz   intelligibilité : la voix sort du mix
+# air 7,5 kHz        brillance
+# exciter            grain et matière
+# compression        densité constante, aucun mot ne retombe
+CHAIN="highpass=f=80,\
+equalizer=f=250:t=q:w=1:g=-2.5,\
+equalizer=f=2800:t=q:w=1.1:g=4,\
+equalizer=f=7500:t=h:g=3.5,\
+aexciter=amount=2:blend=2,\
+acompressor=threshold=-20dB:ratio=4:attack=5:release=90:makeup=4,\
+alimiter=level_in=1:level_out=0.95:limit=0.95,\
+loudnorm=I=-14:TP=-1.0"
 
 declare -a SEG=(
   "01|Chaque enfant porte un rêve."
@@ -31,12 +51,14 @@ declare -a SEG=(
 )
 
 TOTAL=0
-echo "--- Voix off $VOICE / fr-fr / vitesse $SPEED ---"
+echo "--- $VOICE / fr-fr / débit $SPEED / chaîne studio ---"
 for entry in "${SEG[@]}"; do
   id="${entry%%|*}"; txt="${entry#*|}"
+  raw="/tmp/vo-brut/seg${id}.wav"
   f="$OUT/seg${id}.wav"
-  npx --yes hyperframes@0.7.87 tts "$txt" --voice "$VOICE" --lang fr-fr --speed "$SPEED" -o "$f" >/dev/null 2>&1
-  if [ -f "$f" ]; then
+  npx --yes hyperframes@0.7.87 tts "$txt" --voice "$VOICE" --lang fr-fr --speed "$SPEED" -o "$raw" >/dev/null 2>&1
+  if [ -f "$raw" ]; then
+    ffmpeg -y -i "$raw" -af "$CHAIN" -ar 48000 "$f" -loglevel error
     d=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$f")
     TOTAL=$(python3 -c "print(round($TOTAL + $d, 3))")
     printf "seg%s  %6.2fs  %s\n" "$id" "$d" "$txt"
@@ -44,5 +66,6 @@ for entry in "${SEG[@]}"; do
     printf "seg%s  ÉCHEC\n" "$id"
   fi
 done
+rm -rf /tmp/vo-brut
 echo "------------------------------------------------"
 echo "TOTAL parole = ${TOTAL}s"
