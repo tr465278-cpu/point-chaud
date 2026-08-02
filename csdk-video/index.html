@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=2160, height=3840" />
     <script src="vendor/gsap.min.js"></script>
     <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
+      * { margin:0; padding:0; box-sizing:border-box; }
 
       :root {
         --navy-950:#020A18; --navy-900:#04122B; --navy-800:#08203F;
         --navy-700:#0B2A5B; --navy-600:#123C7A; --navy-500:#1B58A8;
         --gold:#F5B921; --gold-lt:#FFD86B; --gold-dk:#C88E0C;
-        --white:#FFFFFF; --ink:#8FA6CC;
+        --white:#FFFFFF; --ink:#9FB4D6;
       }
 
       html, body {
@@ -21,10 +21,9 @@
         -webkit-font-smoothing:antialiased;
       }
 
-      /* ══════════ FOND PERMANENT ══════════
-         Un seul décor traverse tout le film. Il ne boucle pas : c'est un
-         travelling continu de 48 s, donc le fond vit en permanence sans
-         jamais « attendre » — la doctrine interdit les oscillations. */
+      /* ═══════ DÉCOR PERMANENT ═══════
+         Un seul travelling de 48 s. Trajectoires monotones : le décor
+         avance, il n'oscille jamais sur place. */
       #bg { position:absolute; inset:0; overflow:hidden; }
       #bg-plate {
         position:absolute; left:-30%; top:-30%; width:160%; height:160%;
@@ -34,79 +33,72 @@
           radial-gradient(56% 38% at 46% 88%, #123C7A 0%, transparent 58%),
           linear-gradient(168deg, #04122B 0%, #020A18 100%);
       }
-      /* Formes géométriques : trajectoires linéaires, jamais de va-et-vient */
-      .shape { position:absolute; border-radius:50%; }
-      .sring { position:absolute; border-radius:50%; border:4px solid rgba(245,185,33,.16); }
-      .sbar  { position:absolute; border-radius:8px; background:linear-gradient(90deg,transparent,rgba(245,185,33,.30),transparent); }
       #grid {
         position:absolute; left:-20%; top:-20%; width:140%; height:140%;
         background-image:
-          repeating-linear-gradient(0deg, rgba(143,166,204,.055) 0 2px, transparent 2px 150px),
-          repeating-linear-gradient(90deg, rgba(143,166,204,.055) 0 2px, transparent 2px 150px);
+          repeating-linear-gradient(0deg, rgba(159,180,214,.05) 0 2px, transparent 2px 150px),
+          repeating-linear-gradient(90deg, rgba(159,180,214,.05) 0 2px, transparent 2px 150px);
       }
+      .shape { position:absolute; border-radius:50%; }
+      .sring { position:absolute; border-radius:50%; border:4px solid rgba(245,185,33,.16); }
+      .sbar  { position:absolute; border-radius:8px;
+               background:linear-gradient(90deg,transparent,rgba(245,185,33,.30),transparent); }
 
-      /* Habillage global unique, au lieu d'un calque par scène */
       #vig {
         position:absolute; inset:0; z-index:40; pointer-events:none;
         background:radial-gradient(92% 74% at 50% 48%, transparent 62%, rgba(2,10,24,.52) 100%);
       }
 
-      /* ══════════ SCÈNES ══════════ */
       .scene { position:absolute; inset:0; z-index:10; }
 
-      /* ══════════ VIGNETTES PHOTO ══════════
-         Les photos ne sont jamais plein écran : elles vivent dans des
-         cartes posées sur le décor, comme dans une mise en page. */
+      /* ═══════ CARTES PHOTO ═══════ */
       .card {
-        position:absolute; overflow:hidden; border-radius:44px;
-        box-shadow:0 40px 110px rgba(0,0,0,.55), 0 0 0 3px rgba(255,255,255,.10);
+        position:absolute; overflow:hidden; border-radius:48px;
+        box-shadow:0 46px 120px rgba(0,0,0,.58), 0 0 0 3px rgba(255,255,255,.10);
         background:var(--navy-800);
       }
       .card > i {
         position:absolute; inset:-14%; display:block;
         background-size:cover; background-position:center;
       }
-      .card.gold { box-shadow:0 40px 110px rgba(0,0,0,.55), 0 0 0 5px var(--gold); }
+      .card.gold { box-shadow:0 46px 120px rgba(0,0,0,.58), 0 0 0 6px var(--gold); }
+      .card.round { border-radius:50%; }
 
-      /* ══════════ TYPOGRAPHIE ══════════ */
-      .t  { position:absolute; z-index:20; }
-      .kick {
-        font-size:56px; font-weight:800; letter-spacing:.36em;
-        color:var(--gold); text-transform:uppercase;
-      }
-      .h1 { font-size:190px; font-weight:900; line-height:.94; letter-spacing:-.03em; color:var(--white); }
-      .h2 { font-size:140px; font-weight:900; line-height:.98; letter-spacing:-.026em; color:var(--white); }
-      .h3 { font-size:104px; font-weight:800; line-height:1.04; letter-spacing:-.02em; color:var(--white); }
-      .p  { font-size:64px; font-weight:500; line-height:1.34; color:#CFE0F7; }
-      .go { color:var(--gold); }
-      /* Chaque caractère est encapsulé pour être animé séparément */
-      .ch { display:inline-block; }
-      .wd { display:inline-block; }
+      /* ═══════ TYPOGRAPHIE ═══════ */
+      .t { position:absolute; z-index:20; }
+      .kick { font-size:58px; font-weight:800; letter-spacing:.34em;
+              color:var(--gold); text-transform:uppercase; }
+      /* Les scènes sans photo portent seules le message : le texte y est
+         nettement plus grand que sur les scènes illustrées. */
+      .xl  { font-size:250px; font-weight:900; line-height:.90; letter-spacing:-.035em; color:var(--white); }
+      .h1  { font-size:190px; font-weight:900; line-height:.94; letter-spacing:-.03em;  color:var(--white); }
+      .h2  { font-size:146px; font-weight:900; line-height:.98; letter-spacing:-.026em; color:var(--white); }
+      .h3  { font-size:112px; font-weight:800; line-height:1.04; letter-spacing:-.02em; color:var(--white); }
+      .p   { font-size:70px;  font-weight:500; line-height:1.32; color:#CFE0F7; }
+      .go  { color:var(--gold); }
+      .ch  { display:inline-block; }
 
-      .bar { height:9px; background:var(--gold); border-radius:5px; transform-origin:left center; }
+      .bar { height:10px; background:var(--gold); border-radius:5px; transform-origin:left center; }
 
-      .chip {
-        position:absolute; z-index:20; display:inline-block;
-        padding:26px 58px; border-radius:999px;
-        background:rgba(3,14,34,.92); border:3px solid var(--gold);
-        color:var(--gold); font-size:58px; font-weight:800; letter-spacing:.10em;
-        text-transform:uppercase;
-      }
       .pill {
-        display:inline-block; padding:44px 104px; border-radius:999px;
+        display:inline-block; padding:46px 110px; border-radius:999px;
         background:linear-gradient(120deg,var(--gold),var(--gold-lt));
-        color:var(--navy-900); font-size:104px; font-weight:900;
+        color:var(--navy-900); font-size:108px; font-weight:900;
         letter-spacing:.05em; text-transform:uppercase;
-        box-shadow:0 34px 90px rgba(245,185,33,.42);
+        box-shadow:0 36px 96px rgba(245,185,33,.42);
       }
-      .num {
-        font-size:172px; font-weight:900; color:var(--white);
-        letter-spacing:.03em; font-variant-numeric:tabular-nums;
+      /* Bloc de deux chiffres : chaque paire tombe séparément */
+      .pair {
+        display:inline-block; margin:0 18px; padding:26px 40px;
+        border-radius:28px; background:rgba(255,255,255,.07);
+        border:3px solid rgba(245,185,33,.42);
+        font-size:186px; font-weight:900; color:var(--white);
+        font-variant-numeric:tabular-nums; letter-spacing:.02em;
       }
       .logo {
         position:absolute; z-index:20; border-radius:50%;
         background:#fff center/cover no-repeat;
-        box-shadow:0 0 0 16px rgba(245,185,33,.26), 0 60px 150px rgba(0,0,0,.7);
+        box-shadow:0 0 0 18px rgba(245,185,33,.26), 0 64px 160px rgba(0,0,0,.72);
       }
       .ringf { position:absolute; z-index:19; border-radius:50%; border:6px solid rgba(245,185,33,.42); }
     </style>
@@ -117,164 +109,179 @@
          data-start="0" data-duration="48.327"
          data-width="2160" data-height="3840">
 
-      <!-- ═══ FOND PERMANENT — présent d'un bout à l'autre ═══ -->
       <div id="bg" class="clip" data-start="0" data-duration="48.327" data-track-index="0">
         <div id="bg-plate"></div>
         <div id="grid"></div>
-        <div id="sh1" class="shape" style="left:-300px;top:400px;width:900px;height:900px;
+        <div id="sh1" class="shape" style="left:-300px;top:400px;width:980px;height:980px;
              background:radial-gradient(circle,rgba(245,185,33,.20),transparent 66%)"></div>
-        <div id="sh2" class="shape" style="right:-380px;top:1500px;width:1200px;height:1200px;
+        <div id="sh2" class="shape" style="right:-380px;top:1500px;width:1260px;height:1260px;
              background:radial-gradient(circle,rgba(27,88,168,.34),transparent 64%)"></div>
-        <div id="sh3" class="sring" style="left:1300px;top:300px;width:800px;height:800px"></div>
-        <div id="sh4" class="sring" style="left:-200px;top:2600px;width:1100px;height:1100px;border-color:rgba(143,166,204,.14)"></div>
+        <div id="sh3" class="sring" style="left:1300px;top:300px;width:840px;height:840px"></div>
+        <div id="sh4" class="sring" style="left:-200px;top:2600px;width:1140px;height:1140px;border-color:rgba(159,180,214,.13)"></div>
         <div id="sh5" class="sbar" style="left:0;top:1150px;width:2160px;height:5px"></div>
         <div id="sh6" class="sbar" style="left:0;top:2750px;width:2160px;height:5px"></div>
       </div>
 
-      <!-- ═══ SC1 · 0,00 → 1,40 · « Chaque enfant porte un rêve » ═══ -->
-      <div id="s1" class="scene clip" data-start="0" data-duration="1.60" data-track-index="10">
-        <div id="s1c" class="card" style="left:430px;top:820px;width:1300px;height:1620px">
-          <i data-layout-allow-overflow id="s1i" style="background-image:url('assets/source/chaque%20enfants.jpg')"></i>
-        </div>
-        <div class="t" style="left:170px;right:170px;top:2620px">
+      <!-- ═══ 1 · 0,00→2,15 · SYNCHRONISÉ · grue descendante ═══ -->
+      <div id="s1" class="scene clip" data-start="0" data-duration="2.40" data-track-index="10">
+        <div id="s1c" class="card" style="left:400px;top:640px;width:1360px;height:1700px">
+          <i data-layout-allow-overflow id="s1i" style="background-image:url('assets/source/chaque%20enfants.jpg')"></i></div>
+        <div class="t" style="left:150px;right:150px;top:2520px">
           <div id="s1t" class="h1">Chaque enfant<br/><span class="go">porte un rêve.</span></div>
         </div>
       </div>
 
-      <!-- ═══ SC2 · 1,40 → 7,64 · Les cinq métiers, en mosaïque ═══ -->
-      <div id="s2" class="scene clip" data-start="1.40" data-duration="6.42" data-track-index="11">
-        <div class="t" style="left:170px;right:170px;top:520px">
-          <div id="s2k" class="kick">Un rêve de devenir</div>
-        </div>
-        <div id="m1" class="card" style="left:170px;top:900px;width:880px;height:1080px">
-          <i data-layout-allow-overflow id="m1i" style="background-image:url('assets/source/m%C3%A9decin.jpg')"></i></div>
-        <div id="m2" class="card" style="left:1110px;top:900px;width:880px;height:1080px">
-          <i data-layout-allow-overflow id="m2i" style="background-image:url('assets/source/enseignante.jpg')"></i></div>
-        <div id="m3" class="card" style="left:170px;top:2040px;width:880px;height:1080px">
-          <i data-layout-allow-overflow id="m3i" style="background-image:url('assets/source/Ing%C3%A9nieur.jpg')"></i></div>
-        <div id="m4" class="card" style="left:1110px;top:2040px;width:880px;height:1080px">
-          <i data-layout-allow-overflow id="m4i" style="background-image:url('assets/source/artiste.jpg')"></i></div>
-        <div id="m5" class="card gold" style="left:640px;top:1470px;width:880px;height:1080px">
-          <i data-layout-allow-overflow id="m5i" style="background-image:url('assets/source/entrepreneur.jpg')"></i></div>
-        <div id="l1" class="chip" style="left:170px;top:1830px">Médecin</div>
-        <div id="l2" class="chip" style="left:1110px;top:1830px">Enseignante</div>
-        <div id="l3" class="chip" style="left:170px;top:2970px">Ingénieur</div>
-        <div id="l4" class="chip" style="left:1110px;top:2970px">Artiste</div>
-        <div id="l5" class="chip" style="left:640px;top:2400px">Entrepreneur</div>
+      <!-- ═══ 2 · 2,15→6,87 · PHOTO SEULE · les 5 métiers, un par un ═══ -->
+      <div id="s2" class="scene clip" data-start="2.15" data-duration="4.95" data-track-index="11">
+        <div id="j1" class="card" style="left:250px;top:800px;width:1660px;height:2200px">
+          <i data-layout-allow-overflow id="j1i" style="background-image:url('assets/source/m%C3%A9decin.jpg')"></i></div>
+        <div id="j2" class="card" style="left:250px;top:800px;width:1660px;height:2200px">
+          <i data-layout-allow-overflow id="j2i" style="background-image:url('assets/source/enseignante.jpg')"></i></div>
+        <div id="j3" class="card" style="left:250px;top:800px;width:1660px;height:2200px">
+          <i data-layout-allow-overflow id="j3i" style="background-image:url('assets/source/Ing%C3%A9nieur.jpg')"></i></div>
+        <div id="j4" class="card" style="left:250px;top:800px;width:1660px;height:2200px">
+          <i data-layout-allow-overflow id="j4i" style="background-image:url('assets/source/artiste.jpg')"></i></div>
+        <div id="j5" class="card gold" style="left:250px;top:800px;width:1660px;height:2200px">
+          <i data-layout-allow-overflow id="j5i" style="background-image:url('assets/source/entrepreneur.jpg')"></i></div>
       </div>
 
-      <!-- ═══ SC3 · 7,64 → 10,94 · Le bon départ ═══ -->
-      <div id="s3" class="scene clip" data-start="7.64" data-duration="3.48" data-track-index="12">
-        <div id="s3c" class="card" style="left:1080px;top:640px;width:920px;height:1500px">
-          <i data-layout-allow-overflow id="s3i" style="background-image:url('assets/source/un%20bon%20depart.jpg')"></i></div>
-        <div id="s3c2" class="card" style="left:170px;top:1300px;width:820px;height:1000px">
-          <i data-layout-allow-overflow id="s3i2" style="background-image:url('assets/source/les%20grands%20reves.jpg')"></i></div>
-        <div class="t" style="left:170px;right:170px;top:2500px">
-          <div id="s3t" class="h2">Tous les grands rêves<br/>ont besoin d'un<br/><span class="go">bon départ.</span></div>
+      <!-- ═══ 3 · 6,87→10,01 · TEXTE SEUL ═══ -->
+      <div id="s3" class="scene clip" data-start="6.87" data-duration="3.35" data-track-index="12">
+        <div class="t" style="left:150px;right:150px;top:1180px">
+          <div id="s3a" class="h2">Mais tous les</div>
+          <div id="s3b" class="xl go" style="margin:30px 0">GRANDS<br/>RÊVES</div>
+          <div id="s3r" class="bar" style="width:100%;margin:56px 0 48px"></div>
+          <div id="s3c" class="h2">ont besoin d'un<br/><span class="go">bon départ.</span></div>
         </div>
       </div>
 
-      <!-- ═══ SC4 · 10,94 → 16,75 · L'école ═══ -->
-      <div id="s4" class="scene clip" data-start="10.94" data-duration="5.95" data-track-index="13">
-        <div id="s4c" class="card" style="left:170px;top:760px;width:1820px;height:1180px">
+      <!-- ═══ 4 · 10,01→12,05 · SYNCHRONISÉ · orbite ═══ -->
+      <div id="s4" class="scene clip" data-start="10.01" data-duration="2.30" data-track-index="13">
+        <div id="s4c" class="card" style="left:190px;top:820px;width:1780px;height:1300px">
           <i data-layout-allow-overflow id="s4i" style="background-image:url('assets/source/au%20complexe%20csdk.jpg')"></i></div>
-        <div class="t" style="left:170px;right:170px;top:2080px">
+        <div class="t" style="left:150px;right:150px;top:2300px">
           <div id="s4k" class="kick">Complexe Scolaire</div>
-          <div id="s4t" class="h1" style="margin-top:40px">Diawoye<br/><span class="go">Kanté</span></div>
-          <div id="s4b" class="bar" style="width:100%;margin:56px 0 44px"></div>
-          <div id="s4p" class="p">Une éducation de qualité<br/>peut changer une vie.</div>
+          <div id="s4t" class="h1" style="margin-top:44px">Diawoye<br/><span class="go">Kanté</span></div>
         </div>
       </div>
 
-      <!-- ═══ SC5 · 16,75 → 23,36 · Les trois piliers ═══ -->
-      <div id="s5" class="scene clip" data-start="16.75" data-duration="6.75" data-track-index="14">
-        <div id="s5c" class="card" style="left:1180px;top:660px;width:810px;height:1020px">
-          <i data-layout-allow-overflow id="s5i" style="background-image:url('assets/source/apprendre%20aujourdhui.jpg')"></i></div>
-        <div id="s5c2" class="card" style="left:1180px;top:1760px;width:810px;height:1020px">
-          <i data-layout-allow-overflow id="s5i2" style="background-image:url('assets/source/ici%20vos%20enfants.jpg')"></i></div>
-        <div class="t" style="left:170px;top:760px;width:920px">
-          <div id="p1" class="h3">Apprendre<br/><span class="go">avec discipline</span></div>
-        </div>
-        <div class="t" style="left:170px;top:1520px;width:920px">
-          <div id="p2" class="h3">Grandir<br/><span class="go">avec confiance</span></div>
-        </div>
-        <div class="t" style="left:170px;top:2280px;width:920px">
-          <div id="p3" class="h3">Avancer<br/><span class="go">vers la réussite</span></div>
-        </div>
-        <div id="s5r" class="bar" style="position:absolute;z-index:20;left:180px;top:2900px;width:1800px"></div>
-      </div>
-
-      <!-- ═══ SC6 · 23,36 → 29,63 · L'environnement ═══ -->
-      <div id="s6" class="scene clip" data-start="23.36" data-duration="6.41" data-track-index="15">
-        <div id="s6c1" class="card" style="left:170px;top:700px;width:900px;height:1160px">
-          <i data-layout-allow-overflow id="s6i1" style="background-image:url('assets/source/un%20environnement.jpg')"></i></div>
-        <div id="s6c2" class="card" style="left:1130px;top:980px;width:860px;height:1100px">
-          <i data-layout-allow-overflow id="s6i2" style="background-image:url('assets/source/s%27epanouir.jpg')"></i></div>
-        <div id="s6c3" class="card gold" style="left:520px;top:1980px;width:1120px;height:840px">
-          <i data-layout-allow-overflow id="s6i3" style="background-image:url('assets/source/avance%20vers%20%20la%20reussite.jpg')"></i></div>
-        <div class="t" style="left:170px;right:170px;top:2960px">
-          <div id="s6t" class="h2">Un environnement<br/>pour <span class="go">s'épanouir.</span></div>
+      <!-- ═══ 5 · 12,05→16,63 · TEXTE SEUL ═══ -->
+      <div id="s5" class="scene clip" data-start="12.05" data-duration="4.80" data-track-index="14">
+        <div class="t" style="left:150px;right:150px;top:1100px">
+          <div id="s5a" class="h3">Nous croyons qu'une</div>
+          <div id="s5b" class="xl" style="margin:34px 0;font-size:224px">ÉDUCATION<br/><span class="go">DE QUALITÉ</span></div>
+          <div id="s5r" class="bar" style="width:100%;margin:52px 0 46px"></div>
+          <div id="s5c" class="h2">peut changer<br/>une vie.</div>
         </div>
       </div>
 
-      <!-- ═══ SC7 · 29,63 → 35,18 · Logo et slogan ═══ -->
-      <div id="s7" class="scene clip" data-start="29.63" data-duration="5.75" data-track-index="16">
-        <div id="r1" class="ringf" style="left:50%;top:1420px;width:1240px;height:1240px;margin:-620px 0 0 -620px"></div>
-        <div id="r2" class="ringf" style="left:50%;top:1420px;width:1720px;height:1720px;margin:-860px 0 0 -860px;border-color:rgba(245,185,33,.20)"></div>
-        <div id="lg" class="logo" style="left:50%;top:1420px;width:840px;height:840px;margin:-420px 0 0 -420px;
+      <!-- ═══ 6 · 16,63→19,69 · SYNCHRONISÉ · large vers serré ═══ -->
+      <div id="s6" class="scene clip" data-start="16.63" data-duration="3.30" data-track-index="15">
+        <div id="s6c" class="card" style="left:250px;top:700px;width:1660px;height:1900px">
+          <i data-layout-allow-overflow id="s6i" style="background-image:url('assets/source/apprendre%20aujourdhui.jpg')"></i></div>
+        <div class="t" style="left:150px;right:150px;top:2760px">
+          <div id="s6k" class="kick">Ici, vos enfants</div>
+          <div id="s6t" class="h1" style="margin-top:40px">Apprennent<br/><span class="go">avec discipline</span></div>
+        </div>
+      </div>
+
+      <!-- ═══ 7 · 19,69→21,48 · SYNCHRONISÉ · panoramique ═══ -->
+      <div id="s7" class="scene clip" data-start="19.69" data-duration="2.05" data-track-index="16">
+        <div id="s7c" class="card" style="left:250px;top:700px;width:1660px;height:1900px">
+          <i data-layout-allow-overflow id="s7i" style="background-image:url('assets/source/un%20bon%20depart.jpg')"></i></div>
+        <div class="t" style="left:150px;right:150px;top:2760px">
+          <div id="s7t" class="h1">Grandissent<br/><span class="go">avec confiance</span></div>
+        </div>
+      </div>
+
+      <!-- ═══ 8 · 21,48→23,74 · SYNCHRONISÉ · tilt montant ═══ -->
+      <div id="s8" class="scene clip" data-start="21.48" data-duration="2.52" data-track-index="17">
+        <div id="s8c" class="card" style="left:250px;top:700px;width:1660px;height:1900px">
+          <i data-layout-allow-overflow id="s8i" style="background-image:url('assets/source/reussir%20demain.jpg')"></i></div>
+        <div class="t" style="left:150px;right:150px;top:2760px">
+          <div id="s8t" class="h1">Avancent<br/><span class="go">vers la réussite</span></div>
+        </div>
+      </div>
+
+      <!-- ═══ 9 · 23,74→27,74 · TEXTE SEUL ═══ -->
+      <div id="s9" class="scene clip" data-start="23.74" data-duration="4.20" data-track-index="18">
+        <div class="t" style="left:150px;right:150px;top:1080px">
+          <div id="s9a" class="h3">Offrez à votre enfant</div>
+          <div id="s9b" class="xl" style="margin:34px 0;font-size:212px">UN<br/><span class="go">ENVIRONNEMENT</span></div>
+          <div id="s9r" class="bar" style="width:100%;margin:52px 0 46px"></div>
+          <div id="s9c" class="h2">pour apprendre.</div>
+        </div>
+      </div>
+
+      <!-- ═══ 10 · 27,74→30,90 · SYNCHRONISÉ · deux photos, rack focus ═══ -->
+      <div id="s10" class="scene clip" data-start="27.74" data-duration="3.40" data-track-index="19">
+        <div id="s10a" class="card" style="left:250px;top:760px;width:1660px;height:1840px">
+          <i data-layout-allow-overflow id="s10ai" style="background-image:url('assets/source/un%20environnement.jpg')"></i></div>
+        <div id="s10b" class="card gold" style="left:250px;top:760px;width:1660px;height:1840px">
+          <i data-layout-allow-overflow id="s10bi" style="background-image:url('assets/source/s%27epanouir.jpg')"></i></div>
+        <div class="t" style="left:150px;right:150px;top:2760px">
+          <div id="s10t" class="h1">S'épanouir,<br/><span class="go">construire son avenir.</span></div>
+        </div>
+      </div>
+
+      <!-- ═══ 11 · 30,90→33,61 · LOGO SEUL · zoom inverse ═══ -->
+      <div id="s11" class="scene clip" data-start="30.90" data-duration="2.95" data-track-index="20">
+        <div id="r1" class="ringf" style="left:50%;top:1920px;width:1360px;height:1360px;margin:-680px 0 0 -680px"></div>
+        <div id="r2" class="ringf" style="left:50%;top:1920px;width:1880px;height:1880px;margin:-940px 0 0 -940px;border-color:rgba(245,185,33,.20)"></div>
+        <div id="lg" class="logo" style="left:50%;top:1920px;width:960px;height:960px;margin:-480px 0 0 -480px;
              background-image:url('assets/source/Logo.jpg')"></div>
-        <div class="t" style="left:170px;right:170px;top:2280px;text-align:center">
-          <div id="s7t" class="h2">Complexe Scolaire<br/><span class="go">Diawoye Kanté</span></div>
-          <div id="s7b" class="bar" style="width:620px;margin:66px auto 60px"></div>
-          <div id="s7s" class="h3" style="font-size:88px;color:var(--gold-lt)">Apprendre aujourd'hui,<br/>réussir demain.</div>
+      </div>
+
+      <!-- ═══ 12 · 33,61→36,15 · TEXTE SEUL · le slogan ═══ -->
+      <div id="s12" class="scene clip" data-start="33.61" data-duration="2.75" data-track-index="21">
+        <div class="t" style="left:150px;right:150px;top:1400px;text-align:center">
+          <div id="s12a" class="xl" style="font-size:196px">APPRENDRE<br/>AUJOURD'HUI</div>
+          <div id="s12r" class="bar" style="width:700px;margin:64px auto 58px"></div>
+          <div id="s12b" class="xl go" style="font-size:196px">RÉUSSIR<br/>DEMAIN</div>
         </div>
       </div>
 
-      <!-- ═══ SC8 · 35,18 → 38,14 · Localisation ═══ -->
-      <div id="s8" class="scene clip" data-start="35.18" data-duration="3.16" data-track-index="17">
-        <div id="s8c" class="card" style="left:170px;top:760px;width:1820px;height:1040px">
-          <i data-layout-allow-overflow id="s8i" style="background-image:url('assets/source/localisation.jpg')"></i></div>
-        <div id="pin" style="position:absolute;z-index:21;left:50%;top:1180px;width:190px;height:190px;
+      <!-- ═══ 13 · 36,15→39,52 · DEUX TEMPS · carte puis adresse ═══ -->
+      <div id="s13" class="scene clip" data-start="36.15" data-duration="3.60" data-track-index="22">
+        <div id="s13c" class="card" style="left:250px;top:1000px;width:1660px;height:1180px">
+          <i data-layout-allow-overflow id="s13i" style="background-image:url('assets/source/localisation.jpg')"></i></div>
+        <div id="pin" style="position:absolute;z-index:21;left:50%;top:1420px;width:190px;height:190px;
              margin-left:-95px;border-radius:50% 50% 50% 6%;transform:rotate(45deg);
              background:linear-gradient(135deg,var(--gold),var(--gold-dk))"></div>
-        <div class="t" style="left:170px;right:170px;top:2020px;text-align:center">
-          <div id="s8k" class="kick">Nous sommes situés à</div>
-          <div id="s8t" class="h1" style="margin-top:60px;font-size:172px">Korofina-Nord</div>
-          <div id="s8p" class="p" style="margin-top:48px;font-size:70px">près de la pharmacie Fady</div>
+        <div class="t" style="left:150px;right:150px;top:2380px;text-align:center">
+          <div id="s13k" class="kick">Nous sommes situés à</div>
+        </div>
+        <div id="s13blk" class="t" style="left:150px;right:150px;top:1500px;text-align:center">
+          <div id="s13t" class="xl" style="font-size:210px">KOROFINA<br/><span class="go">NORD</span></div>
+          <div id="s13p" class="p" style="margin-top:56px;font-size:78px">près de la pharmacie Fady</div>
         </div>
       </div>
 
-      <!-- ═══ SC9 · 38,14 → 45,79 · Téléphones ═══ -->
-      <div id="s9" class="scene clip" data-start="38.14" data-duration="7.85" data-track-index="18">
-        <div id="s9c" class="card" style="left:620px;top:600px;width:920px;height:920px;border-radius:50%">
-          <i data-layout-allow-overflow id="s9i" style="background-image:url('assets/source/photo%20de%20profil.jpg')"></i></div>
-        <div class="t" style="left:170px;right:170px;top:1680px;text-align:center">
-          <div id="s9k" class="kick">Appelez-nous</div>
+      <!-- ═══ 14 · 39,52→46,02 · TEXTE SEUL · numéros par paires ═══ -->
+      <div id="s14" class="scene clip" data-start="39.52" data-duration="6.70" data-track-index="23">
+        <div class="t" style="left:150px;right:150px;top:1180px;text-align:center">
+          <div id="s14k" class="kick">Appelez-nous</div>
         </div>
-        <div id="n1" class="t" style="left:170px;right:170px;top:1960px;text-align:center">
-          <span class="num">74 45 45 71</span></div>
-        <div id="n2" class="t" style="left:170px;right:170px;top:2260px;text-align:center">
-          <span class="num">93 59 92 01</span></div>
-        <div id="s9r" class="bar" style="position:absolute;z-index:20;left:480px;top:2620px;width:1200px"></div>
-        <div id="s9c2" class="card" style="left:480px;top:2760px;width:1200px;height:760px">
-          <i data-layout-allow-overflow id="s9i2" style="background-image:url('assets/source/reseaux.jpg')"></i></div>
+        <div id="n1" class="t" data-layout-allow-overflow style="left:100px;right:100px;top:1600px;text-align:center">
+          <span class="pair">74</span><span class="pair">45</span><span class="pair">45</span><span class="pair">71</span>
+        </div>
+        <div id="n2" class="t" data-layout-allow-overflow style="left:100px;right:100px;top:2060px;text-align:center">
+          <span class="pair">93</span><span class="pair">59</span><span class="pair">92</span><span class="pair">01</span>
+        </div>
+        <div id="s14r" class="bar" style="position:absolute;z-index:20;left:480px;top:2560px;width:1200px"></div>
       </div>
 
-      <!-- ═══ SC10 · 45,79 → 48,33 · Inscriptions ouvertes ═══ -->
-      <div id="s10" class="scene clip" data-start="45.79" data-duration="2.537" data-track-index="19">
-        <div id="lg2" class="logo" style="left:50%;top:1360px;width:680px;height:680px;margin:-340px 0 0 -340px;
-             background-image:url('assets/source/Logo.jpg')"></div>
-        <div class="t" style="left:170px;right:170px;top:1880px;text-align:center">
-          <div id="s10t" class="h2" style="font-size:120px">Apprendre aujourd'hui,<br/><span class="go">réussir demain.</span></div>
-        </div>
-        <div id="cta" class="t" style="left:0;right:0;top:2560px;text-align:center">
+      <!-- ═══ 15 · 46,02→48,33 · SYNCHRONISÉ · match cut sur le cercle ═══ -->
+      <div id="s15" class="scene clip" data-start="46.02" data-duration="2.31" data-track-index="24">
+        <div id="s15c" class="card round" style="left:50%;top:1180px;width:900px;height:900px;margin-left:-450px">
+          <i data-layout-allow-overflow id="s15i" style="background-image:url('assets/source/photo%20de%20profil.jpg')"></i></div>
+        <div id="cta" class="t" data-layout-allow-overflow style="left:0;right:0;top:2340px;text-align:center">
           <span class="pill">Inscriptions ouvertes</span>
         </div>
       </div>
 
       <div id="vig" class="clip" data-layout-allow-occlusion data-start="0" data-duration="48.327" data-track-index="41"></div>
 
-      <!-- Voix off fournie, conservée telle quelle -->
       <audio id="vo" class="clip" src="assets/voix-finale.mp3"
              data-start="0" data-duration="48.327" data-track-index="45" data-volume="1"></audio>
     </div>
@@ -283,9 +290,7 @@
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true });
 
-      /* ════════ Typographie cinétique ════════
-         Chaque nœud de texte est éclaté en caractères animables. Le
-         découpage est déterministe : même DOM à chaque rendu. */
+      /* ═══ Découpage en caractères, déterministe ═══ */
       function split(sel) {
         const el = document.querySelector(sel);
         if (!el || el.dataset.split) return [];
@@ -293,233 +298,222 @@
         el.setAttribute("data-layout-allow-overlap", "");
         el.setAttribute("data-layout-allow-overflow", "");
         const out = [];
-        const walk = (node) => {
+        (function walk(node) {
           [...node.childNodes].forEach((n) => {
             if (n.nodeType === 3) {
-              const frag = document.createDocumentFragment();
+              const f = document.createDocumentFragment();
               [...n.textContent].forEach((c) => {
-                if (c === " ") { frag.appendChild(document.createTextNode(" ")); return; }
+                if (c === " ") { f.appendChild(document.createTextNode(" ")); return; }
                 const s = document.createElement("span");
                 s.className = "ch"; s.textContent = c;
-                frag.appendChild(s); out.push(s);
+                f.appendChild(s); out.push(s);
               });
-              n.replaceWith(frag);
-            } else if (n.nodeType === 1 && n.tagName !== "BR") {
-              walk(n);
-            }
+              n.replaceWith(f);
+            } else if (n.nodeType === 1 && n.tagName !== "BR") walk(n);
           });
-        };
-        walk(el);
+        })(el);
         return out;
       }
 
-      // Les six écritures de texte. Chacune entre en moins de 800 ms,
-      // la durée cumulée venant du décalage entre caractères.
+      /* ═══ Écritures typographiques ═══
+         ANTICIPATION : chaque entrée démarre avant l'instant de la parole
+         pour se POSER dessus, au lieu de commencer dessus et d'arriver en
+         retard. C'était la cause du décalage constaté. */
+      const LEAD = 0.30;
       const TXT = {
-        // cascade montante, caractère par caractère
-        cascade: (c, at) => tl.fromTo(c, { yPercent: 115, autoAlpha: 0 },
-          { yPercent: 0, autoAlpha: 1, duration: .52, ease: "power3.out",
-            stagger: { each: .028 } }, at),
-        // les lettres s'écrivent en grossissant depuis un point
-        pop: (c, at) => tl.fromTo(c, { scale: .2, autoAlpha: 0, rotate: -12 },
-          { scale: 1, autoAlpha: 1, rotate: 0, duration: .46, ease: "back.out(1.6)",
-            stagger: { each: .026 } }, at),
-        // machine à écrire : apparition sèche, sans déplacement
+        cascade: (c, at, d = .52) => tl.fromTo(c, { yPercent: 115, autoAlpha: 0 },
+          { yPercent: 0, autoAlpha: 1, duration: d, ease: "power3.out", stagger: { each: .026 } }, at - LEAD),
+        pop: (c, at, d = .46) => tl.fromTo(c, { scale: .2, autoAlpha: 0, rotate: -10 },
+          { scale: 1, autoAlpha: 1, rotate: 0, duration: d, ease: "back.out(1.6)", stagger: { each: .024 } }, at - LEAD),
         type: (c, at) => tl.fromTo(c, { autoAlpha: 0 },
-          { autoAlpha: 1, duration: .06, ease: "none", stagger: { each: .032 } }, at),
-        // lettres alternées venant du haut et du bas
-        split: (c, at) => tl.fromTo(c,
-          { yPercent: (i) => (i % 2 ? -130 : 130), autoAlpha: 0 },
-          { yPercent: 0, autoAlpha: 1, duration: .58, ease: "power4.out",
-            stagger: { each: .022 } }, at),
-        // arrivée latérale dans le sens du courant du film
-        slide: (c, at) => tl.fromTo(c, { xPercent: 60, autoAlpha: 0, scale: .86 },
-          { xPercent: 0, autoAlpha: 1, scale: 1, duration: .5, ease: "power3.out",
-            stagger: { each: .02 } }, at),
-        // fondu par l'échelle : le mot se resserre en se posant
-        focus: (c, at) => tl.fromTo(c, { scale: 1.9, autoAlpha: 0 },
-          { scale: 1, autoAlpha: 1, duration: .6, ease: "power4.out",
-            stagger: { each: .024 } }, at),
+          { autoAlpha: 1, duration: .05, ease: "none", stagger: { each: .030 } }, at - LEAD),
+        alt: (c, at, d = .56) => tl.fromTo(c, { yPercent: (i) => (i % 2 ? -130 : 130), autoAlpha: 0 },
+          { yPercent: 0, autoAlpha: 1, duration: d, ease: "power4.out", stagger: { each: .020 } }, at - LEAD),
+        slide: (c, at, d = .50) => tl.fromTo(c, { xPercent: 60, autoAlpha: 0, scale: .88 },
+          { xPercent: 0, autoAlpha: 1, scale: 1, duration: d, ease: "power3.out", stagger: { each: .018 } }, at - LEAD),
+        focus: (c, at, d = .58) => tl.fromTo(c, { scale: 1.9, autoAlpha: 0 },
+          { scale: 1, autoAlpha: 1, duration: d, ease: "power4.out", stagger: { each: .022 } }, at - LEAD),
       };
-      const kin = (sel, at, mode) => TXT[mode](split(sel), at);
-
-      /* ════════ Caméra sur vignette ════════
-         Une photo n'est jamais fixe : sa plaque dérive dans son cadre
-         pendant toute la présence de la carte. */
-      const drift = (sel, at, dur, from, to) =>
+      const kin = (sel, at, mode, d) => TXT[mode](split(sel), at, d);
+      const cam = (sel, at, dur, from, to) =>
         tl.fromTo(sel, from, { ...to, duration: dur, ease: "none" }, at);
 
-      /* ════════ FOND — un seul travelling de 48 s ════════
-         Trajectoires monotones : le décor avance, il n'oscille pas. */
-      tl.fromTo("#bg-plate", { xPercent: -6, yPercent: -4, scale: 1.16 },
-        { xPercent: 5, yPercent: 4, scale: 1.02, duration: 48.327, ease: "none" }, 0);
-      tl.fromTo("#grid", { xPercent: 0, yPercent: 0 },
-        { xPercent: -7, yPercent: -5, duration: 48.327, ease: "none" }, 0);
-      tl.fromTo("#sh1", { x: -200, y: 300 }, { x: 700, y: -400, duration: 48.327, ease: "none" }, 0);
-      tl.fromTo("#sh2", { x: 240, y: -260 }, { x: -520, y: 420, duration: 48.327, ease: "none" }, 0);
-      tl.fromTo("#sh3", { x: 260, y: -140, scale: .8 }, { x: -420, y: 620, scale: 1.25, duration: 48.327, ease: "none" }, 0);
-      tl.fromTo("#sh4", { x: -180, y: 220, scale: 1.2 }, { x: 560, y: -520, scale: .85, duration: 48.327, ease: "none" }, 0);
-      tl.fromTo("#sh5", { x: -2160 }, { x: 2160, duration: 24, ease: "none" }, 0);
-      tl.fromTo("#sh5", { x: -2160 }, { x: 2160, duration: 24, ease: "none" }, 24);
-      tl.fromTo("#sh6", { x: 2160 }, { x: -2160, duration: 32, ease: "none" }, 4);
+      /* ═══ 1 · SYNCHRONISÉ · grue descendante ═══ */
+      tl.fromTo("#s1c", { yPercent: -26, scale: 1.14, autoAlpha: 0 },
+        { yPercent: 0, scale: 1, autoAlpha: 1, duration: .70, ease: "power4.out" }, 0);
+      cam("#s1i", 0, 2.4, { scale: 1.24, yPercent: -5 }, { scale: 1.04, yPercent: 4 });   // grue
+      kin("#s1t", .55, "cascade");
+      tl.to("#s1", { scale: 1.34, autoAlpha: 0, duration: .38, ease: "power4.in" }, 2.02);
 
-      /* ════════ SC1 · 0,00 → 1,40 ════════ */
-      tl.fromTo("#s1c", { xPercent: 34, scale: .84, autoAlpha: 0, rotate: 3 },
-        { xPercent: 0, scale: 1, autoAlpha: 1, rotate: 0, duration: .62, ease: "power4.out" }, 0);
-      drift("#s1i", 0, 1.9, { scale: 1.22, xPercent: 4 }, { scale: 1.04, xPercent: -2 });
-      kin("#s1t", .34, "cascade");
-      // Sortie : la scène part vers la GAUCHE — le courant du film.
-      tl.to("#s1", { xPercent: -14, scale: .96, autoAlpha: 0, duration: .34, ease: "power4.in" }, 1.26);
-
-      /* ════════ SC2 · 1,40 → 7,64 · mosaïque des métiers ════════
-         Entrée en pleine course depuis la droite, dans la continuité
-         exacte de la sortie précédente. */
-      tl.fromTo("#s2", { xPercent: 16, scale: .97 },
-        { xPercent: 0, scale: 1, duration: .44, ease: "power4.out" }, 1.40);
-      kin("#s2k", 1.52, "type");
-      // Les quatre cartes se posent une par une, puis la cinquième les
-      // domine : information gagnée en continu, jamais d'attente.
-      const MOS = [["#m1", "#m1i", 1.86], ["#m2", "#m2i", 2.42],
-                   ["#m3", "#m3i", 2.98], ["#m4", "#m4i", 3.54]];
-      MOS.forEach(([c, i, at], k) => {
-        const dir = k % 2 ? -1 : 1;
-        tl.fromTo(c, { xPercent: 42 * dir, yPercent: 12, scale: .78, autoAlpha: 0 },
-          { xPercent: 0, yPercent: 0, scale: 1, autoAlpha: 1, duration: .5, ease: "power4.out" }, at);
-        drift(i, at, 5.0, { scale: 1.24, yPercent: -4 * dir }, { scale: 1.05, yPercent: 3 * dir });
+      /* ═══ 2 · PHOTO SEULE · zoom-through d'une carte à l'autre ═══
+         La sortie précédente grandit ; l'entrée décroît. Même signe de
+         vitesse d'échelle : la coupe reste continue. */
+      const JOBS = [["#j1","#j1i",2.15],["#j2","#j2i",3.68],["#j3","#j3i",4.42],
+                    ["#j4","#j4i",4.98],["#j5","#j5i",5.54]];
+      JOBS.forEach(([c, i, at], k) => {
+        tl.set(c, { autoAlpha: 0 }, 0);
+        tl.fromTo(c, { scale: 1.46, autoAlpha: 0 },
+          { scale: 1, autoAlpha: 1, duration: .40, ease: "power4.out" }, at - LEAD);
+        cam(i, at - LEAD, 2.0, { scale: 1.22, xPercent: k % 2 ? 3 : -3 },
+                                { scale: 1.04, xPercent: k % 2 ? -2 : 2 });
+        if (k < 4) tl.to(c, { scale: .70, autoAlpha: 0, duration: .34, ease: "power4.in" },
+                         JOBS[k + 1][2] - LEAD);
       });
-      [["#l1", 2.02], ["#l2", 2.58], ["#l3", 3.14], ["#l4", 3.70]].forEach(([c, at]) => {
-        tl.fromTo(c, { yPercent: 90, autoAlpha: 0 },
-          { yPercent: 0, autoAlpha: 1, duration: .34, ease: "power3.out" }, at);
-      });
-      // Cinquième carte : elle arrive PAR-DESSUS et recouvre la mosaïque.
-      tl.fromTo("#m5", { scale: .5, autoAlpha: 0, yPercent: 26 },
-        { scale: 1, autoAlpha: 1, yPercent: 0, duration: .54, ease: "power4.out" }, 4.62);
-      drift("#m5i", 4.62, 2.6, { scale: 1.26 }, { scale: 1.06 });
-      tl.fromTo("#l5", { yPercent: 90, autoAlpha: 0 },
-        { yPercent: 0, autoAlpha: 1, duration: .34, ease: "power3.out" }, 4.86);
-      // Les quatre premières s'effacent en s'éloignant : la cinquième reste seule.
-      tl.to(["#m1", "#m2", "#m3", "#m4"], { scale: .88, autoAlpha: .18, duration: .5,
-        ease: "power2.out", stagger: .04 }, 4.72);
-      tl.to(["#l1", "#l2", "#l3", "#l4"], { autoAlpha: 0, duration: .3 }, 4.72);
-      tl.to("#s2", { xPercent: -16, scale: .95, autoAlpha: 0, duration: .38, ease: "power4.in" }, 7.44);
+      tl.to("#j5", { scale: .68, autoAlpha: 0, duration: .40, ease: "power4.in" }, 6.60);
 
-      /* ════════ SC3 · 7,64 → 10,94 ════════ */
-      tl.fromTo("#s3", { xPercent: 18, scale: .97 },
-        { xPercent: 0, scale: 1, duration: .46, ease: "power4.out" }, 7.64);
-      tl.fromTo("#s3c", { yPercent: 30, autoAlpha: 0, rotate: 2.5 },
-        { yPercent: 0, autoAlpha: 1, rotate: 0, duration: .58, ease: "power4.out" }, 7.72);
-      tl.fromTo("#s3c2", { yPercent: -26, autoAlpha: 0, rotate: -2 },
-        { yPercent: 0, autoAlpha: 1, rotate: 0, duration: .58, ease: "power4.out" }, 8.06);
-      // Parallaxe : les deux cartes ne dérivent pas à la même vitesse.
-      drift("#s3i", 7.72, 3.2, { scale: 1.06, yPercent: 5 }, { scale: 1.24, yPercent: -4 });
-      drift("#s3i2", 8.06, 2.9, { scale: 1.24 }, { scale: 1.06 });
-      kin("#s3t", 8.46, "split");
-      tl.to("#s3", { xPercent: -15, scale: .95, autoAlpha: 0, duration: .38, ease: "power4.in" }, 10.74);
+      /* ═══ 3 · TEXTE SEUL ═══ */
+      kin("#s3a", 6.95, "type");
+      kin("#s3b", 7.30, "pop", .54);              // le mot-clé frappe
+      tl.fromTo("#s3r", { scaleX: 0 }, { scaleX: 1, duration: .66, ease: "power4.out" }, 7.95);
+      kin("#s3c", 8.35, "cascade");
+      // Le décor accélère pendant la scène texte : le cadre reste vivant.
+      tl.to("#sh3", { scale: 1.4, duration: 3.0, ease: "none" }, 6.9);
+      tl.to("#s3", { xPercent: -16, scale: .95, autoAlpha: 0, duration: .38, ease: "power4.in" }, 9.85);
 
-      /* ════════ SC4 · 10,94 → 16,75 · l'école ════════
-         Vecteur réservé : poussée en Z. On entre DANS le sujet. */
-      tl.fromTo("#s4", { scale: 1.30, autoAlpha: 0 },
-        { scale: 1, autoAlpha: 1, duration: .58, ease: "power4.out" }, 10.94);
-      tl.fromTo("#s4c", { yPercent: -18, autoAlpha: 0 },
-        { yPercent: 0, autoAlpha: 1, duration: .56, ease: "power4.out" }, 11.02);
-      drift("#s4i", 11.02, 5.6, { scale: 1.26, xPercent: -4 }, { scale: 1.04, xPercent: 3 });
-      kin("#s4k", 11.44, "type");
-      kin("#s4t", 11.86, "pop");
-      tl.fromTo("#s4b", { scaleX: 0 }, { scaleX: 1, duration: .62, ease: "power4.out" }, 12.64);
-      kin("#s4p", 13.02, "cascade");
-      // Respiration avant la bascule — la virgule dramatique.
-      tl.to("#s4", { scale: 1.06, xPercent: -12, autoAlpha: 0, duration: .4, ease: "power4.in" }, 16.55);
+      /* ═══ 4 · SYNCHRONISÉ · orbite lente ═══ */
+      tl.fromTo("#s4", { xPercent: 18, scale: .97 },
+        { xPercent: 0, scale: 1, duration: .46, ease: "power4.out" }, 10.01);
+      tl.fromTo("#s4c", { rotate: -4, scale: .86, autoAlpha: 0 },
+        { rotate: 0, scale: 1, autoAlpha: 1, duration: .62, ease: "power4.out" }, 10.01);
+      cam("#s4i", 10.01, 2.3, { scale: 1.24, xPercent: -5 }, { scale: 1.05, xPercent: 4 });  // orbite
+      kin("#s4k", 10.35, "type");
+      kin("#s4t", 10.70, "pop");
+      // Zoom-through : on traverse la carte pour entrer dans la suivante.
+      tl.to("#s4", { scale: 1.55, autoAlpha: 0, duration: .42, ease: "power4.in" }, 11.90);
 
-      /* ════════ SC5 · 16,75 → 23,36 · les trois piliers ════════ */
-      tl.fromTo("#s5", { xPercent: 17, scale: .97 },
-        { xPercent: 0, scale: 1, duration: .46, ease: "power4.out" }, 16.75);
-      tl.fromTo("#s5c", { xPercent: 40, autoAlpha: 0 },
-        { xPercent: 0, autoAlpha: 1, duration: .52, ease: "power4.out" }, 16.86);
-      tl.fromTo("#s5c2", { xPercent: 40, autoAlpha: 0 },
-        { xPercent: 0, autoAlpha: 1, duration: .52, ease: "power4.out" }, 17.14);
-      drift("#s5i", 16.86, 6.4, { scale: 1.22, yPercent: -3 }, { scale: 1.05, yPercent: 3 });
-      drift("#s5i2", 17.14, 6.2, { scale: 1.05, yPercent: 3 }, { scale: 1.22, yPercent: -3 });
-      // Chaque pilier tombe sur sa réplique : révélation étagée.
-      kin("#p1", 17.02, "slide");
-      kin("#p2", 19.62, "slide");
-      kin("#p3", 21.42, "slide");
-      tl.fromTo("#s5r", { scaleX: 0 }, { scaleX: 1, duration: 5.6, ease: "none" }, 17.10);
-      tl.to("#s5", { xPercent: -15, scale: .95, autoAlpha: 0, duration: .38, ease: "power4.in" }, 23.16);
+      /* ═══ 5 · TEXTE SEUL ═══ */
+      tl.fromTo("#s5", { scale: .72, autoAlpha: 0 },
+        { scale: 1, autoAlpha: 1, duration: .46, ease: "power4.out" }, 12.05);
+      kin("#s5a", 12.20, "type");
+      kin("#s5b", 12.60, "alt", .60);
+      tl.fromTo("#s5r", { scaleX: 0 }, { scaleX: 1, duration: .72, ease: "power4.out" }, 13.45);
+      kin("#s5c", 13.95, "cascade");
+      tl.to("#sh4", { scale: 1.45, duration: 4.4, ease: "none" }, 12.1);
+      tl.to("#s5", { xPercent: -16, scale: .95, autoAlpha: 0, duration: .40, ease: "power4.in" }, 16.45);
 
-      /* ════════ SC6 · 23,36 → 29,63 · l'environnement ════════ */
-      tl.fromTo("#s6", { xPercent: 17, scale: .97 },
-        { xPercent: 0, scale: 1, duration: .46, ease: "power4.out" }, 23.36);
-      [["#s6c1", "#s6i1", 23.46, -1], ["#s6c2", "#s6i2", 23.84, 1], ["#s6c3", "#s6i3", 24.22, -1]]
-        .forEach(([c, i, at, dir]) => {
-          tl.fromTo(c, { xPercent: 36 * dir, yPercent: 14, scale: .82, autoAlpha: 0, rotate: 2.5 * dir },
-            { xPercent: 0, yPercent: 0, scale: 1, autoAlpha: 1, rotate: 0,
-              duration: .54, ease: "power4.out" }, at);
-          drift(i, at, 5.6, { scale: 1.25, xPercent: 3 * dir }, { scale: 1.05, xPercent: -3 * dir });
-        });
-      kin("#s6t", 26.62, "focus");
-      tl.to("#s6", { scale: 1.22, autoAlpha: 0, duration: .42, ease: "power4.in" }, 29.36);
+      /* ═══ 6 · SYNCHRONISÉ · large vers serré ═══ */
+      tl.fromTo("#s6", { xPercent: 18, scale: .97 },
+        { xPercent: 0, scale: 1, duration: .46, ease: "power4.out" }, 16.63);
+      tl.fromTo("#s6c", { yPercent: 16, scale: .88, autoAlpha: 0 },
+        { yPercent: 0, scale: 1, autoAlpha: 1, duration: .58, ease: "power4.out" }, 16.63);
+      cam("#s6i", 16.63, 3.3, { scale: 1.30 }, { scale: 1.04 });          // recadrage serré
+      kin("#s6k", 16.95, "type");
+      kin("#s6t", 17.35, "cascade");
+      tl.to("#s6", { xPercent: -15, scale: .95, autoAlpha: 0, duration: .36, ease: "power4.in" }, 19.55);
 
-      /* ════════ SC7 · 29,63 → 35,18 · le logo ════════
-         Vecteur réservé : zoom inverse. Quelque chose de plus grand ARRIVE.
-         La scène précédente grandit en sortant, celle-ci décroît en entrant :
-         même signe de vitesse d'échelle, la coupe reste continue. */
-      tl.fromTo("#s7", { scale: 1.42, autoAlpha: 0 },
-        { scale: 1, autoAlpha: 1, duration: .6, ease: "power4.out" }, 29.63);
-      tl.fromTo("#lg", { scale: 1.5, autoAlpha: 0 },
-        { scale: 1, autoAlpha: 1, duration: .66, ease: "power4.out" }, 29.72);
-      tl.fromTo("#r1", { scale: 1.7, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .8, ease: "power3.out" }, 29.80);
-      tl.fromTo("#r2", { scale: 1.9, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .95, ease: "power3.out" }, 29.92);
-      // Les anneaux poursuivent leur ouverture : la scène continue d'avancer.
-      tl.to("#r1", { scale: 1.16, duration: 4.2, ease: "none" }, 30.6);
-      tl.to("#r2", { scale: 1.24, duration: 4.2, ease: "none" }, 30.6);
-      kin("#s7t", 30.42, "pop");
-      tl.fromTo("#s7b", { scaleX: 0 }, { scaleX: 1, duration: .7, ease: "power4.out" }, 31.30);
-      kin("#s7s", 31.72, "cascade");
-      tl.to("#s7", { xPercent: -14, scale: .96, autoAlpha: 0, duration: .38, ease: "power4.in" }, 34.98);
+      /* ═══ 7 · SYNCHRONISÉ · panoramique ═══ */
+      tl.fromTo("#s7", { xPercent: 17, scale: .97 },
+        { xPercent: 0, scale: 1, duration: .42, ease: "power4.out" }, 19.69);
+      tl.fromTo("#s7c", { xPercent: 22, autoAlpha: 0 },
+        { xPercent: 0, autoAlpha: 1, duration: .52, ease: "power4.out" }, 19.69);
+      cam("#s7i", 19.69, 2.05, { scale: 1.18, xPercent: -6 }, { scale: 1.06, xPercent: 5 });  // pan
+      kin("#s7t", 19.95, "slide");
+      tl.to("#s7", { xPercent: -15, scale: .95, autoAlpha: 0, duration: .34, ease: "power4.in" }, 21.36);
 
-      /* ════════ SC8 · 35,18 → 38,14 · la localisation ════════ */
+      /* ═══ 8 · SYNCHRONISÉ · tilt montant ═══ */
       tl.fromTo("#s8", { xPercent: 17, scale: .97 },
-        { xPercent: 0, scale: 1, duration: .44, ease: "power4.out" }, 35.18);
-      tl.fromTo("#s8c", { yPercent: -22, autoAlpha: 0 },
-        { yPercent: 0, autoAlpha: 1, duration: .52, ease: "power4.out" }, 35.26);
-      drift("#s8i", 35.26, 2.9, { scale: 1.2, xPercent: -3 }, { scale: 1.04, xPercent: 3 });
-      // Le repère tombe et plante : chute franche, sans rebond.
-      tl.fromTo("#pin", { yPercent: -260, autoAlpha: 0, scale: .6 },
-        { yPercent: 0, autoAlpha: 1, scale: 1, duration: .46, ease: "power4.in" }, 35.42);
-      tl.fromTo("#pin", { scaleX: 1.24, scaleY: .8 }, { scaleX: 1, scaleY: 1, duration: .3, ease: "power2.out" }, 35.88);
-      kin("#s8k", 35.66, "type");
-      kin("#s8t", 36.00, "split");
-      kin("#s8p", 36.62, "cascade");
-      tl.to("#s8", { xPercent: -15, scale: .95, autoAlpha: 0, duration: .36, ease: "power4.in" }, 37.96);
+        { xPercent: 0, scale: 1, duration: .42, ease: "power4.out" }, 21.48);
+      tl.fromTo("#s8c", { yPercent: 18, autoAlpha: 0 },
+        { yPercent: 0, autoAlpha: 1, duration: .54, ease: "power4.out" }, 21.48);
+      cam("#s8i", 21.48, 2.52, { scale: 1.20, yPercent: 6 }, { scale: 1.05, yPercent: -5 }); // tilt
+      kin("#s8t", 21.76, "cascade");
+      tl.to("#s8", { scale: 1.42, autoAlpha: 0, duration: .40, ease: "power4.in" }, 23.56);
 
-      /* ════════ SC9 · 38,14 → 45,79 · les téléphones ════════ */
-      tl.fromTo("#s9", { xPercent: 17, scale: .97 },
-        { xPercent: 0, scale: 1, duration: .44, ease: "power4.out" }, 38.14);
-      tl.fromTo("#s9c", { scale: .6, autoAlpha: 0 },
-        { scale: 1, autoAlpha: 1, duration: .56, ease: "power4.out" }, 38.24);
-      drift("#s9i", 38.24, 7.4, { scale: 1.2 }, { scale: 1.04 });
-      kin("#s9k", 38.62, "type");
-      // Les numéros s'écrivent chiffre par chiffre, sur leur réplique.
-      kin("#n1", 39.30, "pop");
-      kin("#n2", 41.40, "pop");
-      tl.fromTo("#s9r", { scaleX: 0 }, { scaleX: 1, duration: 1.2, ease: "power3.out" }, 43.20);
-      tl.fromTo("#s9c2", { yPercent: 40, autoAlpha: 0 },
-        { yPercent: 0, autoAlpha: 1, duration: .56, ease: "power4.out" }, 43.44);
-      drift("#s9i2", 43.44, 2.3, { scale: 1.18 }, { scale: 1.04 });
-      tl.to("#s9", { scale: 1.18, autoAlpha: 0, duration: .4, ease: "power4.in" }, 45.55);
+      /* ═══ 9 · TEXTE SEUL ═══ */
+      tl.fromTo("#s9", { scale: .74, autoAlpha: 0 },
+        { scale: 1, autoAlpha: 1, duration: .46, ease: "power4.out" }, 23.74);
+      kin("#s9a", 23.90, "type");
+      kin("#s9b", 24.30, "focus", .62);
+      tl.fromTo("#s9r", { scaleX: 0 }, { scaleX: 1, duration: .70, ease: "power4.out" }, 25.20);
+      kin("#s9c", 25.70, "cascade");
+      tl.to("#sh1", { scale: 1.5, duration: 3.8, ease: "none" }, 23.8);
+      tl.to("#s9", { xPercent: -16, scale: .95, autoAlpha: 0, duration: .40, ease: "power4.in" }, 27.56);
 
-      /* ════════ SC10 · 45,79 → 48,33 · le clap de fin ════════
-         Zoom inverse à nouveau : l'arrivée finale. */
-      tl.fromTo("#s10", { scale: 1.34, autoAlpha: 0 },
-        { scale: 1, autoAlpha: 1, duration: .5, ease: "power4.out" }, 45.79);
-      tl.fromTo("#lg2", { scale: 1.4, autoAlpha: 0 },
-        { scale: 1, autoAlpha: 1, duration: .56, ease: "power4.out" }, 45.86);
-      kin("#s10t", 46.16, "cascade");
-      tl.fromTo("#cta", { scale: .74, autoAlpha: 0 },
-        { scale: 1, autoAlpha: 1, duration: .5, ease: "back.out(1.5)" }, 46.86);
-      // Dernière poussée : le plan continue d'avancer jusqu'à la coupe.
-      tl.to("#lg2", { scale: 1.05, duration: 1.6, ease: "none" }, 46.5);
-      tl.to("#cta", { scale: 1.04, duration: .9, ease: "none" }, 47.3);
+      /* ═══ 10 · SYNCHRONISÉ · deux photos en rack focus ═══ */
+      tl.fromTo("#s10", { xPercent: 18, scale: .97 },
+        { xPercent: 0, scale: 1, duration: .46, ease: "power4.out" }, 27.74);
+      tl.set("#s10b", { autoAlpha: 0 }, 0);
+      tl.fromTo("#s10a", { scale: .88, autoAlpha: 0 },
+        { scale: 1, autoAlpha: 1, duration: .56, ease: "power4.out" }, 27.74);
+      cam("#s10ai", 27.74, 1.9, { scale: 1.24 }, { scale: 1.06 });
+      kin("#s10t", 28.05, "cascade");
+      // La seconde photo prend le relais : l'une se retire pendant que
+      // l'autre se précise, dans la continuité du même mouvement.
+      tl.to("#s10a", { scale: 1.16, autoAlpha: 0, duration: .44, ease: "power3.in" }, 29.30);
+      tl.fromTo("#s10b", { scale: 1.34, autoAlpha: 0 },
+        { scale: 1, autoAlpha: 1, duration: .50, ease: "power4.out" }, 29.36);
+      cam("#s10bi", 29.36, 1.6, { scale: 1.22 }, { scale: 1.05 });
+      tl.to("#s10", { scale: 1.48, autoAlpha: 0, duration: .42, ease: "power4.in" }, 30.72);
+
+      /* ═══ 11 · LOGO SEUL · zoom inverse, l'arrivée ═══ */
+      tl.fromTo("#lg", { scale: 1.62, autoAlpha: 0 },
+        { scale: 1, autoAlpha: 1, duration: .70, ease: "power4.out" }, 30.90);
+      tl.fromTo("#r1", { scale: 2.0, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .86, ease: "power3.out" }, 30.98);
+      tl.fromTo("#r2", { scale: 2.3, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 1.0, ease: "power3.out" }, 31.10);
+      tl.to(["#r1", "#r2"], { scale: 1.18, duration: 1.9, ease: "none" }, 31.7);
+      tl.to("#lg", { rotate: 4, duration: 2.0, ease: "none" }, 31.5);
+      tl.to("#s11", { xPercent: -14, scale: .96, autoAlpha: 0, duration: .36, ease: "power4.in" }, 33.49);
+
+      /* ═══ 12 · TEXTE SEUL · le slogan ═══ */
+      tl.fromTo("#s12", { xPercent: 17 }, { xPercent: 0, duration: .42, ease: "power4.out" }, 33.61);
+      kin("#s12a", 33.78, "alt", .58);
+      tl.fromTo("#s12r", { scaleX: 0 }, { scaleX: 1, duration: .60, ease: "power4.out" }, 34.45);
+      kin("#s12b", 34.85, "pop", .52);
+      tl.to("#sh2", { scale: 1.4, duration: 2.4, ease: "none" }, 33.7);
+      tl.to("#s12", { xPercent: -15, scale: .95, autoAlpha: 0, duration: .36, ease: "power4.in" }, 36.02);
+
+      /* ═══ 13 · DEUX TEMPS · la carte, puis l'adresse seule ═══ */
+      tl.fromTo("#s13", { xPercent: 17, scale: .97 },
+        { xPercent: 0, scale: 1, duration: .44, ease: "power4.out" }, 36.15);
+      tl.fromTo("#s13c", { yPercent: -18, autoAlpha: 0 },
+        { yPercent: 0, autoAlpha: 1, duration: .52, ease: "power4.out" }, 36.15);
+      cam("#s13i", 36.15, 1.7, { scale: 1.20, xPercent: -4 }, { scale: 1.05, xPercent: 3 });
+      tl.fromTo("#pin", { yPercent: -280, autoAlpha: 0, scale: .5 },
+        { yPercent: 0, autoAlpha: 1, scale: 1, duration: .44, ease: "power4.in" }, 36.30);
+      tl.fromTo("#pin", { scaleX: 1.26, scaleY: .78 },
+        { scaleX: 1, scaleY: 1, duration: .28, ease: "power2.out" }, 36.74);
+      kin("#s13k", 36.45, "type");
+      // Second temps : la carte se retire, l'adresse occupe l'écran seule.
+      tl.set("#s13blk", { autoAlpha: 0 }, 0);
+      tl.to(["#s13c", "#pin", "#s13k"], { yPercent: -30, autoAlpha: 0, duration: .42, ease: "power3.in" }, 37.70);
+      tl.set("#s13blk", { autoAlpha: 1 }, 37.95);
+      kin("#s13t", 38.05, "alt", .56);
+      kin("#s13p", 38.70, "cascade");
+      tl.to("#s13", { xPercent: -15, scale: .95, autoAlpha: 0, duration: .36, ease: "power4.in" }, 39.38);
+
+      /* ═══ 14 · TEXTE SEUL · les numéros, paire par paire ═══ */
+      tl.fromTo("#s14", { xPercent: 17 }, { xPercent: 0, duration: .42, ease: "power4.out" }, 39.52);
+      kin("#s14k", 39.70, "type");
+      // Chaque bloc de deux chiffres tombe séparément, en cascade.
+      tl.fromTo("#n1 .pair", { yPercent: -90, autoAlpha: 0, scale: .7 },
+        { yPercent: 0, autoAlpha: 1, scale: 1, duration: .42, ease: "power4.out",
+          stagger: { each: .17 } }, 40.05);
+      tl.fromTo("#n2 .pair", { yPercent: -90, autoAlpha: 0, scale: .7 },
+        { yPercent: 0, autoAlpha: 1, scale: 1, duration: .42, ease: "power4.out",
+          stagger: { each: .17 } }, 42.60);
+      tl.fromTo("#s14r", { scaleX: 0 }, { scaleX: 1, duration: 1.1, ease: "power3.out" }, 44.40);
+      tl.to("#s14", { scale: 1.30, autoAlpha: 0, duration: .40, ease: "power4.in" }, 45.84);
+
+      /* ═══ 15 · SYNCHRONISÉ · le cercle du logo devient la photo ═══ */
+      tl.fromTo("#s15c", { scale: 1.44, autoAlpha: 0 },
+        { scale: 1, autoAlpha: 1, duration: .54, ease: "power4.out" }, 46.02);
+      cam("#s15i", 46.02, 2.2, { scale: 1.20 }, { scale: 1.04 });
+      tl.fromTo("#cta", { scale: .72, autoAlpha: 0 },
+        { scale: 1, autoAlpha: 1, duration: .52, ease: "back.out(1.5)" }, 46.52);
+      tl.to("#s15c", { scale: 1.06, duration: 1.5, ease: "none" }, 46.6);
+      tl.to("#cta", { scale: 1.05, duration: 1.0, ease: "none" }, 47.1);
+
+      /* ═══ Décor : un seul travelling continu ═══ */
+      cam("#bg-plate", 0, 48.327, { xPercent: -6, yPercent: -4, scale: 1.16 },
+                                  { xPercent: 5, yPercent: 4, scale: 1.02 });
+      cam("#grid", 0, 48.327, { xPercent: 0, yPercent: 0 }, { xPercent: -7, yPercent: -5 });
+      cam("#sh1", 0, 48.327, { x: -200, y: 300 }, { x: 700, y: -400 });
+      cam("#sh2", 0, 48.327, { x: 240, y: -260 }, { x: -520, y: 420 });
+      cam("#sh3", 0, 48.327, { x: 260, y: -140 }, { x: -420, y: 620 });
+      cam("#sh4", 0, 48.327, { x: -180, y: 220 }, { x: 560, y: -520 });
+      cam("#sh5", 0, 24, { x: -2160 }, { x: 2160 });
+      cam("#sh5", 24, 24, { x: -2160 }, { x: 2160 });
+      cam("#sh6", 4, 32, { x: 2160 }, { x: -2160 });
 
       window.__timelines["main"] = tl;
     </script>
