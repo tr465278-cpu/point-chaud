@@ -1,95 +1,208 @@
-# HyperFrames Composition Project
+# Projet vidéo CSDK — mémoire de production
 
-## Skills — USE THESE FIRST
+Ce fichier est lu automatiquement au début de chaque session. Il consigne ce
+que la production du premier spot a coûté à découvrir, pour que la suivante
+n'ait pas à le repayer.
 
-**Always invoke the relevant skill before writing or modifying compositions.** Skills encode framework-specific patterns (e.g., `window.__timelines` registration, `data-*` attribute semantics, shader-compatible CSS rules) that are NOT in generic web docs. Skipping them produces broken compositions.
+---
 
-**Doing anything with HyperFrames?** Start at `/hyperframes` — it tells you what HyperFrames can do and which skill or workflow handles your intent (make a video, TTS / BGM, prep footage, author / animate, render, install blocks), confirms your brief up front (the intent layer), and routes every "make me a…" request (a video, a deck, a composition port) to the right workflow. Read it first, especially when there's no project context to orient you. The workflows it routes to:
+## 1. Contraintes réseau de cet environnement — À LIRE EN PREMIER
 
-- `/product-launch-video` — any **website** URL or brief / script → a product launch / SaaS / promo video, or a site tour / showcase featuring the site's own captured visuals.
-- `/faceless-explainer` — arbitrary text (topic / article / notes), **no URL, no website capture** → 60-90s faceless explainer.
-- `/embedded-captions` — an existing talking-head video (MP4) → the same footage with captions / subtitles added (rail + embed, or pure-cinematic embed); the footage itself is untouched.
-- `/talking-head-recut` — an existing talking-head / interview / podcast video (MP4) → the same footage **packaged with designed graphic overlays** (kinetic titles, lower-thirds, data callouts, pull-quotes, side panels, pip) synced to the transcript; the clip plays unchanged underneath. (Plain captions/subtitles → `/embedded-captions`.)
-- `/pr-to-video` — a GitHub PR (URL / `owner/repo#N` / "this PR") → 30-90s code-change explainer (changelog / feature reveal / fix / refactor).
-- `/motion-graphics` — a short (typically under 10s) design-led **motion graphic**, motion-is-the-message, no narration: kinetic type, a stat / number count-up, a chart, a logo sting, a lower-third / overlay, or an animated tweet / headline / captured-page highlight; rendered to MP4 or a transparent overlay. Longer / narrated / custom → `/general-video`.
-- `/music-to-video` — a **music track** (audio file, video to pull audio from, or one generated from a mood brief) → beat-synced video (lyric / slideshow / kinetic promo). Music drives pacing; user-supplied images / videos are cut onto the same beat grid.
-- `/slideshow` — a **presentation / pitch deck / interactive deck** — discrete slides, fragment reveals, branching, hotspot navigation, presenter mode. Output is a navigable deck, not a rendered video.
-- `/general-video` — fallback for any other video (title card, longer brand / sizzle reel, multi-scene montage, static loop, custom composition) and the home of **companion mode** — co-create with the full HyperFrames toolbox; the original hyperframes authoring flow, any length.
+La session tourne dans un conteneur Linux distant derrière un proxy strict.
+**Ne pas perdre de temps à tester ces accès, ils sont fermés :**
 
-**Porting an existing composition?** `/remotion-to-hyperframes` translates a Remotion (React) composition into HyperFrames HTML — a source migration, separate from the creation workflows above.
+| Bloqué | Conséquence |
+| --- | --- |
+| `huggingface.co` | Pas de Whisper (transcription), pas de MusicGen (musique IA) |
+| Tous les domaines `heygen.com` | Catalogue BGM, images et voix HeyGen inaccessibles |
+| Tous les domaines `canva.com` et `design.canva.ai` | On peut **commander** une génération via le MCP Canva, mais **pas récupérer** le fichier |
+| `cdn.jsdelivr.net` et les CDN | GSAP doit être vendorisé en local (`vendor/gsap.min.js`) |
+| `drive.google.com` | Le connecteur Google Drive **tronque les fichiers binaires** — un JPEG de 18 Ko en est ressorti à 15 Ko, corrompu |
 
-The domain skills (`/hyperframes-core`, `/hyperframes-animation`, `/hyperframes-keyframes`, `/hyperframes-creative`, `/hyperframes-cli`, `/media-use`, `/hyperframes-registry`, `/figma`) and the full capability map live inside `/hyperframes` — it is the single source of truth for which skill handles which intent.
+**Ce qui marche :** `registry.npmjs.org`, `github.com`, `raw.githubusercontent.com`,
+`www.googleapis.com`, et le proxy git local **en lecture ET en écriture**.
 
-**Changing how real footage or images look or reveal?** Load `/media-use` and read its `references/media-treatments.md` before editing, even when the request only says dark, flat, boring, retro, private, or “make the reveal cooler.” It governs how footage is treated, never whether media may be used. Use canonical media treatments and seek-safe motion; do not improvise equivalent CSS/SVG filters or overlays.
+**Transfert de fichiers avec le client : passer par GitHub.** Créer le dossier
+cible avec un fichier témoin (Git n'enregistre pas les dossiers vides), pousser,
+puis donner le lien — le client dépose par « Add file → Upload files ». Cette
+voie a fonctionné du premier coup pour 21 photos et pour la voix off.
 
-> **Tailwind v4 projects** (`hyperframes init --tailwind`): see `/hyperframes-core` → `references/tailwind.md`.
+---
 
-> **Skill missing or stale?** Run `npx hyperframes skills update <name>` to install/refresh
-> the specific skill you need (the `/hyperframes` router does this automatically before
-> entering a workflow), or bare `npx hyperframes skills update` to refresh the core set plus
-> everything already installed — neither pulls the full set. Restart the agent session so
-> newly installed skills load.
+## 2. Performance de rendu — le piège qui bloque la capture
 
-## Commands
+En 2160×3840, la capture se fige à l'image 0 si la composition est trop lourde.
+Diagnostic : une composition minimale au même format rend en 12 s ; si elle
+passe et pas la vôtre, c'est la charge de calques.
+
+**Les trois coupables, par ordre de gravité :**
+
+1. **Les surfaces plein écran.** Une V1 en comptait 50 (teinte, deux voiles,
+   vignette et grain × 10 scènes). Les fusionner en **un seul calque par scène**,
+   voire un seul global, en empilant les dégradés dans une même propriété
+   `background`.
+2. **`filter: blur()`.** Ruineux à cette définition. Un `radial-gradient` ou un
+   `linear-gradient` à arrêts multiples donne le même flou visuel pour rien.
+3. **`will-change`.** Force un calque GPU par élément, soit 33 Mo chacun en 4K.
+   GSAP gère très bien sans.
+
+`mix-blend-mode` impose aussi une passe de composition par image : à éviter.
+
+Le linter prévient (`composition_heavy_overlay_count_high`) — **le croire**.
+
+**Durées observées** sur 4 cœurs, 48 s en 2160×3840 : 75 à 100 min en 60 fps
+qualité haute, ~50 min en 24 fps brouillon. Prévoir large et lancer en tâche de
+fond. Le conteneur a redémarré deux fois en pleine production : **committer et
+pousser avant chaque rendu**.
+
+**Journaux hors de `/tmp`** — il est effacé au redémarrage.
+
+`nice` empêche le lancement de FFmpeg par le moteur : ne pas l'utiliser.
+
+---
+
+## 3. Le piège d'empilement qui a masqué toutes les photos
+
+Un fond de secours en `::before` avec `z-index: -1` ne passe sous le fond de son
+parent **que si celui-ci crée un contexte d'empilement**. `will-change` en
+créait un ; en le supprimant pour la performance, le dégradé est repassé
+**par-dessus** les photos. Un rendu complet de 93 min a été perdu ainsi.
+
+**Règle :** un repli se met en `background-color` sur l'élément lui-même, peint
+par construction sous `background-image`. Jamais en pseudo-élément.
+
+**Toujours vérifier par capture avant un rendu long.** Un petit script Puppeteer
+qui charge la composition, appelle `seek(t)` et applique la visibilité des
+`.clip` coûte 30 secondes et évite d'en perdre 90.
+
+---
+
+## 4. Calage sur une voix off fournie
+
+Sans transcription (Whisper bloqué), la méthode qui a marché :
+
+1. Détecter les phrases par silences : `silencedetect=noise=-35dB:d=0.28`
+2. Traiter la parole comme un **ruban continu**, silences exclus
+3. Y projeter le script **au prorata des syllabes** — pas au prorata d'une
+   version TTS de référence, dont le débit diffère
+
+**Contrôle de justesse :** le débit en syllabes/seconde doit être à peu près
+constant d'une réplique à l'autre. S'il varie de 2,6 à 6,5, le calage dérive.
+Compter les nombres en toutes lettres (« 74 » = quatre syllabes), sinon la
+réplique des téléphones est massivement sous-estimée.
+
+**Anticipation obligatoire.** Une animation d'entrée doit **se poser** sur le
+mot, pas démarrer dessus : commencer 0,30 s avant. Sans ça le texte paraît en
+retard d'une demi-seconde, et le client le voit.
+
+Le client a finalement peaufiné le calage final dans CapCut — c'est le bon
+outil pour ça, avec la forme d'onde sous les yeux.
+
+---
+
+## 5. Doctrine de mouvement — les paramètres retenus
+
+Charger `motion-doctrine` avant toute composition, puis `cut-the-curve` pour les
+paramètres. Ce qui a servi ici :
+
+- **Un courant unique** — toutes les coupes ordinaires vont dans la même
+  direction (gauche par défaut). Les autres vecteurs sont réservés au sens :
+  poussée en Z pour entrer dans un sujet, zoom inverse pour une arrivée.
+- **Déplacement partiel : ~12 % du cadre**, jamais une sortie complète.
+- **Eases miroir** : sortie `power4.in`, entrée `power4.out`, même distance et
+  même durée — les deux moitiés d'un `power4.inOut`.
+- **Signe en Z** : d(échelle)/dt doit garder le même signe des deux côtés d'une
+  coupe. Une sortie qui rétrécit suivie d'une entrée qui grandit est le défaut
+  le plus courant.
+- **`bounce.out` et `elastic.out` sont proscrits.** Un dépassement d'entrée en
+  `back.out(1.4–1.7)` est admis.
+- **Pas d'oscillation d'attente.** Une forme qui flotte sur place fait lire « la
+  vidéo attend ». Les décors avancent en trajectoire monotone.
+- Entrée ≤ 800 ms · sortie ≈ 75 % de l'entrée · 2 à 3 transitions par film,
+  répétées. La variété se met **dans** les scènes, pas dans les coupes.
+- `#root` doit avoir un fond opaque, sinon les coupes à opacité cumulée < 1
+  laissent passer un flash blanc.
+
+---
+
+## 6. Grammaire texte / image validée par le client
+
+Trois traitements, décidés scène par scène :
+
+- **Synchronisé** — photo et texte animé ensemble
+- **Photo seule** — l'image se suffit, aucun texte
+- **Texte animé seul** — le texte porte le message ; corps nettement plus grand
+  (250 px contre 190 px), mot-clé isolé sur sa ligne, décor accéléré
+
+Le principe : quelqu'un qui regarde sans le son doit pouvoir suivre.
+
+---
+
+## 7. Ressources du projet
+
+**Charte** : bleu marine `#04122B` / `#08203F` · or `#F5B921` · blanc.
+
+**Voix off** : `assets/voix-finale.mp3`, ElevenLabs (voix Victoria,
+`eleven_multilingual_v2`), 48,33 s, fournie par le client.
+Kokoro (le TTS local) n'a **aucune voix masculine française** — seule `ff_siwis`
+est native, et elle est féminine. Les voix masculines anglophones passées au
+phonémiseur français ont été rejetées à l'écoute.
+
+**21 photos** dans `assets/source/`, entre 736 et 1080 px de large. C'est la
+limite de netteté du rendu, pas le montage — en vignettes elles passent bien
+mieux qu'en plein écran.
+
+**19 bruitages** livrés en local avec le skill `media-use`, dans
+`.claude/skills/media-use/audio/assets/sfx/` : whoosh ×3, impact-bass ×2, pop,
+click ×2, riser, sparkle, chime, ping, glitch ×2, typing. Ils ont été écartés du
+montage final — le client les trouvait trop couvrants sur la voix.
+
+**Décision du client à ne pas rediscuter** : la photo d'Elon Musk reste sur la
+scène « entrepreneur », et `un bon depart.jpg` reste sur « Grandissent avec
+confiance ». Le risque lié au droit à l'image a été signalé, le client l'assume.
+
+---
+
+## 8. Les 25 skills — quel skill pour quoi
+
+`npx skills add heygen-com/hyperframes` installe l'ensemble.
+`npx hyperframes skills update` ne récupère **que le noyau de 8**.
+
+| Besoin | Skill |
+| --- | --- |
+| Point d'entrée, routage | `hyperframes` |
+| Loi du mouvement, continuité entre scènes | `motion-doctrine` **(à charger en premier)** |
+| Paramètres de transitions et d'entrées | `cut-the-curve` |
+| Mécanique de rendu des coupes, flash blanc | `seam-craft` |
+| Structure, attributs `data-*`, déterminisme | `hyperframes-core` |
+| Animation, blueprints, 24 effets de texte | `hyperframes-animation` |
+| Keyframes, GSAP, masques, SVG, 3D | `hyperframes-keyframes` |
+| Palette, typographie, narration, beats | `hyperframes-creative` |
+| Musique, bruitages, images, voix, étalonnage | `media-use` |
+| CLI : init, check, render, publish | `hyperframes-cli` |
+| Blocs et composants prêts à l'emploi | `hyperframes-registry` |
+| Pub produit à partir d'une URL ou d'un brief | `product-launch-video` |
+| Explicatif sans visage | `faceless-explainer` |
+| Vidéo calée sur une musique | `music-to-video` |
+| Motion graphic court, sans narration | `motion-graphics` |
+| Sous-titres sur du rush existant | `embedded-captions` |
+| Habillage graphique sur du rush | `talking-head-recut` |
+| Tout le reste, multi-scènes | `general-video` |
+
+---
+
+## 9. Boucle de travail
 
 ```bash
-npm run dev          # start the preview server (long-running — keep it alive in background)
-npm run check        # lint + runtime + layout + motion + contrast (one command)
-npm run render       # render to MP4
-npm run publish      # publish and get a shareable link
-npx hyperframes lint --verbose  # include info-level findings
-npx hyperframes lint --json     # machine-readable output for CI
-npx hyperframes docs <topic> # reference docs in terminal
+npm run check      # lint + mise en page + mouvement + contraste
+npm run render     # rendu MP4
 ```
 
-> **`npm run dev` is a long-running server, not a one-shot command.** It blocks until stopped.
-> In Claude Code, always run it with `run_in_background: true`. Never run it as a foreground
-> command — it will time out and the server will die, breaking the browser preview.
+`npm run check` doit être au vert avant tout rendu. Il a attrapé deux vrais
+défauts invisibles à l'œil : des pastilles à 1,1:1 de contraste (illisibles) et
+une vignette qui recouvrait le texte.
 
-> **Pinned CLI version.** These scripts pin an exact `hyperframes@X.Y.Z` so this project re-renders identically over time. Weeks later that pin lags fixes shipped since. To move up: `npx hyperframes@latest upgrade --project . --check` (shows the delta), then `npx hyperframes@latest upgrade --project .` to rewrite the pins. Always unpinned — the pinned script re-runs the old version against itself.
-
-## Documentation
-
-**For quick reference**, use the local CLI docs command (no network required):
-
-```bash
-npx hyperframes docs <topic>
-```
-
-Topics: `data-attributes`, `gsap`, `compositions`, `rendering`, `examples`, `troubleshooting`
-
-**For full documentation**, discover pages via the machine-readable index — do NOT guess URLs:
-
-```
-https://hyperframes.heygen.com/llms.txt
-```
-
-## Project Structure
-
-- `index.html` — main composition (root timeline)
-- `compositions/` — sub-compositions referenced via `data-composition-src`
-- `meta.json` — project metadata (id, name)
-- `transcript.json` — whisper word-level transcript (if generated)
-
-## Linting — ALWAYS RUN AFTER CHANGES
-
-After creating or editing any `.html` composition, **always** run the full check before considering the task complete:
-
-```bash
-npm run check
-```
-
-Fix all errors before presenting the result. Warnings should be reviewed before rendering.
-
-## Key Rules
-
-1. Every timed element needs `data-start`, `data-duration`, and `data-track-index`
-2. Elements with timing **MUST** have `class="clip"` — the framework uses this for visibility control
-3. Timelines must be paused and registered on `window.__timelines`:
-   ```js
-   window.__timelines = window.__timelines || {};
-   window.__timelines["composition-id"] = gsap.timeline({ paused: true });
-   ```
-4. Videos use `muted` with a separate `<audio>` element for the audio track
-5. Sub-compositions use `data-composition-src="compositions/file.html"` to reference other HTML files
-6. Only deterministic logic — no `Date.now()`, no `Math.random()`, no network fetches
+**Livraison** : master 4K + version 1080×1920 réduite en Lanczos. La 1080 est
+souvent **plus belle** que la 4K quand les photos sources sont petites, et c'est
+le format natif des réseaux. La messagerie plafonne à 30 Mo : au-delà, déposer
+dans `livraison/` sur GitHub.
