@@ -246,7 +246,55 @@ illustrations bleues, pas des photographies. Remplaçables s'il fournit mieux.
 
 ---
 
-## 10. Boucle de travail
+## 10. Cadrage des photos — la règle du rapport exact
+
+**Le défaut le plus coûteux des deux premières vidéos.** Un cadre décoratif dont
+la forme ne correspond pas à celle de la photo la massacre, et trois causes se
+multiplient sans qu'on s'en rende compte à l'écriture :
+
+| Cause | Effet |
+| --- | --- |
+| Cadre au mauvais rapport + `background-size:cover` | recadre jusqu'à 40 % d'un côté |
+| `inset:-12 %` sur l'image | ×1,24 de sur-cadrage |
+| Zoom d'ambiance partant de `scale:1.22` | ×1,22 de plus |
+
+Cumulé : **on ne voyait que 26 à 40 % de chaque photo**, et le client l'a vu
+tout de suite — « les carrés sont trop petits, on ne voit presque rien ».
+
+**La règle, désormais :** le cadre prend **exactement le rapport de sa photo**,
+et c'est le **plus grand rectangle de ce rapport qui tient dans la place libre
+au-dessus du texte**. `inset:0` sur l'image. La respiration part de `scale:1.00`
+et monte à 1,05 : à l'instant où la photo paraît, elle est entière.
+
+En 9:16, la plupart des photos tiennent **pleine largeur d'écran (2160 px)**
+sans la moindre coupe — il suffit de calculer `hauteur = 2160 / rapport` et de
+vérifier qu'il reste de quoi poser le texte. Mesurer d'abord :
+
+```bash
+ffprobe -v error -select_streams v:0 -show_entries stream=width,height \
+        -of csv=p=0 photo.jpg
+```
+
+**Ne jamais recouvrir une photo par un bandeau de légende.** Réduire la photo
+pour que le texte tienne dessous coûte moins cher visuellement que de masquer
+le bas de l'image — d'autant que ces visuels portent souvent leur propre
+légende, qu'un bandeau coupe en deux.
+
+**Vérification par capture : `pub2-video/shot.cjs`.** Il charge la composition,
+applique la visibilité des `.clip`, appelle `seek(t)` et photographie. Une
+planche contact de toutes les sources (`xstack` en ffmpeg) se fait en une
+commande et vaut le coup avant chaque montage.
+
+**Filigranes.** Le recadrage serré masquait un filigrane « Adobe Stock » sur
+`localisation.jpg` — aperçu non licencié. En montrant les photos entières, il
+est apparu. Il n'est pas question de l'effacer : la scène a été rebasculée sur
+le badge rond CSDK, qui porte l'adresse prononcée par la voix off. **Passer
+toutes les sources en revue avant montage**, le recadrage ne doit jamais servir
+de cache-misère.
+
+---
+
+## 11. Boucle de travail
 
 ```bash
 npm run check      # lint + mise en page + mouvement + contraste
