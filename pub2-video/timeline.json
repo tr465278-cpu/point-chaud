@@ -1,0 +1,118 @@
+{
+ "audio": "voix.mp3",
+ "duration": 47.125,
+ "segments": [
+  {
+   "id": 1,
+   "text": "Vous êtes à Korofina-Nord",
+   "start": 0.0,
+   "end": 1.552,
+   "dur": 1.552
+  },
+  {
+   "id": 2,
+   "text": "et vous cherchez une bonne école pour votre enfant ?",
+   "start": 1.552,
+   "end": 4.844,
+   "dur": 3.292
+  },
+  {
+   "id": 3,
+   "text": "Ne cherchez plus loin.",
+   "start": 4.844,
+   "end": 6.249,
+   "dur": 1.405
+  },
+  {
+   "id": 4,
+   "text": "Vous êtes au bon endroit.",
+   "start": 6.249,
+   "end": 8.059,
+   "dur": 1.81
+  },
+  {
+   "id": 5,
+   "text": "Au Complexe Scolaire Diawoye Kanté,",
+   "start": 8.059,
+   "end": 10.363,
+   "dur": 2.304
+  },
+  {
+   "id": 6,
+   "text": "nous plaçons chaque enfant au cœur de notre mission.",
+   "start": 10.363,
+   "end": 13.272,
+   "dur": 2.909
+  },
+  {
+   "id": 7,
+   "text": "Une éducation de qualité.",
+   "start": 13.272,
+   "end": 15.51,
+   "dur": 2.238
+  },
+  {
+   "id": 8,
+   "text": "La discipline et les valeurs.",
+   "start": 15.51,
+   "end": 17.746,
+   "dur": 2.236
+  },
+  {
+   "id": 9,
+   "text": "Une innovation pédagogique grâce à nos partenariats.",
+   "start": 17.746,
+   "end": 22.333,
+   "dur": 4.587
+  },
+  {
+   "id": 10,
+   "text": "Un accompagnement personnalisé.",
+   "start": 22.333,
+   "end": 24.229,
+   "dur": 1.896
+  },
+  {
+   "id": 11,
+   "text": "Tout est pensé pour permettre à chaque élève de développer son potentiel,",
+   "start": 24.229,
+   "end": 29.591,
+   "dur": 5.362
+  },
+  {
+   "id": 12,
+   "text": "de progresser et d'atteindre son meilleur niveau.",
+   "start": 29.591,
+   "end": 32.263,
+   "dur": 2.672
+  },
+  {
+   "id": 13,
+   "text": "Les inscriptions sont ouvertes !",
+   "start": 32.263,
+   "end": 33.643,
+   "dur": 1.38
+  },
+  {
+   "id": 14,
+   "text": "Nous sommes situés à Korofina-Nord, près de la pharmacie Fady.",
+   "start": 33.643,
+   "end": 37.545,
+   "dur": 3.902
+  },
+  {
+   "id": 15,
+   "text": "Contactez-nous au 74 45 45 71 ou au 93 59 92 01.",
+   "start": 37.545,
+   "end": 45.007,
+   "dur": 7.462
+  },
+  {
+   "id": 16,
+   "text": "CSDK — Apprendre aujourd'hui, réussir demain.",
+   "start": 45.007,
+   "end": 46.732,
+   "dur": 1.725
+  }
+ ]
+}
