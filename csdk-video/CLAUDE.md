@@ -140,7 +140,15 @@ Le principe : quelqu'un qui regarde sans le son doit pouvoir suivre.
 
 ## 7. Ressources du projet
 
+**Organisation du dépôt.** Un dossier de montage par spot — `csdk-video/`
+(publicité 1), `pub2-video/` (publicité 2) — et un dossier de dépôt client par
+spot à venir — `publicite-2/`, `publicite-3/` — avec `audio/`, `photos/` et un
+`LISEZ-MOI.md` qui sert de gabarit de brief. Les masters partent dans
+`livraison/` du dossier de dépôt correspondant.
+
 **Charte** : bleu marine `#04122B` / `#08203F` · or `#F5B921` · blanc.
+La publicité 2 en décline une variante éditoriale : `--ink #061530`,
+`--ink-2 #0A2148`, `--gold #F5B921`, `--grey #8FA3C4`.
 
 **Voix off** : `assets/voix-finale.mp3`, ElevenLabs (voix Victoria,
 `eleven_multilingual_v2`), 48,33 s, fournie par le client.
@@ -191,7 +199,54 @@ confiance ». Le risque lié au droit à l'image a été signalé, le client l'a
 
 ---
 
-## 9. Boucle de travail
+## 9. Publicité 2 — ce que la deuxième production a appris
+
+Dossier `pub2-video/`, direction **éditoriale magazine** (choisie par le client
+pour ne pas ressembler au premier spot) : cadres à angles vifs, folios chiffrés
+`01`–`04`, surtitres très espacés, filets or qui se tracent, grille de colonnes
+visible en fond. Même charte bleu marine / or, vocabulaire visuel entièrement
+différent. 47,1 s · 15 scènes · 16 répliques.
+
+**Les emojis à l'écran.** Le client en voulait de vrais (🙅 🫵👍). Un emoji
+system échoue au lint (`font_family_without_font_face`) et ne rend pas en
+couleur à la capture. La solution : copier `NotoColorEmoji.ttf` dans
+`assets/fonts/` et le déclarer.
+
+```css
+@font-face { font-family:"CSDK Emoji";
+  src:url("assets/fonts/NotoColorEmoji.ttf") format("truetype");
+  font-display:block; }
+```
+
+Le fichier pèse 10,8 Mo — il doit être versionné, pas ignoré.
+
+**Coupures de mots en plein milieu.** « COMPLEXE SCOLAIR·E », « INSCRIPTIO·NS ».
+Le moteur coupe sans césure quand le mot dépasse. Ça ne se corrige pas par
+`overflow`, seulement en **réduisant le corps** : 186 → 152 px pour les titres
+longs, 236 → 172 px pour l'affiche. Vérifier chaque scène par capture.
+
+**`align.py` affiné.** Version de référence dans `pub2-video/align.py` :
+`silencedetect` à `d=0.25` (au lieu de 0,28), table `NUM` pour les nombres en
+toutes lettres, projection sur le ruban de parole par `wall(pos)`. Résultat sur
+la voix de la publicité 2 : **5,80 syll/s constant sur les 16 répliques, aucun
+chevauchement** — c'est le signe que le calage est juste.
+
+**Vocabulaire d'animation retenu** (tous avec `LEAD = 0.30`) : `wipe` (volet),
+`letter` (lettre à lettre), `type` (frappe), `press` (impression typographique)
+et `draw()` pour les filets or. Quatre gestes suffisent : la variété vient du
+rythme, pas du nombre d'effets.
+
+**Rendu** : 97 min en 2160×3840 · 60 fps, après un redémarrage de conteneur qui
+a tué la première tentative. Contrôles au vert : 0 erreur de lint, de mise en
+page et de mouvement, **166 contrastes sur 166 conformes AA**, 0 image noire sur
+16 points de sondage.
+
+**Réserve signalée au client** : les quatre visuels des piliers sont des
+illustrations bleues, pas des photographies. Remplaçables s'il fournit mieux.
+
+---
+
+## 10. Boucle de travail
 
 ```bash
 npm run check      # lint + mise en page + mouvement + contraste
