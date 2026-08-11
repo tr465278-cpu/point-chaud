@@ -53,14 +53,25 @@
       }
 
       /* ═══ FILETS ═══ */
-      .rule { position:absolute; background:var(--gold); transform-origin:left center; }
+      .rule { position:absolute; z-index:18; background:var(--gold);
+              transform-origin:left center; }
       .rule.v { transform-origin:center top; }
-      .hair { position:absolute; background:rgba(245,185,33,.34); transform-origin:left center; }
+      .hair { position:absolute; z-index:18; background:rgba(245,185,33,.34);
+              transform-origin:left center; }
 
-      /* ═══ CADRES PHOTO — angles vifs, filet or ═══ */
+      /* ═══ CADRES PHOTO ═══
+         Règle de la V2, née du retour client : chaque cadre a EXACTEMENT le
+         rapport de sa photo, et c'est le plus grand rectangle de ce rapport
+         qui tient dans la place libre au-dessus du texte. La photo est donc
+         montrée ENTIÈRE — aucun recadrage, ni en largeur ni en hauteur — et
+         aussi grande que la page le permet : pleine largeur d'écran dès que
+         la photo n'est pas trop haute. Le <i> fait pile la taille du cadre
+         (inset:0) ; seule la légère respiration mord dans les bords, et elle
+         part de 1,00. Rien ne recouvre jamais une photo. */
       .fr { position:absolute; overflow:hidden; background:var(--ink-2); }
-      .fr > i { position:absolute; inset:-12%; display:block;
-                background-size:cover; background-position:center; }
+      .fr > i { position:absolute; inset:0; display:block;
+                background-size:cover; background-position:center;
+                transform-origin:center center; }
       .fr.edge { box-shadow:0 0 0 4px var(--gold); }
 
       /* ═══ TYPOGRAPHIE — contraste de graisses assumé ═══ */
@@ -121,7 +132,7 @@
       }
 
       #vig { position:absolute; inset:0; z-index:40; pointer-events:none;
-             background:radial-gradient(96% 78% at 50% 48%, transparent 66%, rgba(4,12,26,.46) 100%); }
+             background:radial-gradient(96% 78% at 50% 48%, transparent 70%, rgba(4,12,26,.38) 100%); }
       .scene { position:absolute; inset:0; z-index:10; }
     </style>
   </head>
@@ -138,23 +149,23 @@
         <div id="hl2" class="hair" style="left:0;top:3320px;width:2160px;height:2px"></div>
       </div>
 
-      <!-- ═══ 1 · 0,00→1,55 · Korofina-Nord ═══ -->
+      <!-- ═══ 1 · 0,00→1,55 · Korofina-Nord — photo 1480×1920 ═══ -->
       <div id="s1" class="scene clip" data-start="0" data-duration="1.85" data-track-index="10">
-        <div id="f1" class="fr" style="left:0;top:700px;width:1620px;height:1900px">
+        <div id="f1" class="fr" style="left:0;top:0;width:2160px;height:2802px">
           <i data-layout-allow-overflow id="i1" style="background-image:url('assets/source/korofina%20nord.jpg')"></i></div>
-        <div id="r1" class="rule" style="left:var(--mar);top:2760px;width:1820px;height:6px"></div>
-        <div class="t" style="left:170px;right:170px;top:2860px">
+        <div id="r1" class="rule" style="left:var(--mar);top:2900px;width:1820px;height:6px"></div>
+        <div class="t" style="left:170px;right:170px;top:3000px">
           <div id="o1" class="over">Vous êtes à</div>
-          <div id="d1" class="disp" style="margin-top:44px">KOROFINA<br/><span class="go">NORD</span></div>
+          <div id="d1" class="disp" style="margin-top:40px">KOROFINA<br/><span class="go">NORD</span></div>
         </div>
       </div>
 
-      <!-- ═══ 2 · 1,55→4,84 · l'école ═══ -->
+      <!-- ═══ 2 · 1,55→4,84 · l'école — photo 735×490 ═══ -->
       <div id="s2" class="scene clip" data-start="1.55" data-duration="3.55" data-track-index="11">
-        <div id="f2" class="fr edge" style="right:0;top:900px;width:1560px;height:1560px">
+        <div id="f2" class="fr edge" style="left:0;top:560px;width:2160px;height:1440px">
           <i data-layout-allow-overflow id="i2" style="background-image:url('assets/source/ecole.jpg')"></i></div>
-        <div id="r2" class="rule v" style="left:var(--mar);top:900px;width:6px;height:1560px"></div>
-        <div class="t" style="left:170px;right:170px;top:2680px">
+        <div id="r2" class="rule" style="left:var(--mar);top:2140px;width:1820px;height:6px"></div>
+        <div class="t" style="left:170px;right:170px;top:2250px">
           <div id="h2" class="head">Et vous cherchez<br/>une <span class="go">bonne école</span><br/>pour votre enfant&nbsp;?</div>
         </div>
       </div>
@@ -176,71 +187,74 @@
         </div>
       </div>
 
-      <!-- ═══ 5 · 8,06→10,36 · l'école, nommée ═══ -->
+      <!-- ═══ 5 · 8,06→10,36 · l'école, nommée — photo 1080×809 ═══ -->
       <div id="s5" class="scene clip" data-start="8.06" data-duration="2.55" data-track-index="14">
-        <div id="f5" class="fr" style="left:0;top:1080px;width:2160px;height:1420px">
+        <div id="f5" class="fr" style="left:0;top:540px;width:2160px;height:1618px">
           <i data-layout-allow-overflow id="i5" style="background-image:url('assets/source/diawoye%20kante.jpg')"></i></div>
-        <div id="r5" class="rule" style="left:var(--mar);top:2660px;width:1820px;height:6px"></div>
-        <div class="t" style="left:170px;right:170px;top:2760px">
+        <div id="r5" class="rule" style="left:var(--mar);top:2290px;width:1820px;height:6px"></div>
+        <div class="t" style="left:170px;right:170px;top:2390px">
           <div id="o5" class="over">Au</div>
           <div id="d5" class="disp" style="margin-top:36px;font-size:152px">COMPLEXE<br/>SCOLAIRE<br/><span class="go">DIAWOYE KANTÉ</span></div>
         </div>
       </div>
 
-      <!-- ═══ 6 · 10,36→13,27 · quatre enfants, enchaînement rapide ═══ -->
+      <!-- ═══ 6 · 10,36→13,27 · quatre enfants, pleine largeur chacun ═══ -->
       <div id="s6" class="scene clip" data-start="10.36" data-duration="3.15" data-track-index="15">
-        <div id="k1" class="fr edge" style="left:250px;top:900px;width:1660px;height:1900px">
+        <div id="k1" class="fr edge" style="left:124px;top:60px;width:1912px;height:2730px">
           <i data-layout-allow-overflow id="ki1" style="background-image:url('assets/source/enfant1.jpg')"></i></div>
-        <div id="k2" class="fr edge" style="left:250px;top:900px;width:1660px;height:1900px">
+        <div id="k2" class="fr edge" style="left:0;top:560px;width:2160px;height:1729px">
           <i data-layout-allow-overflow id="ki2" style="background-image:url('assets/source/enfant2.jpg')"></i></div>
-        <div id="k3" class="fr edge" style="left:250px;top:900px;width:1660px;height:1900px">
+        <div id="k3" class="fr edge" style="left:312px;top:60px;width:1536px;height:2730px">
           <i data-layout-allow-overflow id="ki3" style="background-image:url('assets/source/enfant3.jpg')"></i></div>
-        <div id="k4" class="fr edge" style="left:250px;top:900px;width:1660px;height:1900px">
+        <div id="k4" class="fr edge" style="left:56px;top:60px;width:2048px;height:2730px">
           <i data-layout-allow-overflow id="ki4" style="background-image:url('assets/source/enfant4.jpg')"></i></div>
-        <div class="t" style="left:170px;right:170px;top:3000px">
+        <div id="r6" class="rule" style="left:var(--mar);top:2880px;width:1820px;height:6px"></div>
+        <div class="t" style="left:170px;right:170px;top:2980px">
           <div id="h6" class="mid">Nous plaçons <span class="go">chaque enfant</span><br/>au cœur de notre mission.</div>
         </div>
       </div>
 
-      <!-- ═══ 7 à 10 · les quatre piliers, en rubriques numérotées ═══ -->
+      <!-- ═══ 7 à 10 · les quatre piliers — photos pleine page, légende en bandeau ═══ -->
       <div id="s7" class="scene clip" data-start="13.27" data-duration="2.50" data-track-index="16">
-        <div id="f7" class="fr" style="right:0;top:820px;width:1700px;height:1700px">
+        <div id="f7" class="fr" style="left:59px;top:40px;width:2042px;height:2960px">
           <i data-layout-allow-overflow id="i7" style="background-image:url('assets/source/education%20qualite.jpg')"></i></div>
-        <div class="t" style="left:170px;top:880px"><div id="n7" class="folio">01</div></div>
-        <div id="r7" class="rule" style="left:var(--mar);top:2700px;width:1820px;height:6px"></div>
-        <div class="t" style="left:170px;right:170px;top:2800px">
-          <div id="h7" class="head">Une éducation<br/><span class="go">de qualité.</span></div>
+        <div id="r7" class="rule" style="left:var(--mar);top:3020px;width:1820px;height:6px"></div>
+        <div class="t" style="left:170px;top:3060px"><div id="n7" class="folio" style="font-size:84px">01</div></div>
+        <div class="t" style="left:170px;right:170px;top:3200px">
+          <div id="h7" class="head" style="font-size:130px">Une éducation<br/><span class="go">de qualité.</span></div>
         </div>
       </div>
 
       <div id="s8" class="scene clip" data-start="15.51" data-duration="2.50" data-track-index="17">
-        <div id="f8" class="fr" style="left:0;top:820px;width:1700px;height:1700px">
+        <div id="f8" class="fr" style="left:205px;top:40px;width:1750px;height:2960px">
           <i data-layout-allow-overflow id="i8" style="background-image:url('assets/source/discipline%20valeurs.jpg')"></i></div>
-        <div class="t" style="right:170px;top:880px;text-align:right"><div id="n8" class="folio">02</div></div>
-        <div id="r8" class="rule" style="left:var(--mar);top:2700px;width:1820px;height:6px"></div>
-        <div class="t" style="left:170px;right:170px;top:2800px">
-          <div id="h8" class="head">La discipline<br/>et les <span class="go">valeurs.</span></div>
+        <div id="r8" class="rule" style="left:var(--mar);top:3020px;width:1820px;height:6px"></div>
+        <div class="t" style="right:170px;top:3060px;text-align:right"><div id="n8" class="folio" style="font-size:84px">02</div></div>
+        <div class="t" style="left:170px;right:170px;top:3200px">
+          <div id="h8" class="head" style="font-size:130px">La discipline<br/>et les <span class="go">valeurs.</span></div>
         </div>
       </div>
 
       <div id="s9" class="scene clip" data-start="17.75" data-duration="4.85" data-track-index="18">
-        <div id="f9" class="fr" style="right:0;top:760px;width:1740px;height:1820px">
+        <div id="f9" class="fr" style="left:222px;top:40px;width:1715px;height:2960px">
           <i data-layout-allow-overflow id="i9" style="background-image:url('assets/source/innovation%20pedagogique.jpg')"></i></div>
-        <div class="t" style="left:170px;top:820px"><div id="n9" class="folio">03</div></div>
-        <div id="r9" class="rule" style="left:var(--mar);top:2740px;width:1820px;height:6px"></div>
-        <div class="t" style="left:170px;right:170px;top:2840px">
-          <div id="h9" class="head" style="font-size:146px">Une innovation<br/><span class="go">pédagogique</span></div>
-          <div id="b9" class="body" style="margin-top:44px">grâce à nos partenariats.</div>
+        <div id="r9" class="rule" style="left:var(--mar);top:3020px;width:1820px;height:6px"></div>
+        <div class="t" style="left:170px;top:3060px"><div id="n9" class="folio" style="font-size:84px">03</div></div>
+        <div class="t" style="left:170px;right:170px;top:3200px">
+          <div id="h9" class="head" style="font-size:130px">Une innovation<br/><span class="go">pédagogique</span></div>
+        </div>
+        <div class="t" style="left:170px;right:170px;top:3510px">
+          <div id="b9" class="body">grâce à nos partenariats.</div>
         </div>
       </div>
 
       <div id="s10" class="scene clip" data-start="22.33" data-duration="2.20" data-track-index="19">
-        <div id="f10" class="fr" style="left:0;top:820px;width:1700px;height:1700px">
+        <div id="f10" class="fr" style="left:144px;top:40px;width:1872px;height:2960px">
           <i data-layout-allow-overflow id="i10" style="background-image:url('assets/source/accompagnement%20perso.jpg')"></i></div>
-        <div class="t" style="right:170px;top:880px;text-align:right"><div id="n10" class="folio">04</div></div>
-        <div id="r10" class="rule" style="left:var(--mar);top:2700px;width:1820px;height:6px"></div>
-        <div class="t" style="left:170px;right:170px;top:2800px">
-          <div id="h10" class="head">Un accompagnement<br/><span class="go">personnalisé.</span></div>
+        <div id="r10" class="rule" style="left:var(--mar);top:3020px;width:1820px;height:6px"></div>
+        <div class="t" style="right:170px;top:3060px;text-align:right"><div id="n10" class="folio" style="font-size:84px">04</div></div>
+        <div class="t" style="left:170px;right:170px;top:3200px">
+          <div id="h10" class="head" style="font-size:130px">Un accompagnement<br/><span class="go">personnalisé.</span></div>
         </div>
       </div>
 
@@ -268,12 +282,15 @@
         <div id="r12b" class="rule" style="left:var(--mar);top:2380px;width:1820px;height:8px"></div>
       </div>
 
-      <!-- ═══ 13 · 33,64→37,55 · localisation ═══ -->
+      <!-- ═══ 13 · 33,64→37,55 · localisation — badge rond CSDK 1080×1080.
+           L'image « localisation.jpg » a été écartée : c'est un aperçu Adobe
+           Stock filigrané. Le badge porte l'adresse exacte prononcée par la
+           voix off, et c'est un visuel de l'école. ═══ -->
       <div id="s13" class="scene clip" data-start="33.64" data-duration="4.15" data-track-index="22">
-        <div id="f13" class="fr edge" style="left:250px;top:820px;width:1660px;height:1160px">
-          <i data-layout-allow-overflow id="i13" style="background-image:url('assets/source/localisation.jpg')"></i></div>
-        <div id="r13" class="rule" style="left:var(--mar);top:2200px;width:1820px;height:6px"></div>
-        <div class="t" style="left:170px;right:170px;top:2300px">
+        <div id="f13" class="fr" style="left:230px;top:150px;width:1700px;height:1700px">
+          <i data-layout-allow-overflow id="i13" style="background-image:url('assets/source/photo%20de%20profil.jpg')"></i></div>
+        <div id="r13" class="rule" style="left:var(--mar);top:2060px;width:1820px;height:6px"></div>
+        <div class="t" style="left:170px;right:170px;top:2160px">
           <div id="o13" class="over">Nous sommes situés à</div>
           <div id="d13" class="disp" style="margin-top:44px;font-size:210px">KOROFINA<br/><span class="go">NORD</span></div>
           <div id="b13" class="body" style="margin-top:48px">près de la pharmacie Fady.</div>
@@ -349,16 +366,21 @@
           { scale: 1, autoAlpha: 1, duration: d, ease: "power4.out", stagger: { each: .020 } }, at - LEAD),
       };
       const kin = (s, at, m, d) => TXT[m](split(s), at, d);
-      const cam = (s, at, dur, from, to) =>
-        tl.fromTo(s, from, { ...to, duration: dur, ease: "none" }, at);
+
+      /* Respiration d'image. Elle part TOUJOURS de 1,00 : à l'instant où la
+         photo apparaît, on la voit entière. Le mouvement ne mord ensuite que
+         de 4 à 6 % sur les bords, contre 40 % dans la version précédente.
+         Même signe en Z partout : la doctrine de mouvement est respectée. */
+      const air = (s, at, dur, to = 1.055) =>
+        tl.fromTo(s, { scale: 1 }, { scale: to, duration: dur, ease: "none" }, at);
       // Les filets se tracent : geste éditorial récurrent
       const draw = (s, at, d = .58, axis = "scaleX") =>
         tl.fromTo(s, { [axis]: 0 }, { [axis]: 1, duration: d, ease: "power4.out" }, at - LEAD);
 
       /* ═══ 1 · Korofina-Nord ═══ */
-      tl.fromTo("#f1", { xPercent: -22, autoAlpha: 0 },
+      tl.fromTo("#f1", { xPercent: -18, autoAlpha: 0 },
         { xPercent: 0, autoAlpha: 1, duration: .62, ease: "power4.out" }, 0);
-      cam("#i1", 0, 1.9, { scale: 1.26 }, { scale: 1.05 });          // zoom demandé
+      air("#i1", 0, 1.9);
       kin("#o1", .28, "type");
       draw("#r1", .42);
       kin("#d1", .55, "wipe");
@@ -366,10 +388,10 @@
 
       /* ═══ 2 · l'école ═══ */
       tl.fromTo("#s2", { xPercent: 15 }, { xPercent: 0, duration: .44, ease: "power4.out" }, 1.55);
-      tl.fromTo("#f2", { xPercent: 26, autoAlpha: 0 },
+      tl.fromTo("#f2", { xPercent: 22, autoAlpha: 0 },
         { xPercent: 0, autoAlpha: 1, duration: .58, ease: "power4.out" }, 1.55);
-      cam("#i2", 1.55, 3.5, { scale: 1.22, xPercent: 4 }, { scale: 1.05, xPercent: -3 });
-      draw("#r2", 1.72, .62, "scaleY");
+      air("#i2", 1.55, 3.5, 1.06);
+      draw("#r2", 1.72, .62);
       kin("#h2", 1.95, "wipe");
       tl.to("#s2", { xPercent: -14, autoAlpha: 0, duration: .34, ease: "power4.in" }, 4.72);
 
@@ -391,42 +413,43 @@
 
       /* ═══ 5 · l'école nommée ═══ */
       tl.fromTo("#s5", { xPercent: 15 }, { xPercent: 0, duration: .44, ease: "power4.out" }, 8.06);
-      tl.fromTo("#f5", { yPercent: -14, autoAlpha: 0 },
+      tl.fromTo("#f5", { yPercent: -12, autoAlpha: 0 },
         { yPercent: 0, autoAlpha: 1, duration: .56, ease: "power4.out" }, 8.06);
-      cam("#i5", 8.06, 2.5, { scale: 1.24, yPercent: -3 }, { scale: 1.05, yPercent: 3 });
+      air("#i5", 8.06, 2.5);
       kin("#o5", 8.30, "type");
       draw("#r5", 8.44);
       kin("#d5", 8.60, "wipe");
       tl.to("#s5", { xPercent: -14, autoAlpha: 0, duration: .34, ease: "power4.in" }, 10.24);
 
-      /* ═══ 6 · quatre enfants, coupes sèches ═══ */
+      /* ═══ 6 · quatre enfants, coupes sèches — chacun en pleine largeur ═══ */
       tl.fromTo("#s6", { xPercent: 15 }, { xPercent: 0, duration: .40, ease: "power4.out" }, 10.36);
+      draw("#r6", 10.48);
       kin("#h6", 10.62, "wipe");
       const KIDS = [["#k1", "#ki1", 10.36], ["#k2", "#ki2", 11.06],
                     ["#k3", "#ki3", 11.76], ["#k4", "#ki4", 12.46]];
       KIDS.forEach(([c, i, at], k) => {
         tl.set(c, { autoAlpha: 0 }, 0);
-        tl.fromTo(c, { xPercent: 30 * (k % 2 ? -1 : 1), autoAlpha: 0 },
+        tl.fromTo(c, { xPercent: 26 * (k % 2 ? -1 : 1), autoAlpha: 0 },
           { xPercent: 0, autoAlpha: 1, duration: .30, ease: "power4.out" }, at - .12);
-        cam(i, at - .12, 1.0, { scale: 1.20 }, { scale: 1.06 });
-        if (k < 3) tl.to(c, { xPercent: -30 * (k % 2 ? -1 : 1), autoAlpha: 0,
+        air(i, at - .12, 1.0, 1.04);
+        if (k < 3) tl.to(c, { xPercent: -26 * (k % 2 ? -1 : 1), autoAlpha: 0,
                              duration: .26, ease: "power3.in" }, KIDS[k + 1][2] - .12);
       });
       tl.to("#s6", { xPercent: -14, autoAlpha: 0, duration: .34, ease: "power4.in" }, 13.15);
 
-      /* ═══ 7 à 10 · les quatre rubriques ═══ */
+      /* ═══ 7 à 10 · les quatre rubriques, photos pleine page ═══ */
       [["#s7", "#f7", "#i7", "#n7", "#r7", "#h7", 13.27, 2.50, 1],
        ["#s8", "#f8", "#i8", "#n8", "#r8", "#h8", 15.51, 2.50, -1],
        ["#s9", "#f9", "#i9", "#n9", "#r9", "#h9", 17.75, 4.85, 1],
        ["#s10", "#f10", "#i10", "#n10", "#r10", "#h10", 22.33, 2.20, -1]
       ].forEach(([sc, fr, im, no, ru, hd, at, dur, dir]) => {
         tl.fromTo(sc, { xPercent: 15 }, { xPercent: 0, duration: .42, ease: "power4.out" }, at);
-        tl.fromTo(fr, { xPercent: 24 * dir, autoAlpha: 0 },
+        tl.fromTo(fr, { xPercent: 20 * dir, autoAlpha: 0 },
           { xPercent: 0, autoAlpha: 1, duration: .54, ease: "power4.out" }, at);
-        cam(im, at, dur, { scale: 1.22, xPercent: -3 * dir }, { scale: 1.05, xPercent: 3 * dir });
-        kin(no, at + .16, "press", .42);        // le folio frappe
-        draw(ru, at + .30);
-        kin(hd, at + .44, "wipe");
+        air(im, at, dur, 1.05);
+        kin(no, at + .26, "press", .42);        // le folio frappe
+        draw(ru, at + .34);
+        kin(hd, at + .46, "wipe");
         tl.to(sc, { xPercent: -14, autoAlpha: 0, duration: .34,
                     ease: "power4.in" }, at + dur - .38);
       });
@@ -456,9 +479,9 @@
 
       /* ═══ 13 · localisation ═══ */
       tl.fromTo("#s13", { xPercent: 15 }, { xPercent: 0, duration: .44, ease: "power4.out" }, 33.64);
-      tl.fromTo("#f13", { yPercent: -16, autoAlpha: 0 },
+      tl.fromTo("#f13", { yPercent: -14, autoAlpha: 0 },
         { yPercent: 0, autoAlpha: 1, duration: .54, ease: "power4.out" }, 33.64);
-      cam("#i13", 33.64, 4.1, { scale: 1.22, xPercent: -4 }, { scale: 1.05, xPercent: 3 });
+      air("#i13", 33.64, 4.1, 1.06);
       kin("#o13", 33.90, "type");
       draw("#r13", 34.10);
       kin("#d13", 34.30, "wipe");
@@ -484,11 +507,11 @@
       tl.to("#d15 .ch", { scale: 1.04, duration: 1.0, ease: "none" }, 46.1);
 
       /* ═══ Fond — un seul travelling continu ═══ */
-      cam("#bg-plate", 0, 47.125, { xPercent: -4, yPercent: -3, scale: 1.12 },
-                                  { xPercent: 4, yPercent: 3, scale: 1.02 });
-      cam("#cols", 0, 47.125, { xPercent: 0 }, { xPercent: -6 });
-      cam("#hl1", 0, 47.125, { x: -600 }, { x: 600 });
-      cam("#hl2", 0, 47.125, { x: 600 }, { x: -600 });
+      tl.fromTo("#bg-plate", { xPercent: -4, yPercent: -3, scale: 1.12 },
+        { xPercent: 4, yPercent: 3, scale: 1.02, duration: 47.125, ease: "none" }, 0);
+      tl.fromTo("#cols", { xPercent: 0 }, { xPercent: -6, duration: 47.125, ease: "none" }, 0);
+      tl.fromTo("#hl1", { x: -600 }, { x: 600, duration: 47.125, ease: "none" }, 0);
+      tl.fromTo("#hl2", { x: 600 }, { x: -600, duration: 47.125, ease: "none" }, 0);
 
       window.__timelines["main"] = tl;
     </script>
